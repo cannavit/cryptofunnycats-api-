@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb-mernt
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+      MONGODB_USERNAME: admin
+      MONGODB_PASSWORD: admin
+      MONGODB_DATABASE: admin
+    ports:
+      - 27017:27017
+    volumes:
+      - ./db_volume:/data/db

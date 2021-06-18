@@ -1,26 +1,86 @@
 {
   "name": "smoke-collector",
-  "version": "0.0.1",
-  "description": "This service is for collect the results of smktesting/smoke-master service",
+  "version": "0.0.0",
+  "description": "backend templates",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "build": "babel src --out-dir dist",
+    "start": "node dist/index.js",
+    "dev": "nodemon --exec npx babel-node src/index.js",
+    "example": "nodemon --exec npx babel-node example/index.js",
+    "babel-node": "babel-node --presets=\"@babel/preset-env\"",
+    "dev33": "nodemon --exec npm run babel-node -- src/index3.js",
+    "prettier": "prettier --config ./.prettierrc --write \"**/*.js\"",
+    "pretest": "eslint --ignore-path .gitignore .",
+    "postinstall": "rm -rf dist && yarn run build",
+    "lint": "yarn prettier --write --check --config ./.prettierrc \"**/*.js\" && eslint --fix ./src",
+    "release": "release-it patch --no-npm.publish"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/phdactivities/smoke-collector.git"
+    "url": "git+https://gitlab.com/cannit-templates/backend-templates/smoke-collector.git"
   },
   "keywords": [
-    "smoketest",
-    "smoke",
-    "test",
-    "kubernetes",
-    "automatics"
+    "nodejs",
+    "backend",
+    "templates"
   ],
-  "author": "Cecilio Cannavacciuolo",
-  "license": "ISC",
+  "author": "Cecilio Cannavacciuolo Diaz",
+  "license": "MIT",
   "bugs": {
-    "url": "https://gitlab.com/phdactivities/smoke-collector/issues"
+    "url": "https://gitlab.com/cannit-templates/backend-templates/smoke-collector/issues"
   },
-  "homepage": "https://gitlab.com/phdactivities/smoke-collector#readme"
+  "homepage": "https://gitlab.com/cannit-templates/backend-templates/smoke-collector#readme",
+  "dependencies": {
+    "@babel/plugin-proposal-export-default-from": "^7.12.13",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.13.8",
+    "@babel/plugin-proposal-optional-chaining": "^7.13.12",
+    "@becodebg/chocomen": "^1.1.2",
+    "apollo-engine": "^1.1.2",
+    "apollo-server-express": "^2.23.0",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "dotenv-safe": "^8.2.0",
+    "env": "0.0.2",
+    "express": "^4.17.1",
+    "express-winston": "^4.1.0",
+    "moment": "^2.29.1",
+    "mongoose": "^5.12.5",
+    "mongoose-autopopulate": "^0.14.0",
+    "mongoose-bcrypt": "^1.9.0",
+    "mongoose-timestamp": "^0.6.0",
+    "node-eval": "^2.0.0",
+    "node-schedule": "^2.0.0",
+    "passport": "^0.4.1",
+    "passport-http": "^0.3.0",
+    "passport-http-bearer": "^1.0.1",
+    "passport-jwt": "^4.0.0",
+    "querymen": "^2.1.4",
+    "validator": "^13.6.0",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.13.16",
+    "@babel/core": "^7.13.16",
+    "@babel/node": "^7.13.13",
+    "@babel/preset-env": "^7.13.15",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-console-log": "0.0.3",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^7.25.0",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "fs-extra": "^9.1.0",
+    "nodemon": "^2.0.7"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
+  }
 }

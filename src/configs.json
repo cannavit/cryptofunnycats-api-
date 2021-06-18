@@ -1,0 +1,45 @@
+{
+   "dev": {
+       "project": {
+           "name": "nodejsBase"
+       },
+       "MONGODB": {
+           "URL": "mongodb://admin:admin@localhost:27017/admin"
+       },
+    "debug": true,
+    "port": 3001,
+     "mail": {
+      "defaultRecipient": "'XymUp' <noreply@xymup.com>",
+      "login": "/active",
+      "resetPassword": "/active-account/{token}",
+      "properties": {
+        "host": "smtp.mailtrap.io",
+        "port": 2525,
+        "secure": false,
+        "auth": {
+          "user": "c7f34ce6e94e08",
+          "pass": "da9ffcec23577e"
+        }
+      },
+      "enabled": true
+    },
+    "urls": { 
+      "frontendPrefix": "http://localhost:8000",
+      "imagePrefix": "http://localhost:3000/api/v1/file/"
+    },
+    "jwtSecret": "xymUp2020-is-aw3some"
+   }, 
+   "develop":{
+       
+       "project": {
+           "name": "nodejsBase"
+       },
+       "MONGODB": {
+        "URL": "mongodb+srv://baseNodeJS:mlM0BtDSBFHeEIYA@cluster0.el8nm.mongodb.net/developBaseNodejs?retryWrites=true&w=majority"
+       },
+    "debug": true,
+    "port": 3001   
+   }
+}
+
+
