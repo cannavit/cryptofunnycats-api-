@@ -1,0 +1,26 @@
+{
+  "name": "smoke-collector",
+  "version": "0.0.1",
+  "description": "This service is for collect the results of smktesting/smoke-master service",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/phdactivities/smoke-collector.git"
+  },
+  "keywords": [
+    "smoketest",
+    "smoke",
+    "test",
+    "kubernetes",
+    "automatics"
+  ],
+  "author": "Cecilio Cannavacciuolo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/phdactivities/smoke-collector/issues"
+  },
+  "homepage": "https://gitlab.com/phdactivities/smoke-collector#readme"
+}
