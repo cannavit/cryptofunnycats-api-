@@ -19,7 +19,7 @@ export default (routes) => {
       enable301Redirects: false,
       trustXFPHeader: true,
     });
-    app.use(forceSSL);
+    // app.use(forceSSL);
   } else {
     logger.info('\x1B[0;34mExpress:\x1B[0m SSL redirect is DISABLED');
   }

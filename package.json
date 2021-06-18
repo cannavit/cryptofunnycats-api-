@@ -58,6 +58,7 @@
     "passport-http-bearer": "^1.0.1",
     "passport-jwt": "^4.0.0",
     "querymen": "^2.1.4",
+    "socket.io": "^4.1.2",
     "validator": "^13.6.0",
     "winston": "^3.3.3"
   },

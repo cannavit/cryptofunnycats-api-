@@ -28,7 +28,7 @@ const APP_NAME = requireProcessEnv('APP_NAME');
 const config = {
   all: {
     appName: capitalize(APP_NAME),
-    env: process.env.NODE_ENV || 'development',
+    env: process.env.NODE_ENV || 'dev',
     root: path.join(__dirname, '..'),
     port: process.env.PORT || 3002,
     hostname: os.hostname || '',
@@ -37,7 +37,7 @@ const config = {
     expressSSLRedirect: false,
     jwtSecret: requireProcessEnv('JWT_SECRET'),
     // masterKey: requireProcessEnv('MASTER_KEY'),
-    // disableScheduler: !!process.env.DISABLE_SCHEDULER || false,
+    disableScheduler: !!process.env.DISABLE_SCHEDULER || false,
     mongo: {
       options: {
         useUnifiedTopology: true,
@@ -52,9 +52,9 @@ const config = {
       },
     },
   },
-  development: {
+  dev: {
     mongo: {
-      uri: process.env.MONGODB_URI || `mongodb://localhost/${APP_NAME}-dev`,
+      uri: `mongodb://localhost:27027/${APP_NAME}-dev`,
       options: {
         debug: true,
         useUnifiedTopology: true,
