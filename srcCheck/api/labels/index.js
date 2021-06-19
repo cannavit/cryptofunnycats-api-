@@ -2,7 +2,7 @@ import { middleware as body } from '@becodebg/chocomen';
 import { Router } from 'express';
 import { middleware as query } from 'querymen';
 
-import { admin, token } from '../../services/passport';
+import { admin, token } from '../../services';
 
 import { actions } from './controller';
 import { bodymenSchema } from './model';

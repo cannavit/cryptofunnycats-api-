@@ -31,26 +31,6 @@ const config = {
     env: process.env.NODE_ENV || 'dev',
     root: path.join(__dirname, '..'),
     port: process.env.PORT || 3002,
-    swaggerOptions: {
-      swaggerDefinition: {
-        info: {
-          title: 'Smoke-Collector',
-          version: 'v0.0.1',
-          description: 'SmokeTest remote collector ',
-        },
-        schemes: ['http'],
-        basePath: '/api/v1',
-        securityDefinitions: {
-          bearerAuth: {
-            type: 'apiKey',
-            name: 'Authorization',
-            scheme: 'bearer',
-            in: 'header',
-          },
-        },
-      },
-      apis: ['./src/apis/smktest/*.js'],
-    },
     hostname: os.hostname || '',
     ip: process.env.IP || '0.0.0.0',
     defaultEmail: `no-reply@${APP_NAME}.com`,
@@ -74,7 +54,7 @@ const config = {
   },
   dev: {
     mongo: {
-      uri: `mongodb://127.0.0.1:27017/${APP_NAME}-dev`,
+      uri: `mongodb://localhost:27027/${APP_NAME}-dev`,
       options: {
         debug: true,
         useUnifiedTopology: true,
