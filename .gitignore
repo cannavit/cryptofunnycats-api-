@@ -210,3 +210,5 @@ src/tools/mongoose-dummy/*.json
 
 # Prettier Format
 .prettierrc
+
+.vercel
