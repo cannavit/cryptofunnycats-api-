@@ -6,6 +6,7 @@ import path from 'path';
 global.Promise = require('bluebird');
 global.logger = require('winston');
 global._ = require('lodash');
+
 /* istanbul ignore next */
 const requireProcessEnv = (name) => {
   if (!process.env[name]) {
@@ -75,7 +76,8 @@ const config = {
   },
   dev: {
     mongo: {
-      uri: `mongodb://127.0.0.1:27017/${APP_NAME}-dev`,
+      uri:
+        process.env.MONGODB_URI || `mongodb://127.0.0.1:27017/${APP_NAME}-dev`,
       options: {
         debug: true,
         useUnifiedTopology: true,
@@ -84,7 +86,7 @@ const config = {
   },
   production: {
     ip: process.env.IP,
-    port: process.env.PORT || 8080,
+    port: process.env.PORT || 3002,
     expressSSLRedirect: process.env.DISABLE_SSL_REDIRECT !== 'true',
     mongo: {
       uri: process.env.MONGODB_URI || `mongodb://localhost/${APP_NAME}`,
