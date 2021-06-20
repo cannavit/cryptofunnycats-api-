@@ -1,19 +1,18 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const routes = require('./apis/smktest'); // new
-
-const swaggerJsdoc = require('swagger-jsdoc');
-const swaggerUi = require('swagger-ui-express');
-import { swaggerOptions, port, appName, mongo } from './config';
+import express from 'express';
+import mongoose from 'mongoose';
+import swaggerJsdoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
+// Configuration
+import { swaggerOptions, port, appName, mongo, urlBase } from './config';
 
 //! Get all routes of swagger.
 
 const swaggerSpecs = swaggerJsdoc(swaggerOptions);
 
 const withPrefix = function (url) {
-  return '/api/v1' + url;
+  return urlBase + url;
 };
-// http://localhost:5000/api/v1/api-docs/
+
 mongoose
   .connect(mongo.uri, {
     useNewUrlParser: true,
@@ -23,6 +22,7 @@ mongoose
     const app = express();
     app.use(express.json());
     // app.use('/api', routes); // new
+
     app.use(withPrefix('/smktest'), require('./apis/smktest'));
 
     // express swagger routes

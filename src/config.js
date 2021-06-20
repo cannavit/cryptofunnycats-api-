@@ -31,6 +31,7 @@ const config = {
     env: process.env.NODE_ENV || 'dev',
     root: path.join(__dirname, '..'),
     port: process.env.PORT || 3002,
+    urlBase: '/api/v1',
     swaggerOptions: {
       swaggerDefinition: {
         info: {
