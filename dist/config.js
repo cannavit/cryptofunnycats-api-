@@ -44,7 +44,7 @@ var config = {
     appName: (0, _lodash.capitalize)(APP_NAME),
     env: process.env.NODE_ENV || 'dev',
     root: _path["default"].join(__dirname, '..'),
-    port: process.env.PORT || 3002,
+    port: process.env.PORT || 3000,
     urlBase: '/api/v1',
     swaggerOptions: {
       swaggerDefinition: {
@@ -98,7 +98,7 @@ var config = {
   },
   production: {
     ip: process.env.IP,
-    port: process.env.PORT || 3002,
+    port: process.env.PORT || 3000,
     expressSSLRedirect: process.env.DISABLE_SSL_REDIRECT !== 'true',
     mongo: {
       uri: process.env.MONGODB_URI || "mongodb://localhost/".concat(APP_NAME)

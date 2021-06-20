@@ -31,7 +31,7 @@ const config = {
     appName: capitalize(APP_NAME),
     env: process.env.NODE_ENV || 'dev',
     root: path.join(__dirname, '..'),
-    port: process.env.PORT || 3002,
+    port: process.env.PORT || 3000,
     urlBase: '/api/v1',
     swaggerOptions: {
       swaggerDefinition: {
@@ -86,7 +86,7 @@ const config = {
   },
   production: {
     ip: process.env.IP,
-    port: process.env.PORT || 3002,
+    port: process.env.PORT || 3000,
     expressSSLRedirect: process.env.DISABLE_SSL_REDIRECT !== 'true',
     mongo: {
       uri: process.env.MONGODB_URI || `mongodb://localhost/${APP_NAME}`,
