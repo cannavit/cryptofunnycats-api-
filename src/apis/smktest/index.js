@@ -29,9 +29,7 @@ const { default: logger } = require('../../../srcCheck/services/logger');
 
 router.get('/', async (req, res) => {
   const smktests = await Smktest.find();
-
   logger.info('Read all smktest cases');
-
   res.send(smktests);
 });
 
