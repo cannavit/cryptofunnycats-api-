@@ -64,12 +64,16 @@ router.post('/', async (req, res) => {
 
   await validateSchema(req.body, schemaSmktest);
 
-  logger.info('save data: ', JSON.stringify(req.body));
+  logger.info('save data: ' + JSON.stringify(req.body));
 
   const smktest = await new Smktest(req.body);
   await smktest.save();
 
   res.send(smktest);
+
+  logger.warn(
+    'If exist fail send notification to:' + smokeCollectorNotifyFailsCases
+  );
 
   if (!req.body.passTest && smokeCollectorNotifyFailsCases) {
     //TODO add this inside of the utils
