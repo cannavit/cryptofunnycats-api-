@@ -67,11 +67,13 @@ router.post('/', async (req, res) => {
   logger.info('save data: ', JSON.stringify(req.body));
 
   const smktest = await new Smktest(req.body);
+  await smktest.save();
+
+  res.send(smktest);
 
   if (!req.body.passTest && smokeCollectorNotifyFailsCases) {
     //TODO add this inside of the utils
     logger.info('📦 🔥 💨 Notify of Fails cases');
-
     logger.info('Notify To: ' + smokeCollectorNotifyFailsCases);
 
     sendmail(
@@ -82,15 +84,12 @@ router.post('/', async (req, res) => {
         html: JSON.stringify(req.body),
       },
       function (err, reply) {
+        logger.info('Was send the email');
         console.log(err && err.stack);
         console.dir(reply);
       }
     );
   }
-
-  await smktest.save();
-
-  res.send(smktest);
 });
 
 // curl http://localhost:5000/api/smktests \
