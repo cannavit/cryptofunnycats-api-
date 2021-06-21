@@ -102,6 +102,26 @@ var config = {
     expressSSLRedirect: process.env.DISABLE_SSL_REDIRECT !== 'true',
     mongo: {
       uri: process.env.MONGODB_URI || "mongodb://localhost/".concat(APP_NAME)
+    },
+    swaggerOptions: {
+      swaggerDefinition: {
+        info: {
+          title: 'Smoke-Collector',
+          version: 'v0.0.1',
+          description: 'SmokeTest remote collector '
+        },
+        schemes: ['https'],
+        basePath: '/api/v1',
+        securityDefinitions: {
+          bearerAuth: {
+            type: 'apiKey',
+            name: 'Authorization',
+            scheme: 'bearer',
+            "in": 'header'
+          }
+        }
+      },
+      apis: ['./src/apis/smktest/*.js']
     }
   }
 };
