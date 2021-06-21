@@ -4,16 +4,11 @@ const schemaSmktest = mongoose.Schema({
   projectName: String,
   context: String,
   namespace: String,
-  assertCurl: String,
-  swaggerUrl: String,
-  checkIngress: Boolean,
-  checkConditions: Boolean,
-  checkIfAllPodsAreActive: Boolean,
-  checkPodsLogs: Boolean,
-  createConfigFile: Boolean,
-  checkSwaggerPublicsApis: String,
+  testName: String,
+  testResult: String,
+  testId: String,
+  testDuration: Number,
   passTest: Boolean,
-  testOutputTest: String,
 });
 
 module.exports.Smktest = mongoose.model('smktest', schemaSmktest);

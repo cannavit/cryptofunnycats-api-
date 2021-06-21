@@ -2,6 +2,10 @@ const express = require('express');
 const { Smktest, schemaSmktest } = require('./model'); // new
 const router = express.Router();
 const { validateSchema } = require('../../services/vinciGenerator');
+const sendmail = require('sendmail')(); //TODO pass inside of utils
+const { smokeCollectorNotifyFailsCases } = require('../../config');
+const { default: logger } = require('../../../srcCheck/services/logger');
+// const logger = require('../../services/logger');
 
 /**
  * @swagger
@@ -25,6 +29,8 @@ const { validateSchema } = require('../../services/vinciGenerator');
 
 router.get('/', async (req, res) => {
   const smktests = await Smktest.find();
+
+  logger.info('Read all smktest cases');
 
   res.send(smktests);
 });
@@ -60,7 +66,29 @@ router.post('/', async (req, res) => {
 
   await validateSchema(req.body, schemaSmktest);
 
+  logger.info('save data: ', JSON.stringify(req.body));
+
   const smktest = await new Smktest(req.body);
+
+  if (!req.body.passTest && smokeCollectorNotifyFailsCases) {
+    //TODO add this inside of the utils
+    logger.info('📦 🔥 💨 Notify of Fails cases');
+
+    logger.info('Notify To: ' + smokeCollectorNotifyFailsCases);
+
+    sendmail(
+      {
+        from: 'no-reply@smokecollector.com',
+        to: smokeCollectorNotifyFailsCases,
+        subject: '🔥 💨 SmokeTest Fail ' + req.body.projectName,
+        html: JSON.stringify(req.body),
+      },
+      function (err, reply) {
+        console.log(err && err.stack);
+        console.dir(reply);
+      }
+    );
+  }
 
   await smktest.save();
 

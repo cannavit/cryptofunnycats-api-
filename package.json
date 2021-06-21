@@ -58,6 +58,7 @@
     "passport-http-bearer": "^1.0.1",
     "passport-jwt": "^4.0.0",
     "querymen": "^2.1.4",
+    "sendmail": "^1.6.1",
     "socket.io": "^4.1.2",
     "swagger-jsdoc": "^6.1.0",
     "swagger-node-express": "^2.1.3",
