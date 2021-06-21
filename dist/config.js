@@ -45,6 +45,7 @@ var config = {
     env: process.env.NODE_ENV || 'dev',
     root: _path["default"].join(__dirname, '..'),
     port: process.env.PORT || 3000,
+    smokeCollectorNotifyFailsCases: process.env.SMOKE_COLLECTOR_NOTIFY_FAILS_CASES_TO || undefined,
     urlBase: '/api/v1',
     swaggerOptions: {
       swaggerDefinition: {

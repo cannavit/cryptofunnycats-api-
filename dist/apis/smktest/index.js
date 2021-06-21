@@ -15,6 +15,17 @@ var router = express.Router();
 
 var _require2 = require('../../services/vinciGenerator'),
     validateSchema = _require2.validateSchema;
+
+var sendmail = require('sendmail')(); //TODO pass inside of utils
+
+
+var _require3 = require('../../config'),
+    smokeCollectorNotifyFailsCases = _require3.smokeCollectorNotifyFailsCases;
+
+var _require4 = require('../../services/logger'),
+    logger = _require4["default"]; // const { default: logger } = require('../../../src/services/logger');
+// const logger = require('../../services/logger');
+
 /**
  * @swagger
  *  /smktest:
@@ -48,9 +59,10 @@ router.get('/', /*#__PURE__*/function () {
 
           case 2:
             smktests = _context.sent;
+            logger.info('Read all smktest cases');
             res.send(smktests);
 
-          case 4:
+          case 5:
           case "end":
             return _context.stop();
         }
@@ -90,7 +102,7 @@ router.get('/', /*#__PURE__*/function () {
 
 router.post('/', /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(req, res) {
-    var smktest;
+    var smktest, smktest2;
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
@@ -99,18 +111,50 @@ router.post('/', /*#__PURE__*/function () {
             return validateSchema(req.body, schemaSmktest);
 
           case 2:
-            _context2.next = 4;
+            logger.warn(req.body);
+            logger.info('save data: ' + JSON.stringify(req.body));
+            _context2.next = 6;
             return new Smktest(req.body);
 
-          case 4:
+          case 6:
             smktest = _context2.sent;
-            _context2.next = 7;
+            _context2.next = 9;
             return smktest.save();
 
-          case 7:
-            res.send(smktest);
+          case 9:
+            _context2.next = 11;
+            return Smktest.findOne(smktest);
 
-          case 8:
+          case 11:
+            smktest2 = _context2.sent;
+            logger.info(smktest2);
+            _context2.next = 15;
+            return res.send(smktest2);
+
+          case 15:
+            logger.warn('If exist fail send notification to:' + smokeCollectorNotifyFailsCases);
+
+            try {
+              if (!req.body.passTest && smokeCollectorNotifyFailsCases) {
+                //TODO add this inside of the utils
+                logger.info('📦 🔥 💨 Notify of Fails cases');
+                logger.info('Notify To: ' + smokeCollectorNotifyFailsCases);
+                sendmail({
+                  from: 'no-reply@smokecollector.com',
+                  to: smokeCollectorNotifyFailsCases,
+                  subject: '🔥 💨 SmokeTest Fail ' + req.body.projectName,
+                  html: JSON.stringify(req.body)
+                }, function (err, reply) {
+                  logger.info('Was send the email');
+                  console.log(err && err.stack);
+                  console.dir(reply);
+                });
+              }
+            } catch (error) {
+              logger.error(error.message);
+            }
+
+          case 17:
           case "end":
             return _context2.stop();
         }

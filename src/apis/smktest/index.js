@@ -4,7 +4,8 @@ const router = express.Router();
 const { validateSchema } = require('../../services/vinciGenerator');
 const sendmail = require('sendmail')(); //TODO pass inside of utils
 const { smokeCollectorNotifyFailsCases } = require('../../config');
-const { default: logger } = require('../../../srcCheck/services/logger');
+const { default: logger } = require('../../services/logger');
+// const { default: logger } = require('../../../src/services/logger');
 // const logger = require('../../services/logger');
 
 /**
@@ -64,35 +65,45 @@ router.post('/', async (req, res) => {
 
   await validateSchema(req.body, schemaSmktest);
 
+  logger.warn(req.body);
   logger.info('save data: ' + JSON.stringify(req.body));
 
   const smktest = await new Smktest(req.body);
+
   await smktest.save();
 
-  res.send(smktest);
+  let smktest2 = await Smktest.findOne(smktest);
+
+  logger.info(smktest2);
+
+  await res.send(smktest2);
 
   logger.warn(
     'If exist fail send notification to:' + smokeCollectorNotifyFailsCases
   );
 
-  if (!req.body.passTest && smokeCollectorNotifyFailsCases) {
-    //TODO add this inside of the utils
-    logger.info('📦 🔥 💨 Notify of Fails cases');
-    logger.info('Notify To: ' + smokeCollectorNotifyFailsCases);
+  try {
+    if (!req.body.passTest && smokeCollectorNotifyFailsCases) {
+      //TODO add this inside of the utils
+      logger.info('📦 🔥 💨 Notify of Fails cases');
+      logger.info('Notify To: ' + smokeCollectorNotifyFailsCases);
 
-    sendmail(
-      {
-        from: 'no-reply@smokecollector.com',
-        to: smokeCollectorNotifyFailsCases,
-        subject: '🔥 💨 SmokeTest Fail ' + req.body.projectName,
-        html: JSON.stringify(req.body),
-      },
-      function (err, reply) {
-        logger.info('Was send the email');
-        console.log(err && err.stack);
-        console.dir(reply);
-      }
-    );
+      sendmail(
+        {
+          from: 'no-reply@smokecollector.com',
+          to: smokeCollectorNotifyFailsCases,
+          subject: '🔥 💨 SmokeTest Fail ' + req.body.projectName,
+          html: JSON.stringify(req.body),
+        },
+        function (err, reply) {
+          logger.info('Was send the email');
+          console.log(err && err.stack);
+          console.dir(reply);
+        }
+      );
+    }
+  } catch (error) {
+    logger.error(error.message);
   }
 });
 
