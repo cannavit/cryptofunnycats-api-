@@ -20,6 +20,7 @@ const schemaSmktest = mongoose.Schema({
   CI_COMMIT_SHA: String,
   CI_COMMIT_MESSAGE: String,
   CI_COMMIT_TITLE: String,
+  GITLAB_USER_EMAIL: String,
 });
 
 module.exports.Smktest = mongoose.model('smktest', schemaSmktest);
