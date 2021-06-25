@@ -21,6 +21,7 @@ const schemaSmktest = mongoose.Schema({
   CI_COMMIT_MESSAGE: String,
   CI_COMMIT_TITLE: String,
   GITLAB_USER_EMAIL: String,
+  GITLAB_USER_ID: String,
   SMKTEST_CHECK_LOGIN_CURL: String,
   SMKTEST_CHECK_SWAGGER_APIS: String,
   SMKTEST_CHECK_SWAGGER_PUBLIC_APIS: String,
