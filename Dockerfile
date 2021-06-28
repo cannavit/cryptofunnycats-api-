@@ -1,13 +1,13 @@
 FROM node:14.4.0-stretch
 
 WORKDIR /usr/src/app
-    
-COPY package.json /usr/src/app/
-
-RUN yarn install
 
 COPY . /usr/src/app/
 
+RUN npm run build
+
+RUN rm -r /usr/src/app/src
+
 EXPOSE 3000
 
-CMD yarn start
+CMD npm run start
