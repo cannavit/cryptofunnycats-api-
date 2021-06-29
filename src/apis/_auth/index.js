@@ -3,9 +3,9 @@ import { middleware as body } from '@becodebg/chocomen';
 import { Router } from 'express';
 
 import { master, password, token } from '../../services/passport';
-import { actions } from '../users/controller';
+import { actions } from '../_users/controller';
 import { login, checkJWT, spsLogin } from './controller';
-import { bodymenSchema, schema } from '../users/model';
+import { bodymenSchema, schema } from '../_users/model';
 
 const router = new Router();
 /**

@@ -131,4 +131,5 @@ router.get('/smktests/:id', async (req, res) => {
   }
 });
 
-export default router;
+
+export default router

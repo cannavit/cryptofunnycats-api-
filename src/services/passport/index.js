@@ -4,7 +4,8 @@ import { BasicStrategy } from 'passport-http';
 import { Strategy as BearerStrategy } from 'passport-http-bearer';
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
 
-// import User, { schema } from '../../api/users/model';
+import { user, schema } from '../../apis/users/model';
+
 import { jwtSecret, masterKey } from '../../config';
 
 export const password = () => (req, res, next) =>
@@ -26,7 +27,7 @@ export const password = () => (req, res, next) =>
 export const master = () => passport.authenticate('master', { session: false });
 
 export const token =
-  ({ required, roles = User.roles } = {}) =>
+  ({ required, roles = user.roles } = {}) =>
   (req, res, next) =>
     passport.authenticate('token', { session: false }, (err, user) => {
       if (
@@ -71,8 +72,9 @@ passport.use(
       }
     );
 
-    User.findOne({ email: email.toLowerCase(), isEnabled: true }).then(
-      (user) => {
+    user
+      .findOne({ email: email.toLowerCase(), isEnabled: true })
+      .then((user) => {
         if (!user) {
           done(true);
           return null;
@@ -88,8 +90,7 @@ passport.use(
             return null;
           })
           .catch(done);
-      }
-    );
+      });
   })
 );
 
@@ -116,7 +117,8 @@ passport.use(
       ]),
     },
     ({ id }, done) => {
-      User.findOne({ _id: id, isEnabled: true })
+      user
+        .findOne({ _id: id, isEnabled: true })
         .then((user) => {
           done(null, user);
           return null;

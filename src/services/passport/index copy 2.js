@@ -1,6 +1,6 @@
 import passport from 'passport';
 import localStrategy from 'passport-local';
-import User from '../../apis/users';
+import User from '../../apis/_users';
 import { password } from './index copy';
 
 passport.use(
@@ -21,3 +21,6 @@ passport.use(
     }
   }
 );
+
+
+password.use('login', new localStrategy)

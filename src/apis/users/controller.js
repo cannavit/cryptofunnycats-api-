@@ -1,0 +1,130 @@
+import Entity from './model';
+
+console.log('>>>>>-369791352>>>>>');
+console.log(Entity);
+console.log('<<<<<<<<<<<<<<<<<<<');
+
+async function showMe(req, res) {
+  console.log('@1Marker-No:_354467327');
+
+  return options;
+}
+
+async function mongooseGetAll(req, res) {
+  console.log('>>>>>1819741196>>>>>');
+  console.log(res);
+  console.log('<<<<<<<<<<<<<<<<<<<');
+  console.log('>>>>>-238881191>>>>>');
+  console.log(req);
+  console.log('<<<<<<<<<<<<<<<<<<<');
+  console.log('@1Marker-No:_1612962893');
+  let entityData = await Entity.find({});
+  console.log('>>>>>481659252>>>>>');
+  console.log(entityData);
+  console.log('<<<<<<<<<<<<<<<<<<<');
+  return entityData;
+}
+
+const getAll = (req, res, next) => {
+  return mongooseGetAll(res, req)
+    .then(() => {
+      // user.view(true, null, { populate: true }).then((element) => {
+      //   res.json(element);
+      // });
+    })
+    .catch(next);
+};
+
+// actions.create = ({ bodymen: { body } }, res, next) => {
+//   if (body && body.role === 'admin') {
+//     res.status(401).json();
+//     return null;
+//   }
+
+//   Entity.create(body)
+//     .then((user) => user.view(true, null, { populate: true }))
+//     .then(success(res, 201))
+//     .catch((err) => {
+//       /* istanbul ignore else */
+//       if (err.name === 'MongoError' && err.code === 11000) {
+//         res.status(409).json({
+//           valid: false,
+//           param: 'email - username',
+//           message: 'email or username already registered',
+//         });
+//       } else {
+//         next(err);
+//       }
+//     });
+// };
+
+// actions.update = ({ bodymen: { body }, params, user }, res, next) =>
+//   Entity.findById(params.id === 'me' ? user.id : params.id)
+//     .then(notFound(res))
+//     .then((result) => {
+//       if (body) {
+//         delete body.password;
+//       }
+
+//       if (!result) {
+//         return null;
+//       }
+
+//       const isAdmin = user.role === 'admin';
+//       const isSelfUpdate = user.id === result.id;
+//       if (!isSelfUpdate && !isAdmin) {
+//         res.status(401).json({
+//           valid: false,
+//           message: "You can't change other user's data",
+//         });
+//         return null;
+//       }
+//       return result;
+//     })
+//     .then((user) => {
+//       if (!user) {
+//         return null;
+//       }
+
+//       for (const key in body) {
+//         if (!_.isUndefined(body[key]) && user[key] !== body[key]) {
+//           user[key] = null;
+//           user[key] = body[key];
+//           user.markModified(key);
+//         }
+//       }
+//       return user.save();
+//     })
+//     .then((user) => (user ? user.view(true, null, { populate: true }) : null))
+//     .then(success(res))
+//     .catch(next);
+
+// actions.updatePassword = ({ bodymen: { body }, params, user }, res, next) =>
+//   Entity.findById(params.id === 'me' ? user.id : params.id)
+//     .then(notFound(res))
+//     .then((result) => {
+//       if (!result) {
+//         return null;
+//       }
+
+//       const isSelfUpdate = user.id === result.id;
+//       if (!isSelfUpdate || user.role !== 'admin') {
+//         res.status(401).json({
+//           valid: false,
+//           param: 'password',
+//           message: "You can't change other user's password",
+//         });
+//         return null;
+//       }
+//       return result;
+//     })
+//     .then((user) =>
+//       user ? user.set({ password: body.password }).save() : null
+//     )
+//     .then((user) => (user ? user.view(true, null, { populate: true }) : null))
+//     .then(success(res))
+//     .catch(next);
+
+// export { actions };
+
+module.exports.getAll = getAll;
