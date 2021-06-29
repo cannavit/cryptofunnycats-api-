@@ -26,7 +26,6 @@ if (process.env.NODE_ENV !== 'production') {
 
 const APP_NAME = requireProcessEnv('APP_NAME');
 
-
 const config = {
   all: {
     appName: capitalize(APP_NAME),
@@ -55,14 +54,14 @@ const config = {
         },
       },
       // apis: ['./src/apis/smktest/*.js', './src/apis/auth/*.js'],
-      apis: []
+      apis: [],
     },
     hostname: os.hostname || '',
     ip: process.env.IP || '0.0.0.0',
     defaultEmail: `no-reply@${APP_NAME}.com`,
     expressSSLRedirect: false,
     jwtSecret: requireProcessEnv('JWT_SECRET'),
-    // masterKey: requireProcessEnv('MASTER_KEY'),
+    masterKey: requireProcessEnv('MASTER_KEY'),
     disableScheduler: !!process.env.DISABLE_SCHEDULER || false,
     mongo: {
       options: {
@@ -145,9 +144,6 @@ const config = {
     },
   },
 };
-
-
-
 
 module.exports = merge(config.all, config[config.all.env]);
 export default module.exports;

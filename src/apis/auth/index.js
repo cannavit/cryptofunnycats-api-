@@ -1,136 +1,79 @@
-const express = require('express');
-const { auth, schemaauth } = require('./model'); // new
-const router = express.Router();
-const { validateSchema } = require('../../services/vinciGenerator');
-const sendmail = require('sendmail')(); //TODO pass inside of utils
-const { smokeCollectorNotifyFailsCases } = require('../../config');
-const { default: logger } = require('../../services/logger');
-// const { default: logger } = require('../../../src/services/logger');
-// const logger = require('../../services/logger');
+//TODO refactoring
+import { middleware as body } from '@becodebg/chocomen';
+import { Router } from 'express';
+
+import { master, password, token } from '../../services/passport';
+import { actions } from '../users/controller';
+import { login, checkJWT, spsLogin } from './controller';
+import { bodymenSchema, schema } from '../users/model';
+
+const router = new Router();
+/**
+ * @api {post} /auth/register Register an user
+ * @apiGroup Auth
+ * @apiName Register
+ * @apiPermission master
+ * @apiParam {String} access_token Master access_token.
+ * @apiSuccess (Success 201) {User} user User's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 401 Master access only.
+ * @apiError 403 Forbidden operation.
+ * @apiError 409 Email already registered.
+ **/
+router.post(
+  '/register',
+  master(),
+  body(bodymenSchema.creation),
+  actions.create
+);
 
 /**
- * @swagger
- *  /auth:
- *    get:
- *      tags:
- *      - "auth"
- *      summary: "get list of the test registered by smoke-master pipelines"
- *      components:
- *        securitySchemes:
- *        bearerAuth:
- *          type: http
- *          scheme: bearer
- *          bearerFormat: JWT
- *      security:
- *        - bearerAuth: []
- *      responses:
- *        200:
- *          description: "successful operation"
- */
-
-router.get('/', async (req, res) => {
-  const auths = await auth.find();
-  logger.info('Read all auth cases');
-  res.send(auths);
-});
+ * @api {post} /auth Authenticate
+ * @apiName Authenticate
+ * @apiGroup Auth
+ * @apiPermission basic
+ * @apiSuccess (Success 201) {String} token User `access_token` to be passed to other requests.
+ * @apiSuccess (Success 201) {User} user Current user's data.
+ * @apiError 401 Invalid credentials.
+ **/
+router.post('/', password(), login);
 
 /**
- * @swagger
- *  /auth:
- *    post:
- *      tags:
- *      - "auth"
- *      summary: "Insert smoke-master results form remote pipeline"
- *      parameters:
- *      - in: body
- *        name: "roles"
- *        description: "pipeline data for save"
- *        example: {
- *           "projectName" : "smoke-master",
- *           "context": "kubernetes",
- *           "namespace": "smokeMaster-dev",
- *           "assertCurl": "true"
- *         }
- *      security:
- *      - bearerAuth: []
- *      responses:
- *        200:
- *          description: "successful operation"
- *        403:
- *          description: "cannot create a new course limit was reached"
- */
+ * @api {get} /auth/checkJWT Check JWT Validity
+ * @apiName Check JWT Validity
+ * @apiGroup Auth
+ * @apiPermission token
+ * @apiParam {String} access_token access_token.
+ * @apiSuccess (Success 200) {String} result OK
+ * @apiError 401 Invalid token.
+ **/
+router.get('/checkJWT', token({ required: true }), checkJWT);
 
-router.post('/', async (req, res) => {
-  //! Validate if Schema data exit.
+/**
+ * @api {get} /auth/renewJWT Renew JWT
+ * @apiName Renew JWT
+ * @apiGroup Auth
+ * @apiPermission token
+ * @apiParam {String} access_token access_token.
+ * @apiSuccess (Success 201) {String} token User `access_token` to be passed to other requests.
+ * @apiSuccess (Success 201) {User} user Current user's data.
+ * @apiError 401 Invalid token.
+ **/
+router.get('/renewJWT', token({ required: true }), login);
 
-  await validateSchema(req.body, schemaauth);
+/**
+ * @api {post} /auth/spsAuthentication Authenticate using cookies
+ * @apiName spsAuthentication
+ * @apiGroup Auth
+ * @apiParam {String} access using cookies from the site https://www.spsitalia.it/redazione/.
+ * @apiSuccess (Success 201) {String} token User `access_token` to be passed to other requests.
+ * @apiSuccess (Success 201) {User} user Current user's data.
+ * @apiError 401 Invalid credentials.
+ **/
+router.post(
+  '/spsAuthentication',
+  body({ cookies: schema.tree.cookies }),
+  spsLogin
+);
 
-  logger.warn(req.body);
-  logger.info('save data: ' + JSON.stringify(req.body));
-
-  const auth = await new auth(req.body);
-
-  await auth.save();
-
-  let auth2 = await auth.findOne(auth);
-
-  logger.info(auth2);
-
-  await res.send(auth2);
-
-  logger.warn(
-    'If exist fail send notification to:' + smokeCollectorNotifyFailsCases
-  );
-
-  try {
-    if (!req.body.passTest && smokeCollectorNotifyFailsCases) {
-      //TODO add this inside of the utils
-      logger.info('📦 🔥 💨 Notify of Fails cases');
-      logger.info('Notify To: ' + smokeCollectorNotifyFailsCases);
-
-      sendmail(
-        {
-          from: 'no-reply@smokecollector.com',
-          to: smokeCollectorNotifyFailsCases,
-          subject: '🔥 💨 SmokeTest Fail ' + req.body.projectName,
-          html: JSON.stringify(req.body),
-        },
-        function (err, reply) {
-          logger.info('Was send the email');
-          console.log(err && err.stack);
-          console.dir(reply);
-        }
-      );
-    }
-  } catch (error) {
-    logger.error(error.message);
-  }
-});
-
-// curl http://localhost:5000/api/auths \
-//     -X auth \
-//     -H "Content-Type: application/json" \
-//     -d '{"projectName":"auth 1", "context":"Lorem ipsum"}'
-
-router.get('/auths/:id', async (req, res) => {
-  const auth = await auth.findOne({ _id: req.params.id });
-
-  res.send(auth);
-});
-
-// curl http://localhost:5000/api/auths/<OBJECT_ID>
-// curl http://localhost:5000/api/auths/60ccf14b8e95302f0e99295f
-
-router.get('/auths/:id', async (req, res) => {
-  try {
-    const auth = await auth.findOne({ _id: req.params.id });
-    res.send(auth);
-  } catch {
-    res.status(404);
-    res.send({ error: "auth doesn't exist!" });
-  }
-});
-
-// module.exports = router;
-
-export default router
+export default router;
