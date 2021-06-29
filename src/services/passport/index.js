@@ -4,7 +4,7 @@ import { BasicStrategy } from 'passport-http';
 import { Strategy as BearerStrategy } from 'passport-http-bearer';
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
 
-import User, { schema } from '../../api/users/model';
+// import User, { schema } from '../../api/users/model';
 import { jwtSecret, masterKey } from '../../config';
 
 export const password = () => (req, res, next) =>

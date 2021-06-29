@@ -6,24 +6,21 @@ import express from './services/express';
 // Configuration
 import { port, appName, mongo, urlBase } from './config';
 
-// Build Apis Documentation. 
-import {buildSwaggerDocs} from './services/swaggerDocs'
-
+// Build Apis Documentation.
+import { buildSwaggerDocs } from './services/swaggerDocs';
 
 //! Get all routes of swagger.
 
 const app = express(api);
 
-
-
 mongoose
   .connect(mongo.uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useCreateIndex: true,
   })
   .then(() => {
-
-  buildSwaggerDocs(app) // Build swagger docs
+    buildSwaggerDocs(app); // Build swagger docs
 
     app.listen(port, () => {
       console.log();
