@@ -26,6 +26,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 const APP_NAME = requireProcessEnv('APP_NAME');
 
+
 const config = {
   all: {
     appName: capitalize(APP_NAME),
@@ -53,7 +54,8 @@ const config = {
           },
         },
       },
-      apis: ['./src/apis/smktest/*.js'],
+      // apis: ['./src/apis/smktest/*.js', './src/apis/auth/*.js'],
+      apis: []
     },
     hostname: os.hostname || '',
     ip: process.env.IP || '0.0.0.0',
@@ -139,10 +141,13 @@ const config = {
           },
         },
       },
-      apis: ['./src/apis/smktest/*.js'],
+      apis: [''],
     },
   },
 };
+
+
+
 
 module.exports = merge(config.all, config[config.all.env]);
 export default module.exports;

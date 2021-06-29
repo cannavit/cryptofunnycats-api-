@@ -1,17 +1,20 @@
-import express from 'express';
+// import express from 'express';
 import mongoose from 'mongoose';
-import swaggerJsdoc from 'swagger-jsdoc';
-import swaggerUi from 'swagger-ui-express';
+import api from './apis';
+import express from './services/express';
+
 // Configuration
-import { swaggerOptions, port, appName, mongo, urlBase } from './config';
+import { port, appName, mongo, urlBase } from './config';
+
+// Build Apis Documentation. 
+import {buildSwaggerDocs} from './services/swaggerDocs'
+
 
 //! Get all routes of swagger.
 
-const swaggerSpecs = swaggerJsdoc(swaggerOptions);
+const app = express(api);
 
-const withPrefix = function (url) {
-  return urlBase + url;
-};
+
 
 mongoose
   .connect(mongo.uri, {
@@ -19,18 +22,8 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    const app = express();
-    app.use(express.json());
-    // app.use('/api', routes); // new
 
-    app.use(withPrefix('/smktest'), require('./apis/smktest'));
-
-    // express swagger routes
-    app.use(
-      withPrefix('/api-docs'),
-      swaggerUi.serve,
-      swaggerUi.setup(swaggerSpecs)
-    );
+  buildSwaggerDocs(app) // Build swagger docs
 
     app.listen(port, () => {
       console.log();
