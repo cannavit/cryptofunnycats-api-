@@ -2,7 +2,7 @@ version: '3.7'
 services:
   mongodb:
     image: mongo:latest
-    container_name: mongodb-mernt
+    container_name: mongodb
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: admin
@@ -13,3 +13,21 @@ services:
       - 27017:27017
     volumes:
       - ./db_volume:/data/db
+    networks:
+      - host
+
+  smoke-collector:
+    environment:
+      NODE_ENV: dockerCompose
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: smktesting/smoke-collector:latest
+    container_name: smoke-collector
+    ports:
+      - '3000:3000'
+    networks:
+      - host
+
+networks:
+  host:

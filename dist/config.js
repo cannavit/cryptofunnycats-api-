@@ -102,7 +102,7 @@ var config = {
     port: process.env.PORT || 3000,
     expressSSLRedirect: process.env.DISABLE_SSL_REDIRECT !== 'true',
     mongo: {
-      uri: process.env.MONGODB_URI || "mongodb://localhost/".concat(APP_NAME)
+      uri: process.env.MONGODB_URI || "mongodb://mongodb/".concat(APP_NAME)
     },
     swaggerOptions: {
       swaggerDefinition: {

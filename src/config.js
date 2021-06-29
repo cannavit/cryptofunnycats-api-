@@ -86,12 +86,40 @@ const config = {
       },
     },
   },
+  dockerCompose: {
+    ip: process.env.IP,
+    port: process.env.PORT || 3000,
+    expressSSLRedirect: process.env.DISABLE_SSL_REDIRECT !== 'true',
+    mongo: {
+      uri: process.env.MONGODB_URI || `mongodb://mongodb:27017/${APP_NAME}`,
+    },
+    swaggerOptions: {
+      swaggerDefinition: {
+        info: {
+          title: 'Smoke-Collector',
+          version: 'v0.0.1',
+          description: 'SmokeTest remote collector ',
+        },
+        schemes: ['http'],
+        basePath: '/api/v1',
+        securityDefinitions: {
+          bearerAuth: {
+            type: 'apiKey',
+            name: 'Authorization',
+            scheme: 'bearer',
+            in: 'header',
+          },
+        },
+      },
+      apis: ['./src/apis/smktest/*.js'],
+    },
+  },
   production: {
     ip: process.env.IP,
     port: process.env.PORT || 3000,
     expressSSLRedirect: process.env.DISABLE_SSL_REDIRECT !== 'true',
     mongo: {
-      uri: process.env.MONGODB_URI || `mongodb://localhost/${APP_NAME}`,
+      uri: process.env.MONGODB_URI || `mongodb://mongodb/${APP_NAME}`,
     },
     swaggerOptions: {
       swaggerDefinition: {
