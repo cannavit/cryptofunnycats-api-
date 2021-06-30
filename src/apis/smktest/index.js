@@ -28,7 +28,8 @@ const { default: logger } = require('../../services/logger');
  *          description: "successful operation"
  */
 
-router.get('/', async (req, res) => {
+router.get('/',async (req, res) => {
+  logger.info(" Get all smoke")
   const smktests = await Smktest.find();
   logger.info('Read all smktest cases');
   res.send(smktests);

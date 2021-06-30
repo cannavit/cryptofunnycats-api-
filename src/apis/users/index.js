@@ -21,6 +21,7 @@ import { admin, password, token, master } from '../../services/passport';
 
 // const router = new Router();
 
+
 /**
  * @swagger
  *  /users:
@@ -37,7 +38,9 @@ import { admin, password, token, master } from '../../services/passport';
  *          description: "cannot create a new course limit was reached"
  */
 // router.get('/', token({ required: false }), actions.getAll);
-router.get('/', master(), actions.getAll);
+router.get('/', (req, res, next)=> {
+  next();
+}, actions.getAll);
 
 // /** //  * @api {get} /users/me Retrieve current user
 //  * @apiGroup User

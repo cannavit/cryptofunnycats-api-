@@ -19,7 +19,6 @@ export const password = () => (req, res, next) =>
       if (err) {
         return res.status(401).end();
       }
-
       next();
     });
   })(req, res, next);

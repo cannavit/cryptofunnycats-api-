@@ -1,5 +1,7 @@
 // import express from 'express';
-import mongoose from 'mongoose';
+// import mongoose from 'mongoose';
+import mongoose from './services/mongoose';
+
 import api from './apis';
 import express from './services/express';
 
@@ -17,7 +19,7 @@ mongoose
   .connect(mongo.uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true,
+    // useCreateIndex: true,
   })
   .then(() => {
     buildSwaggerDocs(app); // Build swagger docs

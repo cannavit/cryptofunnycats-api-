@@ -34,7 +34,7 @@ const schemaUser = mongoose.Schema({
   isEnabled: {
     type: Boolean,
     default: true,
-  },
+  }, 
   lastLogin: {
     type: Date,
   },

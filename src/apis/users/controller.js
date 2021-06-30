@@ -1,8 +1,5 @@
-import Entity from './model';
+import {user} from './model';
 
-console.log('>>>>>-369791352>>>>>');
-console.log(Entity);
-console.log('<<<<<<<<<<<<<<<<<<<');
 
 async function showMe(req, res) {
   console.log('@1Marker-No:_354467327');
@@ -10,20 +7,17 @@ async function showMe(req, res) {
   return options;
 }
 
-async function mongooseGetAll(req, res) {
-  console.log('>>>>>1819741196>>>>>');
-  console.log(res);
-  console.log('<<<<<<<<<<<<<<<<<<<');
-  console.log('>>>>>-238881191>>>>>');
-  console.log(req);
-  console.log('<<<<<<<<<<<<<<<<<<<');
+async function mongooseGetAll(req, res, next) {
+
   console.log('@1Marker-No:_1612962893');
-  let entityData = await Entity.find({});
+  console.log(user)
+  let entityData = await user.find({});
   console.log('>>>>>481659252>>>>>');
-  console.log(entityData);
+  // console.log(entityData);
   console.log('<<<<<<<<<<<<<<<<<<<');
-  return entityData;
+  // return entityData;
 }
+
 
 const getAll = (req, res, next) => {
   return mongooseGetAll(res, req)
