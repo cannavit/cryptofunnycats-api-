@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const { roundsBcrypt } = require('../../config');
+const mongooseHidden = require('mongoose-hidden')();
 
 const roles = ['user', 'admin'];
 
@@ -15,6 +17,8 @@ const schemaUser = mongoose.Schema({
     type: String,
     required: true,
     minlength: 6,
+    bcrypt: true,
+    hide: true,
   },
   role: {
     type: String,
@@ -48,6 +52,10 @@ const schemaUser = mongoose.Schema({
     type: String,
   },
 });
+
+//! Add Plugins.
+schemaUser.plugin(require('mongoose-bcrypt'), { rounds: roundsBcrypt });
+schemaUser.plugin(mongooseHidden);
 
 const user = mongoose.model('user', schemaUser);
 module.exports.user = user;

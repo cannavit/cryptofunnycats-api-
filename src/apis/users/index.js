@@ -38,13 +38,7 @@ const router = new Router();
  *          description: "cannot create a new course limit was reached"
  */
 
-router.get(
-  '/',
-  (req, res, next) => {
-    next();
-  },
-  actions.getAll
-);
+router.get('/', master(), actions.getAll);
 
 /**
  * @swagger

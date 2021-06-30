@@ -32,6 +32,7 @@ const config = {
     env: process.env.NODE_ENV || 'dev',
     root: path.join(__dirname, '..'),
     port: process.env.PORT || 3000,
+    roundsBcrypt: 9,
     smokeCollectorNotifyFailsCases:
       process.env.SMOKE_COLLECTOR_NOTIFY_FAILS_CASES_TO || undefined,
     urlBase: '/api/v1',
