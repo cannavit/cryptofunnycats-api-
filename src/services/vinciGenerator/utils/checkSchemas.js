@@ -6,7 +6,9 @@ export async function validateSchema(body, schema) {
   for (const key in body) {
     let variableInput = key;
     if (!shemaVariables[variableInput]) {
-      throw Error(' The Variable is not define inside of the schema');
+      throw Error(
+        ` The Variable ${variableInput} is not define inside of the schema `
+      );
     }
   }
   // <<<<

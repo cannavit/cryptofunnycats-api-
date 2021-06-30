@@ -93,6 +93,8 @@ passport.use(
   })
 );
 
+console.log(console.log());
+
 passport.use(
   'master',
   new BearerStrategy((token, done) => {

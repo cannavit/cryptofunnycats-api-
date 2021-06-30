@@ -1,7 +1,8 @@
 const express = require('express');
 import { user, schemaUser } from './model'; // new
+import { middleware as body } from '@becodebg/chocomen';
 
-const router = express.Router();
+// const router = express.Router();
 // const { validateSchema } = require('../../services/vinciGenerator');
 // const sendmail = require('sendmail')(); //TODO pass inside of utils
 // const { smokeCollectorNotifyFailsCases } = require('../../config');
@@ -19,8 +20,7 @@ import { admin, password, token, master } from '../../services/passport';
 
 // import { schema, bodymenSchema } from './model';
 
-// const router = new Router();
-
+const router = new Router();
 
 /**
  * @swagger
@@ -37,18 +37,41 @@ import { admin, password, token, master } from '../../services/passport';
  *        403:
  *          description: "cannot create a new course limit was reached"
  */
-// router.get('/', token({ required: false }), actions.getAll);
-router.get('/', (req, res, next)=> {
-  next();
-}, actions.getAll);
 
-// /** //  * @api {get} /users/me Retrieve current user
-//  * @apiGroup User
-//  * @apiName RetrieveCurrent
-//  * @apiPermission user
-//  * @apiSuccess {User} user User's data.
-//  **/
+router.get(
+  '/',
+  (req, res, next) => {
+    next();
+  },
+  actions.getAll
+);
 
-// router.get('/me', token({ required: true }), actions.showMe);
+/**
+ * @swagger
+ *  /users:
+ *    post:
+ *      tags:
+ *      - "users"
+ *      summary: "Insert User"
+ *      parameters:
+ *      - in: body
+ *        name: "body"
+ *        description: "create user account"
+ *        example: {
+ *          "email": "emma_1962044517@test.com",
+ *          "userName": "Orr",
+ *          "lastName": "Nixon",
+ *          "brithDay": "30-06-1991",
+ *          "password": "admin@admin"
+ *          }
+ *      security:
+ *      - bearerAuth: []
+ *      responses:
+ *        200:
+ *          description: "successful operation"
+ *        403:
+ *          description: "cannot create a new course limit was reached"
+ */
+router.post('/', master(), body(schemaUser.creation), actions.create);
 
 export default router;

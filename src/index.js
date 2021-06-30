@@ -27,6 +27,7 @@ mongoose
     app.listen(port, () => {
       console.log();
       console.log(` ✅ ${appName} backend is running`);
+      console.log(` 📝 View Swagger Apis Docs in: ${port}${urlBase}/api-docs`);
       console.log(` 🚀 Server has started ${port}!! `);
       console.log();
     });

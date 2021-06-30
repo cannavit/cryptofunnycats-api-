@@ -27,6 +27,9 @@ const schemaUser = mongoose.Schema({
   lastName: {
     type: String,
   },
+  birthDay: {
+    type: Date,
+  },
   isConfirmed: {
     type: Boolean,
     default: false,
@@ -34,7 +37,7 @@ const schemaUser = mongoose.Schema({
   isEnabled: {
     type: Boolean,
     default: true,
-  }, 
+  },
   lastLogin: {
     type: Date,
   },
