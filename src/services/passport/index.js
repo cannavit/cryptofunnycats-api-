@@ -10,6 +10,7 @@ import { jwtSecret, masterKey } from '../../config';
 
 export const password = () => (req, res, next) =>
   passport.authenticate('password', { session: false }, (err, user) => {
+    console.log('@1Marker-No:_562079955');
     if (err && err.param) {
       return res.status(400).json(err);
     } else if (err || !user) {

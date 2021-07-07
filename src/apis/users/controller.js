@@ -18,6 +18,8 @@ const getAll = (req, res, next) => {
     .catch(next);
 };
 
+module.exports.getAll = getAll;
+
 // Controller actions.create
 
 const create = (req, res, next) => {
@@ -25,7 +27,6 @@ const create = (req, res, next) => {
     .then(async () => {
       logger.info('Create the new user ' + JSON.stringify(req.body));
       let entityData = await Entity.create(req.body);
-      entityData.password = '********';
       req.body = entityData;
     })
     .then(() => {
@@ -37,5 +38,4 @@ const create = (req, res, next) => {
     .catch(next);
 };
 
-module.exports.getAll = getAll;
 module.exports.create = create;

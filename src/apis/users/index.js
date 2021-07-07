@@ -1,5 +1,5 @@
 const express = require('express');
-import { user, schemaUser } from './model'; // new
+import { user, schemaUser } from './model';
 import { middleware as body } from '@becodebg/chocomen';
 
 // const router = express.Router();
@@ -66,6 +66,7 @@ router.get('/', master(), actions.getAll);
  *        403:
  *          description: "cannot create a new course limit was reached"
  */
+
 router.post('/', master(), body(schemaUser.creation), actions.create);
 
 export default router;
