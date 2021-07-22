@@ -26,6 +26,8 @@ var password = function password() {
     return _passport["default"].authenticate('password', {
       session: false
     }, function (err, user) {
+      console.log('@1Marker-No:_562079955');
+
       if (err && err.param) {
         return res.status(400).json(err);
       } else if (err || !user) {
@@ -121,6 +123,8 @@ _passport["default"].use('password', new _passportHttp.BasicStrategy(function (e
     })["catch"](done);
   });
 }));
+
+console.log(console.log());
 
 _passport["default"].use('master', new _passportHttpBearer.Strategy(function (token, done) {
   if (token === _config.masterKey) {

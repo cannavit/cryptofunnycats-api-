@@ -7,6 +7,11 @@ exports["default"] = void 0;
 
 var mongoose = require('mongoose');
 
+var _require = require('../../config'),
+    roundsBcrypt = _require.roundsBcrypt;
+
+var mongooseHidden = require('mongoose-hidden')();
+
 var roles = ['user', 'admin'];
 var schemaUser = mongoose.Schema({
   email: {
@@ -20,7 +25,9 @@ var schemaUser = mongoose.Schema({
   password: {
     type: String,
     required: true,
-    minlength: 6
+    minlength: 6,
+    bcrypt: true,
+    hide: true
   },
   role: {
     type: String,
@@ -32,6 +39,9 @@ var schemaUser = mongoose.Schema({
   },
   lastName: {
     type: String
+  },
+  birthDay: {
+    type: Date
   },
   isConfirmed: {
     type: Boolean,
@@ -50,7 +60,12 @@ var schemaUser = mongoose.Schema({
   prefix: {
     type: String
   }
+}); //! Add Plugins.
+
+schemaUser.plugin(require('mongoose-bcrypt'), {
+  rounds: roundsBcrypt
 });
+schemaUser.plugin(mongooseHidden);
 var user = mongoose.model('user', schemaUser);
 module.exports.user = user;
 module.exports.schemaUser = schemaUser;

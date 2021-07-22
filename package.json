@@ -14,7 +14,13 @@
     "pretest": "eslint --ignore-path .gitignore .",
     "postinstall": "rm -rf dist && yarn run build",
     "lint": "yarn prettier --write --check --config ./.prettierrc \"**/*.js\" && eslint --fix ./src",
-    "release": "release-it patch --no-npm.publish"
+    "release": "release-it patch --no-npm.publish",
+    "test:debug": "jest --config=./jest.config.js --watchAll --testPathPattern=src"
+  },
+  "jest": {
+    "transform": {
+      "\\.[jt]sx?$": "babel-jest"
+    }
   },
   "repository": {
     "type": "git",
@@ -35,9 +41,13 @@
     "@babel/plugin-proposal-export-default-from": "^7.12.13",
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.13.8",
     "@babel/plugin-proposal-optional-chaining": "^7.13.12",
+    "@babel/runtime": "^7.14.6",
     "@becodebg/chocomen": "^1.1.2",
     "apollo-engine": "^1.1.2",
     "apollo-server-express": "^2.23.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.5",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2020": "^1.0.2",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.5",
@@ -50,6 +60,7 @@
     "express-force-ssl": "^0.3.2",
     "express-session": "^1.17.2",
     "express-winston": "^4.1.0",
+    "jest-cli": "^27.0.6",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",
     "mongoose": "^5.12.5",
@@ -60,6 +71,11 @@
     "node-eval": "^2.0.0",
     "node-schedule": "^2.0.0",
     "passport": "^0.4.1",
+    "passport-apple-token": "0.0.1",
+    "passport-facebook": "^3.0.0",
+    "passport-facebook-token": "^4.0.0",
+    "passport-google-oauth2": "^0.2.0",
+    "passport-google-plus-token": "^2.1.0",
     "passport-http": "^0.3.0",
     "passport-http-bearer": "^1.0.1",
     "passport-jwt": "^4.0.0",
@@ -75,13 +91,17 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.13.16",
-    "@babel/core": "^7.13.16",
+    "@babel/core": "^7.14.6",
     "@babel/node": "^7.13.13",
-    "@babel/preset-env": "^7.13.15",
+    "@babel/plugin-transform-modules-commonjs": "^7.14.5",
+    "@babel/plugin-transform-runtime": "^7.14.5",
+    "@babel/preset-env": "^7.14.7",
     "@vercel/node": "^1.11.1",
     "babel-eslint": "^10.1.0",
+    "babel-jest": "^27.0.6",
     "babel-loader": "^8.2.2",
     "babel-plugin-console-log": "0.0.3",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "eslint": "^7.25.0",
     "eslint-plugin-babel": "^5.3.1",
@@ -89,7 +109,9 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
     "fs-extra": "^9.1.0",
-    "nodemon": "^2.0.7"
+    "jest": "^27.0.6",
+    "nodemon": "^2.0.7",
+    "supertest": "^6.1.3"
   },
   "husky": {
     "hooks": {

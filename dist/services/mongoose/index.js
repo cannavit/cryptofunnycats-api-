@@ -9,7 +9,11 @@ var _mongoose = _interopRequireDefault(require("mongoose"));
 
 var _config = require("../../config");
 
+var _logger = _interopRequireDefault(require("../logger"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+_logger["default"].info(' MONGODB CONNECTION: ' + JSON.stringify(_config.mongo));
 
 Object.keys(_config.mongo.options).forEach(function (key) {
   if (key === 'debug' && _config.mongo.options[key]) {
@@ -29,7 +33,8 @@ function winstonMongooseLogger(name, i) {
   }
 
   var params = '(' + _args.join(', ') + ')';
-  logger.info(moduleName + functionCall + params);
+
+  _logger["default"].info(moduleName + functionCall + params);
 }
 
 _mongoose["default"].Promise = Promise;
@@ -44,7 +49,8 @@ _mongoose["default"].Types.ObjectId.prototype.view = function () {
 
 
 _mongoose["default"].connection.on('error', function (err) {
-  logger.error('MongoDB connection error: ' + err);
+  _logger["default"].error('🛑 MongoDB connection error: ' + err);
+
   process.exit(-1);
 }); // Fix 'DeprecationWarning: collection.ensureIndex is deprecated. Use createIndexes instead.' - see https://github.com/Automattic/mongoose/issues/6890
 

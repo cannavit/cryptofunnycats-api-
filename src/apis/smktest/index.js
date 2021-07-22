@@ -28,8 +28,9 @@ const { default: logger } = require('../../services/logger');
  *          description: "successful operation"
  */
 
-router.get('/',async (req, res) => {
-  logger.info(" Get all smoke")
+router.get('/', async (req, res) => {
+  logger.info(' Get all smoke');
+  logger.info(req.body);
   const smktests = await Smktest.find();
   logger.info('Read all smktest cases');
   res.send(smktests);
@@ -132,5 +133,4 @@ router.get('/smktests/:id', async (req, res) => {
   }
 });
 
-
-export default router
+export default router;

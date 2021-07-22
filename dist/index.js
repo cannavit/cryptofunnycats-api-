@@ -1,5 +1,10 @@
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
 var _mongoose = _interopRequireDefault(require("./services/mongoose"));
 
 var _apis = _interopRequireDefault(require("./apis"));
@@ -29,7 +34,11 @@ _mongoose["default"].connect(_config.mongo.uri, {
   app.listen(_config.port, function () {
     console.log();
     console.log(" \u2705 ".concat(_config.appName, " backend is running"));
+    console.log(" \uD83D\uDCDD View Swagger Apis Docs in: ".concat(_config.port).concat(_config.urlBase, "/api-docs"));
     console.log(" \uD83D\uDE80 Server has started ".concat(_config.port, "!! "));
     console.log();
   });
 });
+
+var _default = app;
+exports["default"] = _default;

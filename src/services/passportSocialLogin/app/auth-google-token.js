@@ -1,5 +1,5 @@
-const passport = require("passport");
-var GooglePlusTokenStrategy = require("passport-google-plus-token");
+const passport = require('passport');
+var GooglePlusTokenStrategy = require('passport-google-plus-token');
 
 //! PASSPORT GOOGLE TOKEN STRATEGY --------- >>>
 // BODY JSON GOOGLE TOKEN
@@ -8,7 +8,7 @@ var GooglePlusTokenStrategy = require("passport-google-plus-token");
 // }
 
 passport.use(
-  "googleToken",
+  'googleToken',
   new GooglePlusTokenStrategy(
     {
       clientID: process.env.GOOGLE_TOKEN_CLIENT_ID,
@@ -17,14 +17,14 @@ passport.use(
     async (accessToken, refreshToken, profile, done) => {
       //
       let bodyUser = {
-        type: "Client",
+        type: 'Client',
         isConfirmed: true,
         isActive: true,
         isDeactivated: false,
         nickname: profile.displayName,
         realname: profile.displayName,
         email: profile.emails[0].value,
-        password: "9F2C926BC03AA29E62CC",
+        password: '9F2C926BC03AA29E62CC',
         socialLogin: true,
         socialLoginProvider: profile.provider,
         yearOfBirth: undefined,

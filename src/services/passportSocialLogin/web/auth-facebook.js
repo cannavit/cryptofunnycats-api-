@@ -1,7 +1,7 @@
 // https://www.passportjs.org/packages/passport-google-oauth2/
 
-const passport = require("passport");
-var FacebookStrategy = require("passport-facebook").Strategy;
+const passport = require('passport');
+var FacebookStrategy = require('passport-facebook').Strategy;
 
 passport.use(
   new FacebookStrategy(
@@ -12,9 +12,9 @@ passport.use(
     },
     function (accessToken, refreshToken, profile, cb) {
       //TODO Connect to DB
-      console.log(">>>>>-1057171645>>>>>");
+      console.log('>>>>>-1057171645>>>>>');
       console.log(profile);
-      console.log("<<<<<<<<<<<<<<<<<<<");
+      console.log('<<<<<<<<<<<<<<<<<<<');
       //   User.findOrCreate({ facebookId: profile.id }, function (err, user) {
       //     return cb(err, user);
       //   });
@@ -30,21 +30,3 @@ passport.serializeUser(function (user, done) {
 passport.deserializeUser(function (user, done) {
   done(null, user);
 });
-
-// [POST]/baseURL/login-social
-// {
-//     social: "google",
-//     response: {
-//         idToken: string,
-//         serverAuthCode: string,
-//         scopes: [], // on iOS this is empty array if no additional scopes are defined
-//         user: {
-//           email: string,
-//           id: string,
-//           givenName: string,
-//           familyName: string,
-//           photo: string, // url
-//           name: string // full name
-
-//     }
-// }

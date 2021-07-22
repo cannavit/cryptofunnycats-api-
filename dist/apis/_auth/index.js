@@ -11,78 +11,87 @@ var _express = require("express");
 
 var _passport = require("../../services/passport");
 
-var _controller = require("../_users/controller");
+var _controller = _interopRequireDefault(require("../users/controller"));
 
 var _controller2 = require("./controller");
 
-var _model = require("../_users/model");
+var _model = require("../users/model");
 
-//TODO refactoring
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
 var router = new _express.Router();
 /**
- * @api {post} /auth/register Register an user
- * @apiGroup Auth
- * @apiName Register
- * @apiPermission master
- * @apiParam {String} access_token Master access_token.
- * @apiSuccess (Success 201) {User} user User's data.
- * @apiError {Object} 400 Some parameters may contain invalid values.
- * @apiError 401 Master access only.
- * @apiError 403 Forbidden operation.
- * @apiError 409 Email already registered.
- **/
+ * @swagger
+ *  /auth/register:
+ *    post:
+ *      tags:
+ *      - "auth"
+ *      summary: "Register one User"
+ *      parameters:
+ *      - in: body
+ *        name: "body"
+ *        description: "create user account"
+ *        example: {
+ *          "email": "emma_1962044517@test.com",
+ *          "userName": "Orr",
+ *          "lastName": "Nixon",
+ *          "brithDay": "30-06-1991",
+ *          "password": "admin@admin"
+ *          }
+ *      security:
+ *      - bearerAuth: []
+ *      responses:
+ *        200:
+ *          description: "successful operation"
+ *        403:
+ *          description: "cannot create a new Account"
+ */
 
-router.post('/register', (0, _passport.master)(), (0, _chocomen.middleware)(_model.bodymenSchema.creation), _controller.actions.create);
+router.post('/register', (0, _passport.master)(), (0, _chocomen.middleware)(_model.schemaUser.creation), _controller["default"].create);
 /**
- * @api {post} /auth Authenticate
- * @apiName Authenticate
- * @apiGroup Auth
- * @apiPermission basic
- * @apiSuccess (Success 201) {String} token User `access_token` to be passed to other requests.
- * @apiSuccess (Success 201) {User} user Current user's data.
- * @apiError 401 Invalid credentials.
- **/
+ * @swagger
+ *  /auth:
+ *    post:
+ *      tags:
+ *      - "auth"
+ *      summary: "Authenticate"
+ *      parameters:
+ *      - name: Authorization
+ *        in: header
+ *        description: an authorization header
+ *        required: true
+ *        type: json
+ *      security:
+ *      - basicAuth: []
+ *      responses:
+ *        200:
+ *          description: "token User `access_token` to be passed to other requests"
+ *        403:
+ *          description: "401 Invalid credentials"
+ */
 
-router.post('/', (0, _passport.password)(), _controller2.login);
-/**
- * @api {get} /auth/checkJWT Check JWT Validity
- * @apiName Check JWT Validity
- * @apiGroup Auth
- * @apiPermission token
- * @apiParam {String} access_token access_token.
- * @apiSuccess (Success 200) {String} result OK
- * @apiError 401 Invalid token.
- **/
+router.post('/', (0, _passport.password)(), _controller2.login); // router.post('/', () => {}, login);
+// /**
+//  * @api {get} /auth/checkJWT Check JWT Validity
+//  * @apiName Check JWT Validity
+//  * @apiGroup Auth
+//  * @apiPermission token
+//  * @apiParam {String} access_token access_token.
+//  * @apiSuccess (Success 200) {String} result OK
+//  * @apiError 401 Invalid token.
+//  **/
+// router.get('/checkJWT', token({ required: true }), checkJWT);
+// /**
+//  * @api {get} /auth/renewJWT Renew JWT
+//  * @apiName Renew JWT
+//  * @apiGroup Auth
+//  * @apiPermission token
+//  * @apiParam {String} access_token access_token.
+//  * @apiSuccess (Success 201) {String} token User `access_token` to be passed to other requests.
+//  * @apiSuccess (Success 201) {User} user Current user's data.
+//  * @apiError 401 Invalid token.
+//  **/
+// router.get('/renewJWT', token({ required: true }), login);
 
-router.get('/checkJWT', (0, _passport.token)({
-  required: true
-}), _controller2.checkJWT);
-/**
- * @api {get} /auth/renewJWT Renew JWT
- * @apiName Renew JWT
- * @apiGroup Auth
- * @apiPermission token
- * @apiParam {String} access_token access_token.
- * @apiSuccess (Success 201) {String} token User `access_token` to be passed to other requests.
- * @apiSuccess (Success 201) {User} user Current user's data.
- * @apiError 401 Invalid token.
- **/
-
-router.get('/renewJWT', (0, _passport.token)({
-  required: true
-}), _controller2.login);
-/**
- * @api {post} /auth/spsAuthentication Authenticate using cookies
- * @apiName spsAuthentication
- * @apiGroup Auth
- * @apiParam {String} access using cookies from the site https://www.spsitalia.it/redazione/.
- * @apiSuccess (Success 201) {String} token User `access_token` to be passed to other requests.
- * @apiSuccess (Success 201) {User} user Current user's data.
- * @apiError 401 Invalid credentials.
- **/
-
-router.post('/spsAuthentication', (0, _chocomen.middleware)({
-  cookies: _model.schema.tree.cookies
-}), _controller2.spsLogin);
 var _default = router;
 exports["default"] = _default;

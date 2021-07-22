@@ -59,16 +59,17 @@ router.get('/', /*#__PURE__*/function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            logger.info(" Get all smoke");
-            _context.next = 3;
+            logger.info(' Get all smoke');
+            logger.info(req.body);
+            _context.next = 4;
             return Smktest.find();
 
-          case 3:
+          case 4:
             smktests = _context.sent;
             logger.info('Read all smktest cases');
             res.send(smktests);
 
-          case 6:
+          case 7:
           case "end":
             return _context.stop();
         }

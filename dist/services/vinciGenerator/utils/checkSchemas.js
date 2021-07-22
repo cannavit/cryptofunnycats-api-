@@ -38,7 +38,7 @@ function _validateSchema() {
               break;
             }
 
-            throw Error(' The Variable is not define inside of the schema');
+            throw Error(" The Variable ".concat(variableInput, " is not define inside of the schema "));
 
           case 7:
             _context.next = 2;
