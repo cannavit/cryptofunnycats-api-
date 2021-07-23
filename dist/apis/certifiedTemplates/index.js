@@ -11,34 +11,34 @@ var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"))
 
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 
-var express = require('express');
+var express = require("express");
 
-var _require = require('./model'),
-    Smktest = _require.Smktest,
-    schemaSmktest = _require.schemaSmktest; // new
+var _require = require("./model"),
+    certifiedTemplates = _require.certifiedTemplates,
+    schemacertifiedTemplates = _require.schemacertifiedTemplates; // new
 
 
 var router = express.Router();
 
-var _require2 = require('../../services/vinciGenerator'),
+var _require2 = require("../../services/vinciGenerator"),
     validateSchema = _require2.validateSchema;
 
-var sendmail = require('sendmail')(); //TODO pass inside of utils
+var sendmail = require("sendmail")(); //TODO pass inside of utils
 
 
-var _require3 = require('../../config'),
+var _require3 = require("../../config"),
     smokeCollectorNotifyFailsCases = _require3.smokeCollectorNotifyFailsCases;
 
-var _require4 = require('../../services/logger'),
+var _require4 = require("../../services/logger"),
     logger = _require4["default"]; // const { default: logger } = require('../../../src/services/logger');
 // const logger = require('../../services/logger');
 
 /**
  * @swagger
- *  /smktest:
+ *  /certifiedTemplates:
  *    get:
  *      tags:
- *      - "smktest"
+ *      - "certifiedTemplates"
  *      summary: "get list of the test registered by smoke-master pipelines"
  *      components:
  *        securitySchemes:
@@ -54,22 +54,22 @@ var _require4 = require('../../services/logger'),
  */
 
 
-router.get('/', /*#__PURE__*/function () {
+router.get("/", /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
-    var smktests;
+    var certifiedTemplatess;
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            logger.info(' Get all smoke');
+            logger.info(" Get all smoke");
             logger.info(req.body);
             _context.next = 4;
-            return Smktest.find();
+            return certifiedTemplates.find();
 
           case 4:
-            smktests = _context.sent;
-            logger.info('Read all smktest cases');
-            res.send(smktests);
+            certifiedTemplatess = _context.sent;
+            logger.info("Read all certifiedTemplates cases");
+            res.send(certifiedTemplatess);
 
           case 7:
           case "end":
@@ -85,10 +85,10 @@ router.get('/', /*#__PURE__*/function () {
 }());
 /**
  * @swagger
- *  /smktest:
+ *  /certifiedTemplates:
  *    post:
  *      tags:
- *      - "smktest"
+ *      - "certifiedTemplates"
  *      summary: "Insert smoke-master results form remote pipeline"
  *      parameters:
  *      - in: body
@@ -109,52 +109,52 @@ router.get('/', /*#__PURE__*/function () {
  *          description: "cannot create a new course limit was reached"
  */
 
-router.post('/', /*#__PURE__*/function () {
+router.post("/", /*#__PURE__*/function () {
   var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(req, res) {
-    var smktest, smktest2;
+    var certifiedTemplates, certifiedTemplates2;
     return _regenerator["default"].wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             _context2.next = 2;
-            return validateSchema(req.body, schemaSmktest);
+            return validateSchema(req.body, schemacertifiedTemplates);
 
           case 2:
             logger.warn(req.body);
-            logger.info('save data: ' + JSON.stringify(req.body));
+            logger.info("save data: " + JSON.stringify(req.body));
             _context2.next = 6;
-            return new Smktest(req.body);
+            return new certifiedTemplates(req.body);
 
           case 6:
-            smktest = _context2.sent;
+            certifiedTemplates = _context2.sent;
             _context2.next = 9;
-            return smktest.save();
+            return certifiedTemplates.save();
 
           case 9:
             _context2.next = 11;
-            return Smktest.findOne(smktest);
+            return certifiedTemplates.findOne(certifiedTemplates);
 
           case 11:
-            smktest2 = _context2.sent;
-            logger.info(smktest2);
+            certifiedTemplates2 = _context2.sent;
+            logger.info(certifiedTemplates2);
             _context2.next = 15;
-            return res.send(smktest2);
+            return res.send(certifiedTemplates2);
 
           case 15:
-            logger.warn('If exist fail send notification to:' + smokeCollectorNotifyFailsCases);
+            logger.warn("If exist fail send notification to:" + smokeCollectorNotifyFailsCases);
 
             try {
               if (!req.body.passTest && smokeCollectorNotifyFailsCases) {
                 //TODO add this inside of the utils
-                logger.info('📦 🔥 💨 Notify of Fails cases');
-                logger.info('Notify To: ' + smokeCollectorNotifyFailsCases);
+                logger.info("📦 🔥 💨 Notify of Fails cases");
+                logger.info("Notify To: " + smokeCollectorNotifyFailsCases);
                 sendmail({
-                  from: 'no-reply@smokecollector.com',
+                  from: "no-reply@smokecollector.com",
                   to: smokeCollectorNotifyFailsCases,
-                  subject: '🔥 💨 SmokeTest Fail ' + req.body.projectName,
+                  subject: "🔥 💨 SmokeTest Fail " + req.body.projectName,
                   html: JSON.stringify(req.body)
                 }, function (err, reply) {
-                  logger.info('Was send the email');
+                  logger.info("Was send the email");
                   console.log(err && err.stack);
                   console.dir(reply);
                 });
@@ -174,26 +174,26 @@ router.post('/', /*#__PURE__*/function () {
   return function (_x3, _x4) {
     return _ref2.apply(this, arguments);
   };
-}()); // curl http://localhost:5000/api/smktests \
-//     -X smktest \
+}()); // curl http://localhost:5000/api/certifiedTemplatess \
+//     -X certifiedTemplates \
 //     -H "Content-Type: application/json" \
-//     -d '{"projectName":"smktest 1", "context":"Lorem ipsum"}'
+//     -d '{"projectName":"certifiedTemplates 1", "context":"Lorem ipsum"}'
 
-router.get('/smktests/:id', /*#__PURE__*/function () {
+router.get("/certifiedTemplatess/:id", /*#__PURE__*/function () {
   var _ref3 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(req, res) {
-    var smktest;
+    var certifiedTemplates;
     return _regenerator["default"].wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
             _context3.next = 2;
-            return Smktest.findOne({
+            return certifiedTemplates.findOne({
               _id: req.params.id
             });
 
           case 2:
-            smktest = _context3.sent;
-            res.send(smktest);
+            certifiedTemplates = _context3.sent;
+            res.send(certifiedTemplates);
 
           case 4:
           case "end":
@@ -206,25 +206,26 @@ router.get('/smktests/:id', /*#__PURE__*/function () {
   return function (_x5, _x6) {
     return _ref3.apply(this, arguments);
   };
-}()); // curl http://localhost:5000/api/smktests/<OBJECT_ID>
-// curl http://localhost:5000/api/smktests/60ccf14b8e95302f0e99295f
+}()); // curl http://localhost:5000/api/certifiedTemplatess/<OBJECT_ID>
+// curl http://localhost:5000/api/certifiedTemplatess/60ccf14b8e95302f0e99295f
 
-router.get('/smktests/:id', /*#__PURE__*/function () {
+router.get("/certifiedTemplatess/:id", /*#__PURE__*/function () {
   var _ref4 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(req, res) {
-    var smktest;
+    var _certifiedTemplates;
+
     return _regenerator["default"].wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
             _context4.prev = 0;
             _context4.next = 3;
-            return Smktest.findOne({
+            return _certifiedTemplates.findOne({
               _id: req.params.id
             });
 
           case 3:
-            smktest = _context4.sent;
-            res.send(smktest);
+            _certifiedTemplates = _context4.sent;
+            res.send(_certifiedTemplates);
             _context4.next = 11;
             break;
 
@@ -233,7 +234,7 @@ router.get('/smktests/:id', /*#__PURE__*/function () {
             _context4.t0 = _context4["catch"](0);
             res.status(404);
             res.send({
-              error: "Smktest doesn't exist!"
+              error: "certifiedTemplates doesn't exist!"
             });
 
           case 11:

@@ -1,5 +1,8 @@
-const { response } = require('express');
-const shell = require('shelljs');
+const { response } = require("express");
+const shell = require("shelljs");
+const { certifiedTemplates } = require("../../apis/certifiedTemplates/model"); // new
+
+
 // oc get templates -n openshift -o json
 
 // Eval terminal command using shelljs
@@ -36,14 +39,12 @@ async function getOneTemplatesYaml(templateName) {
 
 options = {
   commands: {
-    getAllTemplatesName: 'oc get templates -n openshift -o json',
-    // getTemplateJsonFromat: `oc get template ${templateName} -n openshift -o json`,
-    // getTemplateYamlFormat: `oc get template ${templateName} -n openshift -o yaml`,
+    getAllTemplatesName: "oc get templates -n openshift -o json",
   },
 };
 
 async function getCertifiedTemplates(options) {
-  console.log('@1Marker-No:_354467327');
+  console.log("@1Marker-No:_354467327");
 
   let templateNames = await getTemplates(options.commands.getAllTemplatesName);
 
@@ -52,15 +53,11 @@ async function getCertifiedTemplates(options) {
     let template = templateNames.items[i];
     let templateName = template.metadata.name;
 
-    console.log('>>>>>1205677119>>>>>');
-    console.log(templateName);
-    console.log('<<<<<<<<<<<<<<<<<<<');
     //! Data template.
-    response.dataSource = 'openshift';
-    response.dataType = 'certifiedTemplates';
+    response.dataSource = "openshift";
+    response.dataType = "certifiedTemplates";
     response.message = template.message;
-    response.namespace = 'openshift';
-    response.formatType = 'json';
+    response.namespace = "openshift";
     response.objects = template.objects;
 
     let templateJson = await getOneTemplatesJson(templateName);
@@ -70,9 +67,14 @@ async function getCertifiedTemplates(options) {
     response.templateYaml = templateYaml;
     response.templateJson = templateJson;
 
-    // TODO.
+
+    // Save request in db.
+    return await certifiedTemplates.findOneAndUpdate(
+      { templateName: templateName,  namespace: response.namespace},
+      response,
+      { upsert: true }
+    );
   }
-  console.log('<<<<<<<<<<<<<<<<<<<');
 
   return options;
 }

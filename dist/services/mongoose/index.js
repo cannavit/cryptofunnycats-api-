@@ -1,5 +1,7 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -10,8 +12,6 @@ var _mongoose = _interopRequireDefault(require("mongoose"));
 var _config = require("../../config");
 
 var _logger = _interopRequireDefault(require("../logger"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 _logger["default"].info(' MONGODB CONNECTION: ' + JSON.stringify(_config.mongo));
 

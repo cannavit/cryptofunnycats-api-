@@ -1,14 +1,14 @@
 // import express from 'express';
 // import mongoose from 'mongoose';
-import mongoose from './services/mongoose';
-import api from './apis';
+import mongoose from "./services/mongoose";
+import api from "./apis";
 
-import express from './services/express';
+import express from "./services/express";
 // Configuration
-import { port, appName, mongo, urlBase } from './config';
+import { port, appName, mongo, urlBase } from "./config";
 
 // Build Apis Documentation.
-import { buildSwaggerDocs } from './services/swaggerDocs';
+import { buildSwaggerDocs } from "./services/swaggerDocs";
 
 //! Get all routes of swagger.
 
@@ -31,5 +31,20 @@ mongoose
       console.log();
     });
   });
+
+// Run scheduler files.
+import { getProjectsUsingFileContent } from "./services/collectorSmokeSmells/collectFileHubs";
+
+console.log(">>>>>117991420>>>>>");
+
+async function test() {
+  console.log("@1Marker-No:_354467327");
+
+  await getProjectsUsingFileContent();
+  return;
+}
+
+test();
+console.log("<<<<<<<<<<<<<<<<<<<");
 
 export default app;

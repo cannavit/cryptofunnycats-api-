@@ -1,5 +1,7 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -8,8 +10,6 @@ exports.verify = exports.signSync = exports.sign = void 0;
 var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
 
 var _config = require("../../config");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var jwtSign = Promise.promisify(_jsonwebtoken["default"].sign);
 var jwtVerify = Promise.promisify(_jsonwebtoken["default"].verify);
