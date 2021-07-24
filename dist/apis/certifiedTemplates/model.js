@@ -10,7 +10,7 @@ var schemacertifiedTemplates = mongoose.Schema({
   objects: String,
   testId: String,
   templateJson: String,
-  templateYaml: Boolean
+  templateYaml: String
 });
 module.exports.certifiedTemplates = mongoose.model("certifiedTemplates", schemacertifiedTemplates);
 module.exports.schemacertifiedTemplates = schemacertifiedTemplates;

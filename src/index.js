@@ -11,6 +11,7 @@ import { port, appName, mongo, urlBase, enableScheduler } from "./config";
 import { buildSwaggerDocs } from "./services/swaggerDocs";
 import * as scheduler from "./services/scheduler";
 
+import { getCertifiedTemplates } from "./services/collectorSmokeSmells/certifiedTemplates";
 //! Get all routes of swagger.
 
 const app = express(api);
@@ -38,6 +39,8 @@ mongoose
   });
 
 // Run scheduler files.
+
+// getCertifiedTemplates(); // Load Templates
 
 export default app;
 

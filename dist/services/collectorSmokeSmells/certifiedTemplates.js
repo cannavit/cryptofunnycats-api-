@@ -31,19 +31,22 @@ function _getTemplates() {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.next = 2;
+            console.log(">>>>>2022343223>>>>>");
+            console.log(command);
+            console.log("<<<<<<<<<<<<<<<<<<<");
+            _context.next = 5;
             return shell.exec(command, {
               silent: true
             });
 
-          case 2:
+          case 5:
             output = _context.sent;
             json = JSON.parse(output); //   let json = JSON.stringify(output);
             //   let json = output;
 
             return _context.abrupt("return", json);
 
-          case 5:
+          case 8:
           case "end":
             return _context.stop();
         }
@@ -114,38 +117,38 @@ function _getOneTemplatesYaml() {
   return _getOneTemplatesYaml.apply(this, arguments);
 }
 
-options = {
-  commands: {
-    getAllTemplatesName: "oc get templates -n openshift -o json"
-  }
-};
-
-function getCertifiedTemplates(_x4) {
+function getCertifiedTemplates() {
   return _getCertifiedTemplates.apply(this, arguments);
 }
 
 function _getCertifiedTemplates() {
-  _getCertifiedTemplates = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(options) {
-    var templateNames, i, _response, template, templateName, templateJson, templateYaml;
+  _getCertifiedTemplates = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4() {
+    var options, templateNames, i, _response, template, templateName, templateJson, templateYaml;
 
     return _regenerator["default"].wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
             console.log("@1Marker-No:_354467327");
-            _context4.next = 3;
+            options = {
+              commands: {
+                getAllTemplatesName: "oc get templates -n openshift -o json"
+              }
+            };
+            _context4.next = 4;
             return getTemplates(options.commands.getAllTemplatesName);
 
-          case 3:
+          case 4:
             templateNames = _context4.sent;
             i = 0;
 
-          case 5:
+          case 6:
             if (!(i < templateNames.items.length)) {
-              _context4.next = 29;
+              _context4.next = 33;
               break;
             }
 
+            console.log("✅ Read Template: " + i);
             _response = {};
             template = templateNames.items[i];
             templateName = template.metadata.name; //! Data template.
@@ -154,41 +157,39 @@ function _getCertifiedTemplates() {
             _response.dataType = "certifiedTemplates";
             _response.message = template.message;
             _response.namespace = "openshift";
-            _response.objects = template.objects;
-            _context4.next = 16;
+            _response.objects = JSON.stringify(template.objects);
+            _context4.next = 18;
             return getOneTemplatesJson(templateName);
 
-          case 16:
+          case 18:
             templateJson = _context4.sent;
             templateJson = JSON.stringify(templateJson);
-            _context4.next = 20;
+            _context4.next = 22;
             return getOneTemplatesYaml(templateName);
 
-          case 20:
+          case 22:
             templateYaml = _context4.sent;
             _response.templateYaml = templateYaml;
-            _response.templateJson = templateJson; // Save request in db.
+            _response.templateJson = templateJson;
+            console.log(">>>>>555521304>>>>>");
+            console.log(templateName);
+            console.log("<<<<<<<<<<<<<<<<<<<"); // Save request in db.
 
-            _context4.next = 25;
+            _context4.next = 30;
             return certifiedTemplates.findOneAndUpdate({
-              templateName: templateName,
-              namespace: _response.namespace
-            }, _response, {
-              upsert: true
-            });
-
-          case 25:
-            return _context4.abrupt("return", _context4.sent);
-
-          case 26:
-            i++;
-            _context4.next = 5;
-            break;
-
-          case 29:
-            return _context4.abrupt("return", options);
+              templateName: templateName
+            }, _response // { upsert: true }
+            );
 
           case 30:
+            i++;
+            _context4.next = 6;
+            break;
+
+          case 33:
+            return _context4.abrupt("return", options);
+
+          case 34:
           case "end":
             return _context4.stop();
         }
@@ -198,4 +199,5 @@ function _getCertifiedTemplates() {
   return _getCertifiedTemplates.apply(this, arguments);
 }
 
-getCertifiedTemplates(options);
+getCertifiedTemplates(); // module.exports.getCertifiedTemplates = getCertifiedTemplates;
+// getCertifiedTemplates(options);

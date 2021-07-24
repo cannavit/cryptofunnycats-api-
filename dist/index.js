@@ -51,8 +51,10 @@ _mongoose["default"].connect(_config.mongo.uri, {
     scheduler.start();
   }
 }); // Run scheduler files.
+// getCertifiedTemplates();
 
 
-var _default = app; // pm2 start src/index.js "Collector File Hub" --watch
+var _default = app; // pm2 start src/index.js  --watch --interpreter babel-node
+// pm2 start npm -- run pm2
 
 exports["default"] = _default;

@@ -21,7 +21,7 @@ var start = function start() {
   log.info(" 🕕 Scheduler Starting...");
 
   if (_config.githubSchadulerImportFileshub) {
-    _nodeSchedule["default"].scheduleJob("*/10 1 * * *", _collectFileHubs.runCollectorFilesHub);
+    _nodeSchedule["default"].scheduleJob("*/32 * * * *", _collectFileHubs.runCollectorFilesHub);
   }
 
   log.info(" ⏰ ✅ Starting...", "DONE");

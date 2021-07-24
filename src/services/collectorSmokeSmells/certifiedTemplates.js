@@ -9,7 +9,11 @@ const { certifiedTemplates } = require("../../apis/certifiedTemplates/model"); /
 // input is command line
 // output is JSON
 async function getTemplates(command) {
+  console.log(">>>>>2022343223>>>>>");
+  console.log(command);
+  console.log("<<<<<<<<<<<<<<<<<<<");
   var output = await shell.exec(command, { silent: true });
+
   let json = JSON.parse(output);
   //   let json = JSON.stringify(output);
 
@@ -36,18 +40,19 @@ async function getOneTemplatesYaml(templateName) {
   return output.stdout;
 }
 
-options = {
-  commands: {
-    getAllTemplatesName: "oc get templates -n openshift -o json",
-  },
-};
-
-async function getCertifiedTemplates(options) {
+async function getCertifiedTemplates() {
   console.log("@1Marker-No:_354467327");
+
+  let options = {
+    commands: {
+      getAllTemplatesName: "oc get templates -n openshift -o json",
+    },
+  };
 
   let templateNames = await getTemplates(options.commands.getAllTemplatesName);
 
   for (let i = 0; i < templateNames.items.length; i++) {
+    console.log("✅ Read Template: " + i);
     let response = {};
     let template = templateNames.items[i];
     let templateName = template.metadata.name;
@@ -57,18 +62,23 @@ async function getCertifiedTemplates(options) {
     response.dataType = "certifiedTemplates";
     response.message = template.message;
     response.namespace = "openshift";
-    response.objects = template.objects;
+    response.objects = JSON.stringify(template.objects);
 
     let templateJson = await getOneTemplatesJson(templateName);
     templateJson = JSON.stringify(templateJson);
+
     let templateYaml = await getOneTemplatesYaml(templateName);
 
     response.templateYaml = templateYaml;
     response.templateJson = templateJson;
 
+    console.log(">>>>>555521304>>>>>");
+    console.log(templateName);
+    console.log("<<<<<<<<<<<<<<<<<<<");
+
     // Save request in db.
-    return await certifiedTemplates.findOneAndUpdate(
-      { templateName: templateName, namespace: response.namespace },
+    await certifiedTemplates.findOneAndUpdate(
+      { templateName: templateName },
       response,
       { upsert: true }
     );
@@ -77,4 +87,7 @@ async function getCertifiedTemplates(options) {
   return options;
 }
 
-getCertifiedTemplates(options);
+// getCertifiedTemplates();
+module.exports.getCertifiedTemplates = getCertifiedTemplates;
+
+// getCertifiedTemplates(options);

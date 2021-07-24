@@ -576,12 +576,4 @@ function _runCollectorFilesHub() {
   return _runCollectorFilesHub.apply(this, arguments);
 }
 
-module.exports.runCollectorFilesHub = runCollectorFilesHub; //Know if one string is part of one kubernetes file
-//Use web service.
-//Import library
-
-function isKubernetesFile(Text) {
-  var kubernetes = new Kubernetes();
-  var result = kubernetes.analyze(Text);
-  return result;
-}
+module.exports.runCollectorFilesHub = runCollectorFilesHub; // runCollectorFilesHub();
