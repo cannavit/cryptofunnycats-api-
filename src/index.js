@@ -5,10 +5,11 @@ import api from "./apis";
 
 import express from "./services/express";
 // Configuration
-import { port, appName, mongo, urlBase } from "./config";
+import { port, appName, mongo, urlBase, enableScheduler } from "./config";
 
 // Build Apis Documentation.
 import { buildSwaggerDocs } from "./services/swaggerDocs";
+import * as scheduler from "./services/scheduler";
 
 //! Get all routes of swagger.
 
@@ -30,21 +31,13 @@ mongoose
       console.log(` 🚀 Server has started ${port}!! `);
       console.log();
     });
+
+    if (enableScheduler) {
+      scheduler.start();
+    }
   });
 
 // Run scheduler files.
 import { getProjectsUsingFileContent } from "./services/collectorSmokeSmells/collectFileHubs";
-
-console.log(">>>>>117991420>>>>>");
-
-async function test() {
-  console.log("@1Marker-No:_354467327");
-
-  await getProjectsUsingFileContent();
-  return;
-}
-
-test();
-console.log("<<<<<<<<<<<<<<<<<<<");
 
 export default app;

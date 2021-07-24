@@ -1,35 +1,66 @@
 const { Octokit } = require("@octokit/rest");
 const axios = require("axios");
+const { appendFile } = require("fs-extra");
 var Sentiment = require("sentiment");
 const { filesHub } = require("../../apis/filesHub/model");
-const { filesHubCommit } = require("../../apis/filesHubCommit/model");
-const { GITHUB_TOKEN_COLLECTOR } = require("../../config");
+const { pagesRead } = require("../../apis/pagesRead/model");
+
+// Use graphql
+// https://docs.github.com/en/graphql/overview/explorer
 
 // Get project github file content using how inputs fileName.
 // use the library octokit
 // inputs: fileName, tokenAccess
+
 async function getProjectsUsingFileContent() {
+  // Read Read Configuration.
+  let lastPagesReference = await pagesRead.findOne({
+    reference: "ImportFilesHubs",
+  });
+
+  if (!lastPagesReference) {
+    lastPagesReference = {
+      pages: 1,
+      reference: "ImportFilesHubs",
+      per_page: process.env.GITHUB_RANGE,
+    };
+  }
+
+  lastPagesReference.per_page = process.env.GITHUB_RANGE;
+
   let options = {
-    pull_number: 3,
-    // token: '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', // TOKEN cecilio.cannav@gmail.com
     token: process.env.GITHUB_TOKEN_COLLECTOR,
-    query: "keyword:kubernetes extension:.yaml",
+    query: "kubernetes extension:.yaml",
     fileExtension: ".yaml",
   };
+
   let tokenAccess = options.token;
-  //
+
   const github = new Octokit({
     auth: tokenAccess,
   });
 
   const projects = await github.search.code({
     q: options.query,
-    sort: "stars",
+    sort: "created",
     order: "desc",
-    limit: 100,
+    page: lastPagesReference.pages,
+    per_page: lastPagesReference.per_page,
   });
+
+  let nextPage = lastPagesReference.pages + 1;
+
+  let count = -1;
   for (const key in projects.data.items) {
     //
+    console.log(
+      "KEY: " +
+        key +
+        " page:" +
+        lastPagesReference.pages +
+        "per_page: " +
+        lastPagesReference.per_page
+    );
 
     let response = {};
 
@@ -70,32 +101,47 @@ async function getProjectsUsingFileContent() {
       try {
         fileContent = await getFilesFromUrl(items.git_url);
       } catch (error) {
-        console.log();
         console.log("ERROR " + error.message);
       }
 
       response.fileContent = fileContent;
 
+      let commitsUrl = response.commits_url.replace("{/sha}", "");
+
       //! Save Inside of the BD fileHub.
-      let fileHubResponse = await filesHub.findOneAndUpdate(
-        { node_id: response.node_id },
-        response,
-        { upsert: true }
+      await filesHub.findOneAndUpdate({ node_id: response.node_id }, response, {
+        upsert: true,
+      });
+
+      await pagesRead.findOneAndUpdate(
+        { reference: "ImportFilesHubs" },
+        {
+          pages: nextPage,
+          reference: "ImportFilesHubs",
+          per_page: process.env.GITHUB_RANGE,
+        },
+        {
+          upsert: true,
+        }
       );
 
-      //! Get commits relationships with file
-      let commitData = await getCommitsFile(
-        response.commits_url.replace("{/sha}", ""),
-        options.fileExtension,
-        fileHubResponse
-      );
+      //!
+
+      // fileHubResponse.commitsUrl = commitsUrl;
+      // //! Get commits relationships with file
+      // let commitData = await getCommitsFile(
+      //   commitsUrl,
+      //   options.fileExtension,
+      //   fileHubResponse
+      // );
 
       // response.fileCommits = commitData;
 
       // console.log(response);
       // console.log(response.fileCommits);
     }
-    break;
+
+    // break;
   }
 
   return projects;
@@ -199,8 +245,6 @@ async function getCommitsFile(url, fileExtension, fileHubResponse) {
         bugWordCommit: bugWord,
       };
 
-      console.log("@1Marker-No:_-1439546817");
-
       let commitsFileList = await getCommitsFiles2(
         dataCommitMaster.urlCommit,
         fileExtension,
@@ -208,7 +252,7 @@ async function getCommitsFile(url, fileExtension, fileHubResponse) {
         fileHubResponse
       );
 
-      if (count > 1) {
+      if (count >= 1) {
         break; //TODO LIMIT
       }
     }
@@ -229,52 +273,46 @@ async function getCommitsFiles2(
   console.log("@1Marker-No:_1686307419");
   //
   let response = await axios.get(urlCommit);
-  console.log(">>>>>-1555260547>>>>> RESPONSE ");
-  console.log(response);
-  // console.log("<<<<<<<<<<<<<<<<<<<");
-  // console.log(">>>>>14369272>>>>>");
-  // console.log(response.data);
-  // console.log("<<<<<<<<<<<<<<<<<<<");
-  // let commitsFileList = [];
+  let commitsFileList = [];
 
-  // for (const key in response.data.files) {
-  //   let file = response.data.files[key];
+  for (const key in response.data.files) {
+    let file = response.data.files[key];
 
-  //   if (file.filename.includes(fileExtension)) {
-  //     // SaveInside of the DB. filesHubCommit
+    if (file.filename.includes(fileExtension)) {
+      // SaveInside of the DB. filesHubCommit
 
-  //     let responseCommit = { ...dataCommitMaster, ...file };
+      let responseCommit = { ...dataCommitMaster, ...file };
 
-  //     console.log(">>>>>111447517>>>>>");
-  //     console.log(responseCommit);
-  //     console.log("<<<<<<<<<<<<<<<<<<<");
+      console.log(">>>>>111447517>>>>>");
+      console.log(responseCommit);
+      console.log("<<<<<<<<<<<<<<<<<<<");
 
-  //     if (response.commits_url) {
-  //       console.log("@1Marker-No:_1496321337");
-  //       console.log("@1Marker-No:_1496321337");
-  //       console.log("@1Marker-No:_1496321337");
-  //       console.log("@1Marker-No:_1496321337");
+      console.log("@1Marker-No:_1496321337");
+      console.log("@1Marker-No:_1496321337");
+      console.log("@1Marker-No:_1496321337");
+      console.log("@1Marker-No:_1496321337");
 
-  //       //! Get commits relationships with file
-  //       let commitData = await getCommitsFile(
-  //         response.commits_url.replace("{/sha}", ""),
-  //         options.fileExtension,
-  //         fileHubResponse
-  //       );
+      //! Get commits relationships with file
+      let commitData = await getCommitsFile(
+        fileHubResponse.commitsUrl,
+        fileExtension,
+        fileHubResponse
+      );
 
-  //       // await filesHubCommit.findOneAndUpdate(
-  //       //   { fileHubId: fileHubResponse.fileHubId },
-  //       //   response,
-  //       //   { upsert: true }
-  //       // );
+      console.log(">>>>>-1088011463>>>>>");
+      console.log(commitData);
+      console.log("<<<<<<<<<<<<<<<<<<<");
+      // await filesHubCommit.findOneAndUpdate(
+      //   { fileHubId: fileHubResponse.fileHubId },
+      //   response,
+      //   { upsert: true }
+      // );
+    }
 
-  //     }
-  //   }
+    break;
+  }
 
-  //   break;
-  // }
-
-  return commitsFileList;
+  // return commitsFileList;
 }
 
 // Know if a text mentions good or bad feelings
@@ -307,4 +345,31 @@ function haveWoldOfBug(str) {
   return false;
 }
 
-module.exports.getProjectsUsingFileContent = getProjectsUsingFileContent;
+async function runCollectorFilesHub() {
+  console.log("🕕 Run Collector of  filesHub");
+  let findFiles = true;
+
+  while (findFiles) {
+    console.log("🕕 Try to collect data");
+
+    try {
+      await getProjectsUsingFileContent();
+    } catch (error) {
+      console.log("🟠 Pass limit of GitHub");
+      findFiles = false;
+      break;
+    }
+  }
+  console.log("ℹ️  Finish of GitHub");
+}
+
+module.exports.runCollectorFilesHub = runCollectorFilesHub;
+
+//Know if one string is part of one kubernetes file
+//Use web service.
+//Import library
+function isKubernetesFile(Text) {
+  var kubernetes = new Kubernetes();
+  var result = kubernetes.analyze(Text);
+  return result;
+}

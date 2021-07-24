@@ -9,7 +9,11 @@ var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/
 var _require = require("express"),
     response = _require.response;
 
-var shell = require("shelljs"); // oc get templates -n openshift -o json
+var shell = require("shelljs");
+
+var _require2 = require("../../apis/certifiedTemplates/model"),
+    certifiedTemplates = _require2.certifiedTemplates; // new
+// oc get templates -n openshift -o json
 // Eval terminal command using shelljs
 // import library
 // input is command line
@@ -112,9 +116,7 @@ function _getOneTemplatesYaml() {
 
 options = {
   commands: {
-    getAllTemplatesName: "oc get templates -n openshift -o json" // getTemplateJsonFromat: `oc get template ${templateName} -n openshift -o json`,
-    // getTemplateYamlFormat: `oc get template ${templateName} -n openshift -o yaml`,
-
+    getAllTemplatesName: "oc get templates -n openshift -o json"
   }
 };
 
@@ -146,30 +148,37 @@ function _getCertifiedTemplates() {
 
             _response = {};
             template = templateNames.items[i];
-            templateName = template.metadata.name;
-            console.log(">>>>>1205677119>>>>>");
-            console.log(templateName);
-            console.log("<<<<<<<<<<<<<<<<<<<"); //! Data template.
+            templateName = template.metadata.name; //! Data template.
 
             _response.dataSource = "openshift";
             _response.dataType = "certifiedTemplates";
             _response.message = template.message;
             _response.namespace = "openshift";
             _response.objects = template.objects;
-            _context4.next = 19;
+            _context4.next = 16;
             return getOneTemplatesJson(templateName);
 
-          case 19:
+          case 16:
             templateJson = _context4.sent;
             templateJson = JSON.stringify(templateJson);
-            _context4.next = 23;
+            _context4.next = 20;
             return getOneTemplatesYaml(templateName);
 
-          case 23:
+          case 20:
             templateYaml = _context4.sent;
             _response.templateYaml = templateYaml;
-            _response.templateJson = templateJson; // Send data to MongoDB
-            // TODO.
+            _response.templateJson = templateJson; // Save request in db.
+
+            _context4.next = 25;
+            return certifiedTemplates.findOneAndUpdate({
+              templateName: templateName,
+              namespace: _response.namespace
+            }, _response, {
+              upsert: true
+            });
+
+          case 25:
+            return _context4.abrupt("return", _context4.sent);
 
           case 26:
             i++;
@@ -177,10 +186,9 @@ function _getCertifiedTemplates() {
             break;
 
           case 29:
-            console.log("<<<<<<<<<<<<<<<<<<<");
             return _context4.abrupt("return", options);
 
-          case 31:
+          case 30:
           case "end":
             return _context4.stop();
         }

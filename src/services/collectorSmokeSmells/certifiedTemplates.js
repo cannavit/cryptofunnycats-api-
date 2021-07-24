@@ -2,7 +2,6 @@ const { response } = require("express");
 const shell = require("shelljs");
 const { certifiedTemplates } = require("../../apis/certifiedTemplates/model"); // new
 
-
 // oc get templates -n openshift -o json
 
 // Eval terminal command using shelljs
@@ -67,10 +66,9 @@ async function getCertifiedTemplates(options) {
     response.templateYaml = templateYaml;
     response.templateJson = templateJson;
 
-
     // Save request in db.
     return await certifiedTemplates.findOneAndUpdate(
-      { templateName: templateName,  namespace: response.namespace},
+      { templateName: templateName, namespace: response.namespace },
       response,
       { upsert: true }
     );

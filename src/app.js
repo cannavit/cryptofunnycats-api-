@@ -1,14 +1,16 @@
 // import express from 'express';
 // import mongoose from 'mongoose';
-import mongoose from './services/mongoose';
-import api from './apis';
+import mongoose from "./services/mongoose";
+import api from "./apis";
 
-import express from './services/express';
+import express from "./services/express";
 // Configuration
-import { port, appName, mongo, urlBase } from './config';
+import { port, appName, mongo, urlBase } from "./config";
 
 // Build Apis Documentation.
-import { buildSwaggerDocs } from './services/swaggerDocs';
+import { buildSwaggerDocs } from "./services/swaggerDocs";
+
+import * as scheduler from "./services/scheduler";
 
 //! Get all routes of swagger.
 
@@ -30,6 +32,10 @@ mongoose
       console.log(` 🚀 Server has started ${port}!! `);
       console.log();
     });
+
+    if (!disableScheduler) {
+      scheduler.start();
+    }
   });
 
 module.exports = app;

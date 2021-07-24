@@ -28,12 +28,18 @@ if (process.env.NODE_ENV !== "production") {
 
 const APP_NAME = requireProcessEnv("APP_NAME");
 
+console.log(">>>>>86668013>>>>>");
+console.log(process.env.DISABLE_SCHEDULER);
+console.log("<<<<<<<<<<<<<<<<<<<");
 const config = {
   all: {
     GITHUB_TOKEN_COLLECTOR: process.env.GITHUB_TOKEN_COLLECTOR,
     appName: capitalize(APP_NAME),
     env: process.env.NODE_ENV || "dev",
+    githubSchadulerImportFileshub:
+      process.env.GITLAB_SCHADULER_IMPORT_FILESHUB || false,
     root: path.join(__dirname, ".."),
+    enableScheduler: process.env.ENABLE_SCHEDULER,
     port: process.env.PORT || 3000,
     roundsBcrypt: 9,
     smokeCollectorNotifyFailsCases:
