@@ -15,7 +15,9 @@
     "postinstall": "rm -rf dist && yarn run build",
     "lint": "yarn prettier --write --check --config ./.prettierrc \"**/*.js\" && eslint --fix ./src",
     "release": "release-it patch --no-npm.publish",
-    "test:debug": "jest --config=./jest.config.js --watchAll --testPathPattern=src"
+    "test:debug": "jest --config=./jest.config.js --watchAll --testPathPattern=src",
+    "serverPm2": "pm2 start src/index.js",
+    "pm2": "babel-node  ./src/index.js"
   },
   "jest": {
     "transform": {
@@ -46,6 +48,7 @@
     "@octokit/rest": "^18.7.0",
     "apollo-engine": "^1.1.2",
     "apollo-server-express": "^2.23.0",
+    "axios": "^0.21.1",
     "babel-plugin-transform-decorators-legacy": "^1.3.5",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-es2020": "^1.0.2",

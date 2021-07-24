@@ -17,16 +17,18 @@ var _require = require("@octokit/rest"),
 
 var axios = require("axios");
 
+var _require2 = require("fs-extra"),
+    appendFile = _require2.appendFile;
+
 var Sentiment = require("sentiment");
 
-var _require2 = require("../../apis/filesHub/model"),
-    filesHub = _require2.filesHub;
+var _require3 = require("../../apis/filesHub/model"),
+    filesHub = _require3.filesHub;
 
-var _require3 = require("../../apis/filesHubCommit/model"),
-    filesHubCommit = _require3.filesHubCommit;
-
-var _require4 = require("../../config"),
-    GITHUB_TOKEN_COLLECTOR = _require4.GITHUB_TOKEN_COLLECTOR; // Get project github file content using how inputs fileName.
+var _require4 = require("../../apis/pagesRead/model"),
+    pagesRead = _require4.pagesRead; // Use graphql
+// https://docs.github.com/en/graphql/overview/explorer
+// Get project github file content using how inputs fileName.
 // use the library octokit
 // inputs: fileName, tokenAccess
 
@@ -38,36 +40,53 @@ function getProjectsUsingFileContent() {
 
 function _getProjectsUsingFileContent() {
   _getProjectsUsingFileContent = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee() {
-    var options, tokenAccess, github, projects, key, response, items, dataProject, fileContent, commitsUrl, fileHubResponse, commitData;
+    var lastPagesReference, options, tokenAccess, github, projects, nextPage, count, key, response, items, dataProject, fileContent, commitsUrl;
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
+            _context.next = 2;
+            return pagesRead.findOne({
+              reference: "ImportFilesHubs"
+            });
+
+          case 2:
+            lastPagesReference = _context.sent;
+
+            if (!lastPagesReference) {
+              lastPagesReference = {
+                pages: 1,
+                reference: "ImportFilesHubs",
+                per_page: process.env.GITHUB_RANGE
+              };
+            }
+
+            lastPagesReference.per_page = process.env.GITHUB_RANGE;
             options = {
-              pull_number: 3,
-              // token: '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', // TOKEN cecilio.cannav@gmail.com
               token: process.env.GITHUB_TOKEN_COLLECTOR,
-              query: "keyword:kubernetes extension:.yaml",
+              query: "kubernetes extension:.yaml",
               fileExtension: ".yaml"
             };
-            tokenAccess = options.token; //
-
+            tokenAccess = options.token;
             github = new Octokit({
               auth: tokenAccess
             });
-            _context.next = 5;
+            _context.next = 10;
             return github.search.code({
               q: options.query,
-              sort: "stars",
+              sort: "created",
               order: "desc",
-              limit: 100
+              page: lastPagesReference.pages,
+              per_page: lastPagesReference.per_page
             });
 
-          case 5:
+          case 10:
             projects = _context.sent;
+            nextPage = lastPagesReference.pages + 1;
+            count = -1;
             _context.t0 = _regenerator["default"].keys(projects.data.items);
 
-          case 7:
+          case 14:
             if ((_context.t1 = _context.t0()).done) {
               _context.next = 62;
               break;
@@ -75,6 +94,7 @@ function _getProjectsUsingFileContent() {
 
             key = _context.t1.value;
             //
+            console.log("KEY: " + key + " page:" + lastPagesReference.pages + "per_page: " + lastPagesReference.per_page);
             response = {};
             items = void 0;
 
@@ -83,7 +103,7 @@ function _getProjectsUsingFileContent() {
             } catch (error) {}
 
             if (!items) {
-              _context.next = 59;
+              _context.next = 60;
               break;
             }
 
@@ -102,10 +122,10 @@ function _getProjectsUsingFileContent() {
             response.url = items.repository.url;
             response.commits_url = items.repository.commits_url; //! Get reference commits information.
 
-            _context.next = 29;
+            _context.next = 37;
             return getNumberOfStars(response.url);
 
-          case 29:
+          case 37:
             dataProject = _context.sent;
             response.stargazers_count = dataProject.stargazers_count;
             response.watchers = dataProject.watchers;
@@ -114,47 +134,46 @@ function _getProjectsUsingFileContent() {
             response.network_count = dataProject.network_count;
             response.subscribers_count = dataProject.subscribers_count;
             fileContent = void 0;
-            _context.prev = 37;
-            _context.next = 40;
+            _context.prev = 45;
+            _context.next = 48;
             return getFilesFromUrl(items.git_url);
 
-          case 40:
+          case 48:
             fileContent = _context.sent;
-            _context.next = 47;
+            _context.next = 54;
             break;
 
-          case 43:
-            _context.prev = 43;
-            _context.t2 = _context["catch"](37);
-            console.log();
+          case 51:
+            _context.prev = 51;
+            _context.t2 = _context["catch"](45);
             console.log("ERROR " + _context.t2.message);
 
-          case 47:
+          case 54:
             response.fileContent = fileContent;
-            commitsUrl = response.commits_url.replace("{/sha}", "");
-            console.log(">>>>>-358448538>>>>>");
-            console.log(commitsUrl);
-            console.log("<<<<<<<<<<<<<<<<<<<"); //! Save Inside of the BD fileHub.
+            commitsUrl = response.commits_url.replace("{/sha}", ""); //! Save Inside of the BD fileHub.
 
-            _context.next = 54;
+            _context.next = 58;
             return filesHub.findOneAndUpdate({
               node_id: response.node_id
             }, response, {
               upsert: true
             });
 
-          case 54:
-            fileHubResponse = _context.sent;
-            fileHubResponse.commitsUrl = commitsUrl; //! Get commits relationships with file
-
-            _context.next = 58;
-            return getCommitsFile(commitsUrl, options.fileExtension, fileHubResponse);
-
           case 58:
-            commitData = _context.sent;
+            _context.next = 60;
+            return pagesRead.findOneAndUpdate({
+              reference: "ImportFilesHubs"
+            }, {
+              pages: nextPage,
+              reference: "ImportFilesHubs",
+              per_page: process.env.GITHUB_RANGE
+            }, {
+              upsert: true
+            });
 
-          case 59:
-            return _context.abrupt("break", 62);
+          case 60:
+            _context.next = 14;
+            break;
 
           case 62:
             return _context.abrupt("return", projects);
@@ -164,7 +183,7 @@ function _getProjectsUsingFileContent() {
             return _context.stop();
         }
       }
-    }, _callee, null, [[37, 43]]);
+    }, _callee, null, [[45, 51]]);
   }));
   return _getProjectsUsingFileContent.apply(this, arguments);
 }
@@ -341,7 +360,7 @@ function _getCommitsFile() {
 
                       case 4:
                         if ((_context6.t1 = _context6.t0()).done) {
-                          _context6.next = 19;
+                          _context6.next = 18;
                           break;
                         }
 
@@ -363,28 +382,27 @@ function _getCommitsFile() {
                           urlCommit: data.commit.url.replace("/git", ""),
                           bugWordCommit: bugWord
                         };
-                        console.log("@1Marker-No:_-1439546817");
-                        _context6.next = 14;
+                        _context6.next = 13;
                         return getCommitsFiles2(dataCommitMaster.urlCommit, fileExtension, dataCommitMaster, fileHubResponse);
 
-                      case 14:
+                      case 13:
                         commitsFileList = _context6.sent;
 
                         if (!(count >= 1)) {
-                          _context6.next = 17;
+                          _context6.next = 16;
                           break;
                         }
 
-                        return _context6.abrupt("break", 19);
+                        return _context6.abrupt("break", 18);
 
-                      case 17:
+                      case 16:
                         _context6.next = 4;
                         break;
 
-                      case 19:
+                      case 18:
                         return _context6.abrupt("return", commitsList);
 
-                      case 20:
+                      case 19:
                       case "end":
                         return _context6.stop();
                     }
@@ -505,4 +523,65 @@ function haveWoldOfBug(str) {
   return false;
 }
 
-module.exports.getProjectsUsingFileContent = getProjectsUsingFileContent;
+function runCollectorFilesHub() {
+  return _runCollectorFilesHub.apply(this, arguments);
+}
+
+function _runCollectorFilesHub() {
+  _runCollectorFilesHub = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee9() {
+    var findFiles;
+    return _regenerator["default"].wrap(function _callee9$(_context9) {
+      while (1) {
+        switch (_context9.prev = _context9.next) {
+          case 0:
+            console.log("🕕 Run Collector of  filesHub");
+            findFiles = true;
+
+          case 2:
+            if (!findFiles) {
+              _context9.next = 16;
+              break;
+            }
+
+            console.log("🕕 Try to collect data");
+            _context9.prev = 4;
+            _context9.next = 7;
+            return getProjectsUsingFileContent();
+
+          case 7:
+            _context9.next = 14;
+            break;
+
+          case 9:
+            _context9.prev = 9;
+            _context9.t0 = _context9["catch"](4);
+            console.log("🟠 Pass limit of GitHub");
+            findFiles = false;
+            return _context9.abrupt("break", 16);
+
+          case 14:
+            _context9.next = 2;
+            break;
+
+          case 16:
+            console.log("ℹ️  Finish of GitHub");
+
+          case 17:
+          case "end":
+            return _context9.stop();
+        }
+      }
+    }, _callee9, null, [[4, 9]]);
+  }));
+  return _runCollectorFilesHub.apply(this, arguments);
+}
+
+module.exports.runCollectorFilesHub = runCollectorFilesHub; //Know if one string is part of one kubernetes file
+//Use web service.
+//Import library
+
+function isKubernetesFile(Text) {
+  var kubernetes = new Kubernetes();
+  var result = kubernetes.analyze(Text);
+  return result;
+}

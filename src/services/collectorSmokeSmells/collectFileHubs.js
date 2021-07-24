@@ -365,11 +365,4 @@ async function runCollectorFilesHub() {
 
 module.exports.runCollectorFilesHub = runCollectorFilesHub;
 
-//Know if one string is part of one kubernetes file
-//Use web service.
-//Import library
-function isKubernetesFile(Text) {
-  var kubernetes = new Kubernetes();
-  var result = kubernetes.analyze(Text);
-  return result;
-}
+// runCollectorFilesHub();

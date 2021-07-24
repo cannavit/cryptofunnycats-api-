@@ -38,6 +38,8 @@ mongoose
   });
 
 // Run scheduler files.
-import { getProjectsUsingFileContent } from "./services/collectorSmokeSmells/collectFileHubs";
 
 export default app;
+
+// pm2 start src/index.js  --watch --interpreter babel-node
+// pm2 start npm -- run pm2
