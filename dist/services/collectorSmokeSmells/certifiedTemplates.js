@@ -119,7 +119,8 @@ function _getOneTemplatesYaml() {
 
 function getCertifiedTemplates() {
   return _getCertifiedTemplates.apply(this, arguments);
-}
+} // getCertifiedTemplates();
+
 
 function _getCertifiedTemplates() {
   _getCertifiedTemplates = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4() {
@@ -178,8 +179,9 @@ function _getCertifiedTemplates() {
             _context4.next = 30;
             return certifiedTemplates.findOneAndUpdate({
               templateName: templateName
-            }, _response // { upsert: true }
-            );
+            }, _response, {
+              upsert: true
+            });
 
           case 30:
             i++;
@@ -199,5 +201,4 @@ function _getCertifiedTemplates() {
   return _getCertifiedTemplates.apply(this, arguments);
 }
 
-getCertifiedTemplates(); // module.exports.getCertifiedTemplates = getCertifiedTemplates;
-// getCertifiedTemplates(options);
+module.exports.getCertifiedTemplates = getCertifiedTemplates; // getCertifiedTemplates(options);

@@ -11,7 +11,6 @@ import { port, appName, mongo, urlBase, enableScheduler } from "./config";
 import { buildSwaggerDocs } from "./services/swaggerDocs";
 import * as scheduler from "./services/scheduler";
 
-import { getCertifiedTemplates } from "./services/collectorSmokeSmells/certifiedTemplates";
 //! Get all routes of swagger.
 
 const app = express(api);
@@ -33,13 +32,14 @@ mongoose
       console.log();
     });
 
+    // Run scheduler files.
     if (enableScheduler) {
       scheduler.start();
     }
   });
 
-// Run scheduler files.
-
+//! Imports files cerfificate from redhot.
+// import { getCertifiedTemplates } from "./services/collectorSmokeSmells/certifiedTemplates";
 // getCertifiedTemplates(); // Load Templates
 
 export default app;
