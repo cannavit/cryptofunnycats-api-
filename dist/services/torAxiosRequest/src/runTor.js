@@ -6,6 +6,8 @@ var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"))
 
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 
+var _config = require("../../../config");
+
 var _require = require("express-winston"),
     logger = _require.logger;
 
@@ -14,6 +16,8 @@ var shell = require("shelljs"); // const { torRunIn } = require("../../../config
 
 var axios = require("axios"); // Replace or load axios.
 
+
+var systemctl = require("systemctl");
 
 function runTorService(_x) {
   return _runTorService.apply(this, arguments);
@@ -25,16 +29,25 @@ function _runTorService() {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.next = 2;
+            if (!(_config.operativeSystem === "mac")) {
+              _context.next = 3;
+              break;
+            }
+
+            _context.next = 3;
             return shell.exec("brew services ".concat(status, " tor"), {
               silent: false
             });
 
-          case 2:
-            //   }
-            console.log(" \uD83E\uDDC5 Tor Run: brew services ".concat(status, " tor"));
-
           case 3:
+            if (_config.operativeSystem === "linux/ubuntu") {
+              systemctl[status]("service-name").then(function (output) {
+                return console.log;
+              });
+            } // console.log(` 🧅 Tor Run: brew services ${status} tor`);
+
+
+          case 4:
           case "end":
             return _context.stop();
         }

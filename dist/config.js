@@ -53,6 +53,7 @@ var config = {
     port: process.env.PORT || 3000,
     torRunIn: process.env.TOR_RUN_IN || "mac",
     roundsBcrypt: 9,
+    operativeSystem: process.env.OPERATIVE_SYSTEM || "mac",
     smokeCollectorNotifyFailsCases: process.env.SMOKE_COLLECTOR_NOTIFY_FAILS_CASES_TO || undefined,
     urlBase: "/api/v1",
     swaggerOptions: {
