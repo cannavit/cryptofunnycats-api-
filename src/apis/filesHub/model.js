@@ -1,27 +1,19 @@
 const mongoose = require("mongoose");
+const { Schema } = require("mongoose");
 
 const schemafilesHub = mongoose.Schema({
-  git_url: String,
-  html_url: String,
-  fileName: String,
-  node_id: String,
+  repositoryId: {
+    type: Schema.ObjectId,
+  },
   full_name: String,
-  owner: String,
-  description: String,
-  query: String,
-  dataSource: String,
-  dataType: String,
-  ownerType: String,
+  familySha: String,
+  familyUrl: String,
+  sha: String,
+  path: String,
   url: String,
-  commits_url: String,
-  default_branch: String,
-  language: String,
-  fileContent: String,
-  fileId: Number,
-  stargazers_count: Number,
-  watchers: Number,
-  network_count: Number,
-  subscribers_count: Number,
+  shaFile: String,
+  decodeContent: String,
+  fileType: String,
 });
 
 module.exports.filesHub = mongoose.model("filesHub", schemafilesHub);

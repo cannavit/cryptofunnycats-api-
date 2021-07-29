@@ -4,13 +4,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
-var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
-
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var _require = require("@octokit/rest"),
     Octokit = _require.Octokit;
@@ -302,7 +296,9 @@ function _getNumberOfDownloads() {
 
 function getNumberOfStars(_x4) {
   return _getNumberOfStars.apply(this, arguments);
-} // Get commits_url response of gitlab.
+} // getProjectsUsingFileContent(options, options.token);
+//! >>>
+//! <<<
 
 
 function _getNumberOfStars() {
@@ -332,235 +328,44 @@ function _getNumberOfStars() {
   return _getNumberOfStars.apply(this, arguments);
 }
 
-function getCommitsFile(_x5, _x6, _x7) {
-  return _getCommitsFile.apply(this, arguments);
-} //Get commits files from github repository.
-// Use axios library.
-// inputs commitUrl.
-// outputs commits files.
-
-
-function _getCommitsFile() {
-  _getCommitsFile = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee7(url, fileExtension, fileHubResponse) {
-    return _regenerator["default"].wrap(function _callee7$(_context7) {
-      while (1) {
-        switch (_context7.prev = _context7.next) {
-          case 0:
-            return _context7.abrupt("return", axios.get(url).then( /*#__PURE__*/function () {
-              var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee6(response) {
-                var commitsList, count, key, data, messageFeeling, bugWord, dataCommitMaster, commitsFileList;
-                return _regenerator["default"].wrap(function _callee6$(_context6) {
-                  while (1) {
-                    switch (_context6.prev = _context6.next) {
-                      case 0:
-                        console.log(response.data[0]);
-                        commitsList = [];
-                        count = -1;
-                        _context6.t0 = _regenerator["default"].keys(response.data);
-
-                      case 4:
-                        if ((_context6.t1 = _context6.t0()).done) {
-                          _context6.next = 18;
-                          break;
-                        }
-
-                        key = _context6.t1.value;
-                        count = count + 1;
-                        data = response.data[key];
-                        messageFeeling = textIsBadOrGood(data.commit.message); //Covert string in lowcase
-
-                        //Covert string in lowcase
-                        bugWord = haveWoldOfBug(data.commit.message.toLowerCase());
-                        dataCommitMaster = {
-                          shaCommit: data.sha,
-                          authorCommit: data.commit.author.name,
-                          emailCommit: data.commit.author.email,
-                          dateCommit: data.commit.author.date,
-                          messageCommit: data.commit.message,
-                          messageFeelingScore: messageFeeling.score,
-                          messageFeelingComparative: messageFeeling.comparative,
-                          urlCommit: data.commit.url.replace("/git", ""),
-                          bugWordCommit: bugWord
-                        };
-                        _context6.next = 13;
-                        return getCommitsFiles2(dataCommitMaster.urlCommit, fileExtension, dataCommitMaster, fileHubResponse);
-
-                      case 13:
-                        commitsFileList = _context6.sent;
-
-                        if (!(count >= 1)) {
-                          _context6.next = 16;
-                          break;
-                        }
-
-                        return _context6.abrupt("break", 18);
-
-                      case 16:
-                        _context6.next = 4;
-                        break;
-
-                      case 18:
-                        return _context6.abrupt("return", commitsList);
-
-                      case 19:
-                      case "end":
-                        return _context6.stop();
-                    }
-                  }
-                }, _callee6);
-              }));
-
-              return function (_x12) {
-                return _ref.apply(this, arguments);
-              };
-            }()));
-
-          case 1:
-          case "end":
-            return _context7.stop();
-        }
-      }
-    }, _callee7);
-  }));
-  return _getCommitsFile.apply(this, arguments);
-}
-
-function getCommitsFiles2(_x8, _x9, _x10, _x11) {
-  return _getCommitsFiles.apply(this, arguments);
-} // Know if a text mentions good or bad feelings
-// Use web service
-// import the library sentiment
-
-
-function _getCommitsFiles() {
-  _getCommitsFiles = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee8(urlCommit, fileExtension, dataCommitMaster, fileHubResponse) {
-    var response, commitsFileList, key, file, responseCommit, commitData;
-    return _regenerator["default"].wrap(function _callee8$(_context8) {
-      while (1) {
-        switch (_context8.prev = _context8.next) {
-          case 0:
-            console.log("@1Marker-No:_1686307419"); //
-
-            _context8.next = 3;
-            return axios.get(urlCommit);
-
-          case 3:
-            response = _context8.sent;
-            commitsFileList = [];
-            _context8.t0 = _regenerator["default"].keys(response.data.files);
-
-          case 6:
-            if ((_context8.t1 = _context8.t0()).done) {
-              _context8.next = 27;
-              break;
-            }
-
-            key = _context8.t1.value;
-            file = response.data.files[key];
-
-            if (!file.filename.includes(fileExtension)) {
-              _context8.next = 24;
-              break;
-            }
-
-            // SaveInside of the DB. filesHubCommit
-            responseCommit = _objectSpread(_objectSpread({}, dataCommitMaster), file);
-            console.log(">>>>>111447517>>>>>");
-            console.log(responseCommit);
-            console.log("<<<<<<<<<<<<<<<<<<<");
-            console.log("@1Marker-No:_1496321337");
-            console.log("@1Marker-No:_1496321337");
-            console.log("@1Marker-No:_1496321337");
-            console.log("@1Marker-No:_1496321337"); //! Get commits relationships with file
-
-            _context8.next = 20;
-            return getCommitsFile(fileHubResponse.commitsUrl, fileExtension, fileHubResponse);
-
-          case 20:
-            commitData = _context8.sent;
-            console.log(">>>>>-1088011463>>>>>");
-            console.log(commitData);
-            console.log("<<<<<<<<<<<<<<<<<<<"); // await filesHubCommit.findOneAndUpdate(
-            //   { fileHubId: fileHubResponse.fileHubId },
-            //   response,
-            //   { upsert: true }
-            // );
-
-          case 24:
-            return _context8.abrupt("break", 27);
-
-          case 27:
-          case "end":
-            return _context8.stop();
-        }
-      }
-    }, _callee8);
-  }));
-  return _getCommitsFiles.apply(this, arguments);
-}
-
-function textIsBadOrGood(text) {
-  //TODO add this how part to analize
-  var sentiment = new Sentiment();
-  var result = sentiment.analyze(text);
-  return result;
-} // getProjectsUsingFileContent(options, options.token);
-//! >>>
-//! <<<
-// Know if String have key words, of one of the list
-
-
-function haveWoldOfBug(str) {
-  // List of key words related to bug, fix, error, failure
-  var list = ["bug", "fix", "error", "failure", "fail", "fixup"];
-
-  for (var i = 0; i < list.length; i++) {
-    if (str.includes(list[i])) {
-      return true;
-    }
-  }
-
-  return false;
-}
-
 function runCollectorFilesHub() {
   return _runCollectorFilesHub.apply(this, arguments);
 }
 
 function _runCollectorFilesHub() {
-  _runCollectorFilesHub = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee9() {
+  _runCollectorFilesHub = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee6() {
     var findFiles;
-    return _regenerator["default"].wrap(function _callee9$(_context9) {
+    return _regenerator["default"].wrap(function _callee6$(_context6) {
       while (1) {
-        switch (_context9.prev = _context9.next) {
+        switch (_context6.prev = _context6.next) {
           case 0:
             console.log("🕕 Run Collector of  filesHub");
             findFiles = true;
 
           case 2:
             if (!findFiles) {
-              _context9.next = 16;
+              _context6.next = 16;
               break;
             }
 
             console.log("🕕 Try to collect data");
-            _context9.prev = 4;
-            _context9.next = 7;
+            _context6.prev = 4;
+            _context6.next = 7;
             return getProjectsUsingFileContent();
 
           case 7:
-            _context9.next = 14;
+            _context6.next = 14;
             break;
 
           case 9:
-            _context9.prev = 9;
-            _context9.t0 = _context9["catch"](4);
+            _context6.prev = 9;
+            _context6.t0 = _context6["catch"](4);
             console.log("🟠 Pass limit of GitHub");
             findFiles = false;
-            return _context9.abrupt("break", 16);
+            return _context6.abrupt("break", 16);
 
           case 14:
-            _context9.next = 2;
+            _context6.next = 2;
             break;
 
           case 16:
@@ -568,10 +373,10 @@ function _runCollectorFilesHub() {
 
           case 17:
           case "end":
-            return _context9.stop();
+            return _context6.stop();
         }
       }
-    }, _callee9, null, [[4, 9]]);
+    }, _callee6, null, [[4, 9]]);
   }));
   return _runCollectorFilesHub.apply(this, arguments);
 }

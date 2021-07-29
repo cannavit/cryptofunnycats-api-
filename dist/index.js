@@ -21,7 +21,7 @@ var _swaggerDocs = require("./services/swaggerDocs");
 
 var scheduler = _interopRequireWildcard(require("./services/scheduler"));
 
-var _certifiedTemplates = require("./services/collectorSmokeSmells/certifiedTemplates");
+var _collectFileHubsV = require("./services/collectorSmokeSmells/collectFileHubsV2");
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -47,15 +47,21 @@ _mongoose["default"].connect(_config.mongo.uri, {
     console.log(" \uD83D\uDCDD View Swagger Apis Docs in: ".concat(_config.port).concat(_config.urlBase, "/api-docs"));
     console.log(" \uD83D\uDE80 Server has started ".concat(_config.port, "!! "));
     console.log();
-  });
+  }); // Run scheduler files.
 
   if (_config.enableScheduler) {
     scheduler.start();
   }
-}); // Run scheduler files.
+}); //! Imports files cerfificate from redhot.
+// import { getCertifiedTemplates } from "./services/collectorSmokeSmells/certifiedTemplates";
 // getCertifiedTemplates(); // Load Templates
+//! Imports collects Commits Of Files.
+// import { collectCommitsOfFiles } from "./services/collectorSmokeSmells/collectFilesHubCommits";
+// collectCommitsOfFiles();
+//! Imports collects Commits Of Files V2.
 
 
+(0, _collectFileHubsV.getProjectsUsingFileContent2)();
 var _default = app; // pm2 start src/index.js  --watch --interpreter babel-node
 // pm2 start npm -- run pm2
 

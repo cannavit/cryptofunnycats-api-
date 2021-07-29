@@ -4,6 +4,9 @@ const schemapagesRead = mongoose.Schema({
   pages: Number,
   per_page: Number,
   reference: String,
+  dateFind: Date,
+  finishIt: Boolean,
+  total_count: Number,
 });
 
 module.exports.pagesRead = mongoose.model("pagesRead", schemapagesRead);

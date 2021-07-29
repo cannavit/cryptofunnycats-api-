@@ -16,8 +16,7 @@ var _os = _interopRequireDefault(require("os"));
 var _path = _interopRequireDefault(require("path"));
 
 /* eslint-disable no-unused-vars */
-require("dotenv").config();
-
+// require("dotenv").config();
 global.Promise = require("bluebird");
 global.logger = require("winston");
 global._ = require("lodash");
@@ -43,9 +42,6 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 var APP_NAME = requireProcessEnv("APP_NAME");
-console.log(">>>>>86668013>>>>>");
-console.log(process.env.DISABLE_SCHEDULER);
-console.log("<<<<<<<<<<<<<<<<<<<");
 var config = {
   all: {
     GITHUB_TOKEN_COLLECTOR: process.env.GITHUB_TOKEN_COLLECTOR,
@@ -55,6 +51,7 @@ var config = {
     root: _path["default"].join(__dirname, ".."),
     enableScheduler: process.env.ENABLE_SCHEDULER,
     port: process.env.PORT || 3000,
+    torRunIn: process.env.TOR_RUN_IN || "mac",
     roundsBcrypt: 9,
     smokeCollectorNotifyFailsCases: process.env.SMOKE_COLLECTOR_NOTIFY_FAILS_CASES_TO || undefined,
     urlBase: "/api/v1",

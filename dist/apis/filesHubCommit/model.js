@@ -13,24 +13,16 @@ var schemafilesHubCommit = _mongoose["default"].Schema({
     type: _mongoose.Schema.ObjectId
   },
   shaCommit: String,
-  authorCommit: String,
-  emailCommit: String,
-  dateCommit: String,
-  messageCommit: String,
-  bugWordCommit: Boolean,
-  messageFeelingScore: String,
-  messageFeelingComparative: String,
-  urlCommit: String,
-  sha: String,
-  filename: String,
-  status: String,
-  additions: String,
-  deletions: String,
-  changes: String,
-  blob_url: String,
-  raw_url: String,
-  contents_url: String,
-  patch: String
+  path: String,
+  full_name: String,
+  fileType: String,
+  commiterEmail: String,
+  commiterDate: String,
+  message: String,
+  commentCount: Number,
+  isBugCommit: Boolean,
+  messageFeelingScore: Number,
+  messageFeelingComparative: Number
 });
 
 module.exports.filesHubCommit = _mongoose["default"].model("filesHubCommit", schemafilesHubCommit);

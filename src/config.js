@@ -3,7 +3,7 @@ import { appendFile } from "fs";
 import { capitalize, merge } from "lodash";
 import os from "os";
 import path from "path";
-require("dotenv").config();
+// require("dotenv").config();
 
 global.Promise = require("bluebird");
 global.logger = require("winston");
@@ -28,9 +28,6 @@ if (process.env.NODE_ENV !== "production") {
 
 const APP_NAME = requireProcessEnv("APP_NAME");
 
-console.log(">>>>>86668013>>>>>");
-console.log(process.env.DISABLE_SCHEDULER);
-console.log("<<<<<<<<<<<<<<<<<<<");
 const config = {
   all: {
     GITHUB_TOKEN_COLLECTOR: process.env.GITHUB_TOKEN_COLLECTOR,
@@ -41,6 +38,7 @@ const config = {
     root: path.join(__dirname, ".."),
     enableScheduler: process.env.ENABLE_SCHEDULER,
     port: process.env.PORT || 3000,
+    torRunIn: process.env.TOR_RUN_IN || "mac",
     roundsBcrypt: 9,
     smokeCollectorNotifyFailsCases:
       process.env.SMOKE_COLLECTOR_NOTIFY_FAILS_CASES_TO || undefined,

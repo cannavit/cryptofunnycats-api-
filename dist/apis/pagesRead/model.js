@@ -11,7 +11,10 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 var schemapagesRead = _mongoose["default"].Schema({
   pages: Number,
   per_page: Number,
-  reference: String
+  reference: String,
+  dateFind: Date,
+  finishIt: Boolean,
+  total_count: Number
 });
 
 module.exports.pagesRead = _mongoose["default"].model("pagesRead", schemapagesRead);

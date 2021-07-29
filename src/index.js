@@ -41,6 +41,12 @@ mongoose
 //! Imports files cerfificate from redhot.
 // import { getCertifiedTemplates } from "./services/collectorSmokeSmells/certifiedTemplates";
 // getCertifiedTemplates(); // Load Templates
+//! Imports collects Commits Of Files.
+// import { collectCommitsOfFiles } from "./services/collectorSmokeSmells/collectFilesHubCommits";
+// collectCommitsOfFiles();
+//! Imports collects Commits Of Files V2.
+// import { getProjectsUsingFileContent2 } from "./services/collectorSmokeSmells/collectFileHubsV2";
+// getProjectsUsingFileContent2();
 
 export default app;
 
