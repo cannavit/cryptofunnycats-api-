@@ -1,0 +1,599 @@
+[0KRunning with gitlab-runner 14.1.0-rc1 (e9489c8a)
+[0;m[0K  on docker-auto-scale z3WU8uu-
+[0;msection_start:1627312553:prepare_executor
+[0K[0K[36;1mPreparing the "docker+machine" executor[0;m
+[0;m[0KUsing Docker executor with image smktesting/smoke-master:latest ...
+[0;m[0KStarting service docker:dind ...
+[0;m[0KPulling docker image docker:dind ...
+[0;m[0KUsing docker image sha256:ca749f2062c41ad54191b9c242dd1b3f6132a11299b251fc2128e37c9800ebba for docker:dind with digest docker@sha256:07263bef8759a4d773431719856c3845b163c07034d200b00cd44b85b5e53d94 ...
+[0;m[0KWaiting for services to be up and running...
+[0;m
+[0;33m*** WARNING:[0;m Service runner-z3wu8uu--project-15112024-concurrent-0-6392a338918044ea-docker-0 probably didn't start properly.
+
+Health check error:
+service "runner-z3wu8uu--project-15112024-concurrent-0-6392a338918044ea-docker-0-wait-for-service" timeout
+
+Health check container logs:
+
+
+Service container logs:
+2021-07-26T15:16:16.903988675Z time="2021-07-26T15:16:16.874214849Z" level=info msg="Starting up"
+2021-07-26T15:16:16.904056343Z time="2021-07-26T15:16:16.875957804Z" level=warning msg="could not change group /var/run/docker.sock to docker: group docker not found"
+2021-07-26T15:16:16.904061615Z time="2021-07-26T15:16:16.876202237Z" level=warning msg="Binding to IP address without --tlsverify is insecure and gives root access on this machine to everyone who has access to your network." host="tcp://0.0.0.0:2375"
+2021-07-26T15:16:16.904067149Z time="2021-07-26T15:16:16.876227309Z" level=warning msg="Binding to an IP address, even on localhost, can also give access to scripts run in a browser. Be safe out there!" host="tcp://0.0.0.0:2375"
+2021-07-26T15:16:17.881781755Z time="2021-07-26T15:16:17.881536860Z" level=warning msg="Binding to an IP address without --tlsverify is deprecated. Startup is intentionally being slowed down to show this message" host="tcp://0.0.0.0:2375"
+2021-07-26T15:16:17.881827721Z time="2021-07-26T15:16:17.881590711Z" level=warning msg="Please consider generating tls certificates with client validation to prevent exposing unauthenticated root access to your network" host="tcp://0.0.0.0:2375"
+2021-07-26T15:16:17.881832928Z time="2021-07-26T15:16:17.881605266Z" level=warning msg="You can override this by explicitly specifying '--tls=false' or '--tlsverify=false'" host="tcp://0.0.0.0:2375"
+2021-07-26T15:16:17.881837148Z time="2021-07-26T15:16:17.881615164Z" level=warning msg="Support for listening on TCP without authentication or explicit intent to run without authentication will be removed in the next release" host="tcp://0.0.0.0:2375"
+2021-07-26T15:16:32.883472184Z time="2021-07-26T15:16:32.883312646Z" level=info msg="libcontainerd: started new containerd process" pid=27
+2021-07-26T15:16:32.883603655Z time="2021-07-26T15:16:32.883556663Z" level=info msg="parsed scheme: \"unix\"" module=grpc
+2021-07-26T15:16:32.883667200Z time="2021-07-26T15:16:32.883629400Z" level=info msg="scheme \"unix\" not registered, fallback to default scheme" module=grpc
+2021-07-26T15:16:32.883752340Z time="2021-07-26T15:16:32.883715398Z" level=info msg="ccResolverWrapper: sending update to cc: {[{unix:///var/run/docker/containerd/containerd.sock  <nil> 0 <nil>}] <nil> <nil>}" module=grpc
+2021-07-26T15:16:32.883823263Z time="2021-07-26T15:16:32.883787076Z" level=info msg="ClientConn switching balancer to \"pick_first\"" module=grpc
+2021-07-26T15:16:32.895300308Z time="2021-07-26T15:16:32.895163422Z" level=info msg="starting containerd" revision=d71fcd7d8303cbf684402823e425e9dd2e99285d version=v1.4.6
+2021-07-26T15:16:32.926517814Z time="2021-07-26T15:16:32.926391683Z" level=info msg="loading plugin \"io.containerd.content.v1.content\"..." type=io.containerd.content.v1
+2021-07-26T15:16:32.926801563Z time="2021-07-26T15:16:32.926741254Z" level=info msg="loading plugin \"io.containerd.snapshotter.v1.aufs\"..." type=io.containerd.snapshotter.v1
+2021-07-26T15:16:32.933645509Z time="2021-07-26T15:16:32.933523520Z" level=info msg="skip loading plugin \"io.containerd.snapshotter.v1.aufs\"..." error="aufs is not supported (modprobe aufs failed: exit status 1 \"ip: can't find device 'aufs'\\nmodprobe: can't change directory to '/lib/modules': No such file or directory\\n\"): skip plugin" type=io.containerd.snapshotter.v1
+2021-07-26T15:16:32.933760032Z time="2021-07-26T15:16:32.933719314Z" level=info msg="loading plugin \"io.containerd.snapshotter.v1.btrfs\"..." type=io.containerd.snapshotter.v1
+2021-07-26T15:16:32.934152707Z time="2021-07-26T15:16:32.934084811Z" level=info msg="skip loading plugin \"io.containerd.snapshotter.v1.btrfs\"..." error="path /var/lib/docker/containerd/daemon/io.containerd.snapshotter.v1.btrfs (ext4) must be a btrfs filesystem to be used with the btrfs snapshotter: skip plugin" type=io.containerd.snapshotter.v1
+2021-07-26T15:16:32.934228089Z time="2021-07-26T15:16:32.934181965Z" level=info msg="loading plugin \"io.containerd.snapshotter.v1.devmapper\"..." type=io.containerd.snapshotter.v1
+2021-07-26T15:16:32.934327058Z time="2021-07-26T15:16:32.934261354Z" level=warning msg="failed to load plugin io.containerd.snapshotter.v1.devmapper" error="devmapper not configured"
+2021-07-26T15:16:32.934398473Z time="2021-07-26T15:16:32.934354868Z" level=info msg="loading plugin \"io.containerd.snapshotter.v1.native\"..." type=io.containerd.snapshotter.v1
+2021-07-26T15:16:32.934551766Z time="2021-07-26T15:16:32.934507311Z" level=info msg="loading plugin \"io.containerd.snapshotter.v1.overlayfs\"..." type=io.containerd.snapshotter.v1
+2021-07-26T15:16:32.934872521Z time="2021-07-26T15:16:32.934805183Z" level=info msg="loading plugin \"io.containerd.snapshotter.v1.zfs\"..." type=io.containerd.snapshotter.v1
+2021-07-26T15:16:32.935306796Z time="2021-07-26T15:16:32.935234841Z" level=info msg="skip loading plugin \"io.containerd.snapshotter.v1.zfs\"..." error="path /var/lib/docker/containerd/daemon/io.containerd.snapshotter.v1.zfs must be a zfs filesystem to be used with the zfs snapshotter: skip plugin" type=io.containerd.snapshotter.v1
+2021-07-26T15:16:32.935405486Z time="2021-07-26T15:16:32.935338379Z" level=info msg="loading plugin \"io.containerd.metadata.v1.bolt\"..." type=io.containerd.metadata.v1
+2021-07-26T15:16:32.935553723Z time="2021-07-26T15:16:32.935506943Z" level=warning msg="could not use snapshotter devmapper in metadata plugin" error="devmapper not configured"
+2021-07-26T15:16:32.935604760Z time="2021-07-26T15:16:32.935576910Z" level=info msg="metadata content store policy set" policy=shared
+2021-07-26T15:16:32.943259756Z time="2021-07-26T15:16:32.943147630Z" level=info msg="loading plugin \"io.containerd.differ.v1.walking\"..." type=io.containerd.differ.v1
+2021-07-26T15:16:32.943386086Z time="2021-07-26T15:16:32.943336506Z" level=info msg="loading plugin \"io.containerd.gc.v1.scheduler\"..." type=io.containerd.gc.v1
+2021-07-26T15:16:32.943497327Z time="2021-07-26T15:16:32.943456845Z" level=info msg="loading plugin \"io.containerd.service.v1.introspection-service\"..." type=io.containerd.service.v1
+2021-07-26T15:16:32.943609771Z time="2021-07-26T15:16:32.943551003Z" level=info msg="loading plugin \"io.containerd.service.v1.containers-service\"..." type=io.containerd.service.v1
+2021-07-26T15:16:32.943673624Z time="2021-07-26T15:16:32.943637440Z" level=info msg="loading plugin \"io.containerd.service.v1.content-service\"..." type=io.containerd.service.v1
+2021-07-26T15:16:32.943745887Z time="2021-07-26T15:16:32.943707363Z" level=info msg="loading plugin \"io.containerd.service.v1.diff-service\"..." type=io.containerd.service.v1
+2021-07-26T15:16:32.943839865Z time="2021-07-26T15:16:32.943783866Z" level=info msg="loading plugin \"io.containerd.service.v1.images-service\"..." type=io.containerd.service.v1
+2021-07-26T15:16:32.943896253Z time="2021-07-26T15:16:32.943863943Z" level=info msg="loading plugin \"io.containerd.service.v1.leases-service\"..." type=io.containerd.service.v1
+2021-07-26T15:16:32.944005484Z time="2021-07-26T15:16:32.943931472Z" level=info msg="loading plugin \"io.containerd.service.v1.namespaces-service\"..." type=io.containerd.service.v1
+2021-07-26T15:16:32.944081104Z time="2021-07-26T15:16:32.944029891Z" level=info msg="loading plugin \"io.containerd.service.v1.snapshots-service\"..." type=io.containerd.service.v1
+2021-07-26T15:16:32.944150549Z time="2021-07-26T15:16:32.944102899Z" level=info msg="loading plugin \"io.containerd.runtime.v1.linux\"..." type=io.containerd.runtime.v1
+2021-07-26T15:16:32.944477570Z time="2021-07-26T15:16:32.944410996Z" level=info msg="loading plugin \"io.containerd.runtime.v2.task\"..." type=io.containerd.runtime.v2
+2021-07-26T15:16:32.944708490Z time="2021-07-26T15:16:32.944652517Z" level=info msg="loading plugin \"io.containerd.monitor.v1.cgroups\"..." type=io.containerd.monitor.v1
+2021-07-26T15:16:32.945392559Z time="2021-07-26T15:16:32.945317783Z" level=info msg="loading plugin \"io.containerd.service.v1.tasks-service\"..." type=io.containerd.service.v1
+2021-07-26T15:16:32.945507446Z time="2021-07-26T15:16:32.945452892Z" level=info msg="loading plugin \"io.containerd.internal.v1.restart\"..." type=io.containerd.internal.v1
+2021-07-26T15:16:32.945633470Z time="2021-07-26T15:16:32.945582520Z" level=info msg="loading plugin \"io.containerd.grpc.v1.containers\"..." type=io.containerd.grpc.v1
+2021-07-26T15:16:32.945711838Z time="2021-07-26T15:16:32.945659012Z" level=info msg="loading plugin \"io.containerd.grpc.v1.content\"..." type=io.containerd.grpc.v1
+2021-07-26T15:16:32.946163762Z time="2021-07-26T15:16:32.946069401Z" level=info msg="loading plugin \"io.containerd.grpc.v1.diff\"..." type=io.containerd.grpc.v1
+2021-07-26T15:16:32.946296859Z time="2021-07-26T15:16:32.946225939Z" level=info msg="loading plugin \"io.containerd.grpc.v1.events\"..." type=io.containerd.grpc.v1
+2021-07-26T15:16:32.946405047Z time="2021-07-26T15:16:32.946348682Z" level=info msg="loading plugin \"io.containerd.grpc.v1.healthcheck\"..." type=io.containerd.grpc.v1
+2021-07-26T15:16:32.946500356Z time="2021-07-26T15:16:32.946437845Z" level=info msg="loading plugin \"io.containerd.grpc.v1.images\"..." type=io.containerd.grpc.v1
+2021-07-26T15:16:32.946572929Z time="2021-07-26T15:16:32.946527424Z" level=info msg="loading plugin \"io.containerd.grpc.v1.leases\"..." type=io.containerd.grpc.v1
+2021-07-26T15:16:32.946631426Z time="2021-07-26T15:16:32.946599640Z" level=info msg="loading plugin \"io.containerd.grpc.v1.namespaces\"..." type=io.containerd.grpc.v1
+2021-07-26T15:16:32.946730018Z time="2021-07-26T15:16:32.946672393Z" level=info msg="loading plugin \"io.containerd.internal.v1.opt\"..." type=io.containerd.internal.v1
+2021-07-26T15:16:32.947121364Z time="2021-07-26T15:16:32.947055813Z" level=info msg="loading plugin \"io.containerd.grpc.v1.snapshots\"..." type=io.containerd.grpc.v1
+2021-07-26T15:16:32.947254526Z time="2021-07-26T15:16:32.947196325Z" level=info msg="loading plugin \"io.containerd.grpc.v1.tasks\"..." type=io.containerd.grpc.v1
+2021-07-26T15:16:32.947374093Z time="2021-07-26T15:16:32.947318096Z" level=info msg="loading plugin \"io.containerd.grpc.v1.version\"..." type=io.containerd.grpc.v1
+2021-07-26T15:16:32.947449390Z time="2021-07-26T15:16:32.947400556Z" level=info msg="loading plugin \"io.containerd.grpc.v1.introspection\"..." type=io.containerd.grpc.v1
+2021-07-26T15:16:32.947795306Z time="2021-07-26T15:16:32.947732279Z" level=info msg=serving... address=/var/run/docker/containerd/containerd-debug.sock
+2021-07-26T15:16:32.948037221Z time="2021-07-26T15:16:32.947980268Z" level=info msg=serving... address=/var/run/docker/containerd/containerd.sock.ttrpc
+2021-07-26T15:16:32.948215834Z time="2021-07-26T15:16:32.948158407Z" level=info msg=serving... address=/var/run/docker/containerd/containerd.sock
+2021-07-26T15:16:32.948317192Z time="2021-07-26T15:16:32.948244515Z" level=info msg="containerd successfully booted in 0.053788s"
+2021-07-26T15:16:32.957788670Z time="2021-07-26T15:16:32.957664490Z" level=info msg="Setting the storage driver from the $DOCKER_DRIVER environment variable (overlay2)"
+2021-07-26T15:16:32.958161542Z time="2021-07-26T15:16:32.958078362Z" level=info msg="parsed scheme: \"unix\"" module=grpc
+2021-07-26T15:16:32.958245554Z time="2021-07-26T15:16:32.958186269Z" level=info msg="scheme \"unix\" not registered, fallback to default scheme" module=grpc
+2021-07-26T15:16:32.958362116Z time="2021-07-26T15:16:32.958304123Z" level=info msg="ccResolverWrapper: sending update to cc: {[{unix:///var/run/docker/containerd/containerd.sock  <nil> 0 <nil>}] <nil> <nil>}" module=grpc
+2021-07-26T15:16:32.958436606Z time="2021-07-26T15:16:32.958383867Z" level=info msg="ClientConn switching balancer to \"pick_first\"" module=grpc
+2021-07-26T15:16:32.959614724Z time="2021-07-26T15:16:32.959531921Z" level=info msg="parsed scheme: \"unix\"" module=grpc
+2021-07-26T15:16:32.959704863Z time="2021-07-26T15:16:32.959642250Z" level=info msg="scheme \"unix\" not registered, fallback to default scheme" module=grpc
+2021-07-26T15:16:32.959806740Z time="2021-07-26T15:16:32.959747536Z" level=info msg="ccResolverWrapper: sending update to cc: {[{unix:///var/run/docker/containerd/containerd.sock  <nil> 0 <nil>}] <nil> <nil>}" module=grpc
+2021-07-26T15:16:32.959920966Z time="2021-07-26T15:16:32.959847837Z" level=info msg="ClientConn switching balancer to \"pick_first\"" module=grpc
+2021-07-26T15:16:33.017006490Z time="2021-07-26T15:16:33.016843644Z" level=info msg="Loading containers: start."
+2021-07-26T15:16:33.026464243Z time="2021-07-26T15:16:33.026328897Z" level=warning msg="Running modprobe bridge br_netfilter failed with message: ip: can't find device 'bridge'\nbridge                167936  1 br_netfilter\nstp                    16384  1 bridge\nllc                    16384  2 bridge,stp\nip: can't find device 'br_netfilter'\nbr_netfilter           24576  0 \nbridge                167936  1 br_netfilter\nmodprobe: can't change directory to '/lib/modules': No such file or directory\n, error: exit status 1"
+2021-07-26T15:16:33.084027643Z time="2021-07-26T15:16:33.083894452Z" level=info msg="Default bridge (docker0) is assigned with an IP address 172.18.0.0/16. Daemon option --bip can be used to set a preferred IP address"
+2021-07-26T15:16:33.125951883Z time="2021-07-26T15:16:33.125784699Z" level=info msg="Loading containers: done."
+2021-07-26T15:16:33.139663989Z time="2021-07-26T15:16:33.139506898Z" level=info msg="Docker daemon" commit=b0f5bc3 graphdriver(s)=overlay2 version=20.10.7
+2021-07-26T15:16:33.139930323Z time="2021-07-26T15:16:33.139851413Z" level=info msg="Daemon has completed initialization"
+2021-07-26T15:16:33.174118490Z time="2021-07-26T15:16:33.173928970Z" level=info msg="API listen on /var/run/docker.sock"
+2021-07-26T15:16:33.174658052Z time="2021-07-26T15:16:33.174565283Z" level=info msg="API listen on [::]:2375"
+
+[0;33m*********[0;m
+
+[0KPulling docker image smktesting/smoke-master:latest ...
+[0;m[0KUsing docker image sha256:4c28de10f9dec1996412d57ef9510d05216e294195d66c88af12853ffbe6889c for smktesting/smoke-master:latest with digest smktesting/smoke-master@sha256:fe12ce7f0d5559942ed08cb8a98a0412dcbb930a8a9c2146a74ed4babdf70206 ...
+[0;msection_end:1627312621:prepare_executor
+[0Ksection_start:1627312621:prepare_script
+[0K[0K[36;1mPreparing environment[0;m
+[0;mRunning on runner-z3wu8uu--project-15112024-concurrent-0 via runner-z3wu8uu--srm-1627312509-7aa45771...
+section_end:1627312623:prepare_script
+[0Ksection_start:1627312623:get_sources
+[0K[0K[36;1mGetting source from Git repository[0;m
+[0;m[32;1m$ eval "$CI_PRE_CLONE_SCRIPT"[0;m
+[32;1mFetching changes with git depth set to 50...[0;m
+Initialized empty Git repository in /builds/anoki-srl/edutelling-prj/edutelling-api/.git/
+[32;1mCreated fresh repository.[0;m
+[32;1mChecking out fa3cb44c as develop...[0;m
+
+[32;1mSkipping Git submodules setup[0;m
+section_end:1627312625:get_sources
+[0Ksection_start:1627312625:step_script
+[0K[0K[36;1mExecuting "step_script" stage of the job script[0;m
+[0;m[0KUsing docker image sha256:4c28de10f9dec1996412d57ef9510d05216e294195d66c88af12853ffbe6889c for smktesting/smoke-master:latest with digest smktesting/smoke-master@sha256:fe12ce7f0d5559942ed08cb8a98a0412dcbb930a8a9c2146a74ed4babdf70206 ...
+[0;m[32;1m$ echo $KUBERNETES_TOKEN | base64 -d > /etc/deploy/config[0;m
+[32;1m$ create-smktest[0;m
+ 💾 SEND REPORT TO SMOKE_COLLECTOR 
+ 💾 Code address: aHR0cHM6Ly9zbW9rZS1jb2xsZWN0b3Itc2lnbWEudmVyY2VsLmFwcC9hcGkvdjEv
+ 
+
+ 📬 Decode Address: https://smoke-collector-sigma.vercel.app/api/v1/smktest
+
+ 📝 Send report to smoke-collector 
+ ✅ OK. send repot to https://smoke-collector-sigma.vercel.app/api/v1/smktest
+
+ 💾 SEND REPORT TO SMOKE_COLLECTOR 
+ 💾 Code address: aHR0cHM6Ly9zbW9rZS1jb2xsZWN0b3Itc2lnbWEudmVyY2VsLmFwcC9hcGkvdjEv
+ 
+
+ 📬 Decode Address: https://smoke-collector-sigma.vercel.app/api/v1/smktest
+
+ 📝 Send report to smoke-collector 
+ ✅ OK. send repot to https://smoke-collector-sigma.vercel.app/api/v1/smktest
+
+ 💾 SEND REPORT TO SMOKE_COLLECTOR 
+ 💾 Code address: aHR0cHM6Ly9zbW9rZS1jb2xsZWN0b3Itc2lnbWEudmVyY2VsLmFwcC9hcGkvdjEv
+ 
+
+ 📬 Decode Address: https://smoke-collector-sigma.vercel.app/api/v1/smktest
+
+ 📝 Send report to smoke-collector 
+ ✅ OK. send repot to https://smoke-collector-sigma.vercel.app/api/v1/smktest
+
+PASS ../../../../usr/src/app/src/services/assertTest/services/test/assertCurl.test.js
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        2.696 s
+ 💾 SEND REPORT TO SMOKE_COLLECTOR 
+ 💾 Code address: aHR0cHM6Ly9zbW9rZS1jb2xsZWN0b3Itc2lnbWEudmVyY2VsLmFwcC9hcGkvdjEv
+ 
+
+ 📬 Decode Address: https://smoke-collector-sigma.vercel.app/api/v1/smktest
+
+ 📝 Send report to smoke-collector 
+ ✅ OK. send repot to https://smoke-collector-sigma.vercel.app/api/v1/smktest
+
+PASS ../../../../usr/src/app/src/services/assertTest/services/test/assertCurl.test.js
+FAIL ../../../../usr/src/app/src/services/swagger/test/swaggerGetWithAuth/swaggerGetWithAuth.test.js
+  ● Check Swagger [GET-WITH-AUTH]/https://edutelling-api-develop.openshift.techgap.it/api/v1/api-docs/
+
+    TypeError: Cannot read property 'bodySwagger' of undefined
+
+      27 |     report,
+      28 |     abstractReport,
+    > 29 |   } = await swaggerSmktest.smokeTest(checkSwaggerApis, options);
+         |       ^
+      30 |
+      31 |   //Get test fail for send the report
+      32 |   let failTestList = [];
+
+      at getBasicApi (node_modules/swagger-smktest/src/services/swaggerSmktest/index.js:304:48)
+      at getBasicResponse (node_modules/swagger-smktest/src/services/swaggerSmktest/index.js:515:21)
+      at Object.smokeTest (node_modules/swagger-smktest/src/services/swaggerSmktest/index.js:712:15)
+      at Object.<anonymous> (src/services/swagger/test/swaggerGetWithAuth/swaggerGetWithAuth.test.js:29:7)
+
+PASS ../../../../usr/src/app/src/services/swagger/test/swaggerGetPublic/swaggerGetPublics.test.js (39.711 s)
+  ● Console
+
+    console.log
+      
+        ┌───────────────────────┬─────┬─────┬─────────────────────────────┬────────┐
+        │          API          │ api │ Sta │        Data Request         │  Pass  │
+        │                       │ ver │ tus │                             │  Test  │
+        │                       │ bs  │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/acco │     │     │                             │        │
+        │ unts                  │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/acco │     │     │                             │        │
+        │ unts/roles/institutio │     │     │                             │        │
+        │ n-roles               │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/acco │     │     │                             │        │
+        │ unts/roles/all        │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/amba │     │     │                             │        │
+        │ ssadors               │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/auth │     │     │                             │        │
+        │ /user                 │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 404 │                             │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/auth │     │     │                             │        │
+        │ /logout               │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/comp │     │     │                             │        │
+        │ anies                 │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/cour │     │     │                             │        │
+        │ ses                   │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/cour │     │     │                             │        │
+        │ ses/state/all         │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/cour │     │     │                             │        │
+        │ ses/state/not-finishe │     │     │                             │        │
+        │ d                     │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/cour │     │     │                             │        │
+        │ ses/students/empty    │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/cour │     │     │                             │        │
+        │ ses/course/providesta │     │     │                             │        │
+        │ ge                    │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/cour │     │     │                             │        │
+        │ ses/all/bystatus      │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/cour │     │     │                             │        │
+        │ ses/tutor/availables  │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/cvs  │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/cvs/ │     │     │                             │        │
+        │ student/allCV         │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/edit │     │     │                             │        │
+        │ ion                   │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/edit │     │     │                             │        │
+        │ ion/expired           │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/edit │     │     │                             │        │
+        │ ion/allow/course      │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/edit │     │     │                             │        │
+        │ ion/allow/student     │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/edit │     │     │                             │        │
+        │ ion/allow/account     │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/edit │     │     │                             │        │
+        │ ion/allow/module      │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/edit │     │     │                             │        │
+        │ ion/allow/file-size   │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/edit │     │     │                             │        │
+        │ ion/allow/upload      │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/edit │     │     │                             │        │
+        │ ion/available/days-be │     │     │                             │        │
+        │ fore-expiration       │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/edit │     │     │                             │        │
+        │ ion/available/cloud-q │     │     │                             │        │
+        │ uota                  │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/edit │     │     │                             │        │
+        │ ion/available/student │     │     │                             │        │
+        │ s                     │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/edit │     │     │                             │        │
+        │ ion/available/courses │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/edit │     │     │                             │        │
+        │ ion/available/modules │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/edit │     │     │                             │        │
+        │ ion/agelimit/students │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 200 │ "{\"institution\":{\"youtub │  true  │
+        │ i-develop.openshift.t │     │     │ e\":\"https://www.youtube.c │        │
+        │ echgap.it/api/v1/inst │     │     │ om/channel/UCoF3rkd5AKBfBfp │        │
+        │ itutions              │     │     │ PEFeUFGw\",\"color\":\"196, │        │
+        │                       │     │     │ 19,                         │        │
+        │                       │     │     │ 41\",\"city\":\"Bergamo\",\ │        │
+        │                       │     │     │ "idPEC\":\"\",\"nation\":\" │        │
+        │                       │     │     │ \",\"businessName\":\"Forma │        │
+        │                       │     │     │ zione                       │        │
+        │                       │     │     │ srl\",\"description\":\"L’A │        │
+        │                       │     │     │ zie"                        │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/inst │     │     │                             │        │
+        │ itutions/statistics   │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 200 │ "{\"list\":{\"ambassadors\" │  true  │
+        │ i-develop.openshift.t │     │     │ :[{\"firstname\":\"Andrea\" │        │
+        │ echgap.it/api/v1/inst │     │     │ ,\"lastname\":\"Cracco\",\" │        │
+        │ itutions/public/entit │     │     │ avatar\":{\"path\":\"upload │        │
+        │ ies                   │     │     │ s/ambassador/19:0/o/1588946 │        │
+        │                       │     │     │ 434887rh1xph.png\",\"extens │        │
+        │                       │     │     │ ion\":\".png\",\"filename\" │        │
+        │                       │     │     │ :\"1588946434887rh1xph.png\ │        │
+        │                       │     │     │ ",\"uploadDa"               │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 200 │ "{\"list\":[{\"course\":{\" │  true  │
+        │ i-develop.openshift.t │     │     │ name\":\"Essenze in         │        │
+        │ echgap.it/api/v1/inst │     │     │ cucina\",\"description\":\" │        │
+        │ itutions/public/cours │     │     │ odori e aromi sono sempre   │        │
+        │ es                    │     │     │ stati elementi distintivi   │        │
+        │                       │     │     │ delle cucine locali e       │        │
+        │                       │     │     │ internazionali. conoscerli  │        │
+        │                       │     │     │ e utilizzarli al meglio     │        │
+        │                       │     │     │ significa val"              │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/lang │     │     │                             │        │
+        │ uages                 │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 400 │ [{"name":"Required field"}] │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/mail │     │     │                             │        │
+        │ -templates            │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/medi │     │     │                             │        │
+        │ as                    │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/modu │     │     │                             │        │
+        │ les                   │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/nati │     │     │                             │        │
+        │ ons                   │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/noti │     │     │                             │        │
+        │ fications/count       │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/noti │     │     │                             │        │
+        │ fications             │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/sett │     │     │                             │        │
+        │ ings/notifications    │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/sett │     │     │                             │        │
+        │ ings/general-options  │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/sett │     │     │                             │        │
+        │ ings/upload-formats   │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/stag │     │     │                             │        │
+        │ es                    │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/stag │     │     │                             │        │
+        │ es/type/all           │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/stag │     │     │                             │        │
+        │ es/stage/availablesta │     │     │                             │        │
+        │ ges                   │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/stag │     │     │                             │        │
+        │ es/all/bystates       │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/stud │     │     │                             │        │
+        │ ents                  │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/teac │     │     │                             │        │
+        │ hers                  │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 401 │ "Invalid auth token"        │  true  │
+        │ i-develop.openshift.t │     │     │                             │        │
+        │ echgap.it/api/v1/tuto │     │     │                             │        │
+        │ rs                    │     │     │                             │        │
+        ├───────────────────────┼─────┼─────┼─────────────────────────────┼────────┤
+        │ https://edutelling-ap │ get │ 200 │ "{\"version\":\"v-0.1.15\", │  true  │
+        │ i-develop.openshift.t │     │     │ \"versionApp\":\"v-0.1.13\" │        │
+        │ echgap.it/api/v1/vers │     │     │ ,\"description\":\"add cv   │        │
+        │ ion                   │     │     │ Language\",\"descriptionApp │        │
+        │                       │     │     │ \":\"add cv multi           │        │
+        │                       │     │     │ language\",\"fileName\":\"0 │        │
+        │                       │     │     │ 308-ageLimit\",\"updateOn\" │        │
+        │                       │     │     │ :\"2021-06-03T14:58:54.257Z │        │
+        │                       │     │     │ \",\"updateOnApp\":\"2"     │        │
+        └───────────────────────┴─────┴─────┴─────────────────────────────┴────────┘
+       
+      
+       💨 🔥 💨 SUCCESS: Pass smoke test with swagger .
+       🟢  Test: 🧁 Swagger  [GET-PUBLICS]/https://edutelling-api-develop.openshift.techgap.it/api/v1/api-docs/ 
+       
+       
+      
+        ┌──────────────────────────────┬────────────────────────────────────────┐
+        │           Reports            │                 Value                  │
+        ├──────────────────────────────┼────────────────────────────────────────┤
+        │ SmokeTest criterial          │ basic                                  │
+        ├──────────────────────────────┼────────────────────────────────────────┤
+        │ Host                         │ edutelling-api-develop.openshift.techg │
+        │                              │ ap.it                                  │
+        ├──────────────────────────────┼────────────────────────────────────────┤
+        │ Number of Cases              │ 209                                    │
+        ├──────────────────────────────┼────────────────────────────────────────┤
+        │ Number of cases processed    │ 52                                     │
+        ├──────────────────────────────┼────────────────────────────────────────┤
+        │ Test Coverage                │ 0.2488                                 │
+        ├──────────────────────────────┼────────────────────────────────────────┤
+        │ Pass SmokeTest               │ true                                   │
+        └──────────────────────────────┴────────────────────────────────────────┘
+
+      at Object.<anonymous> (src/services/swagger/test/swaggerGetPublic/swaggerGetPublics.test.js:76:13)
+
+    console.log
+       💾 SEND REPORT TO SMOKE_COLLECTOR 
+       💾 Code address: aHR0cHM6Ly9zbW9rZS1jb2xsZWN0b3Itc2lnbWEudmVyY2VsLmFwcC9hcGkvdjEv
+
+      at sendToSmokeCollector (src/utils/sendReport.js:109:11)
+
+    console.log
+       📬 Decode Address: https://smoke-collector-sigma.vercel.app/api/v1/smktest
+
+      at sendToSmokeCollector (src/utils/sendReport.js:120:15)
+
+    console.log
+       📝 Send report to smoke-collector 
+       ✅ OK. send repot to https://smoke-collector-sigma.vercel.app/api/v1/smktest
+
+      at Object.<anonymous>.module.exports.sendToSmokeCollector (src/utils/sendReport.js:130:17)
+
+PASS ../../../../usr/src/app/src/services/kubernetesApi/test/checkPods/kubernetesApi.test.js (5.511 s)
+PASS ../../../../usr/src/app/src/services/kubernetesApi/test/ingress/ingress.test.js
+  ● Console
+
+    console.log
+      ✅ SUCCESS INGRESS: curl http://edutelling-api-develop.openshift.techgap.it/api
+
+      at Object.<anonymous> (src/services/kubernetesApi/test/ingress/ingress.test.js:35:15)
+
+    console.log
+      ✅ SUCCESS INGRESS: curl http://edutelling-api-develop.openshift.techgap.it/api
+
+      at Object.<anonymous> (src/services/kubernetesApi/test/ingress/ingress.test.js:35:15)
+
+    console.log
+      ✅ SUCCESS INGRESS: curl http://edutelling-api-develop.openshift.techgap.it/api
+
+      at Object.<anonymous> (src/services/kubernetesApi/test/ingress/ingress.test.js:35:15)
+
+    console.log
+      ✅ SUCCESS INGRESS: curl http://edutelling-app-develop.openshift.techgap.it/
+
+      at Object.<anonymous> (src/services/kubernetesApi/test/ingress/ingress.test.js:35:15)
+
+    console.log
+      ✅ SUCCESS INGRESS: curl http://edutelling-app-develop.openshift.techgap.it/
+
+      at Object.<anonymous> (src/services/kubernetesApi/test/ingress/ingress.test.js:35:15)
+
+    console.log
+      ✅ SUCCESS INGRESS: curl http://edutelling-app-develop.openshift.techgap.it/
+
+      at Object.<anonymous> (src/services/kubernetesApi/test/ingress/ingress.test.js:35:15)
+
+PASS ../../../../usr/src/app/src/services/kubernetesApi/test/checkConditions/checkConditions.test.js
+  ● Console
+
+    console.log
+      👍 SUCCESS, 🚀   TEST WITH --check-conditions
+
+      at Object.<anonymous> (src/services/kubernetesApi/test/checkConditions/checkConditions.test.js:25:13)
+
+    console.log
+       
+        Type             Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+        ----             ------  -----------------                 ------------------                ------                       -------
+        MemoryPressure   False   Mon, 26 Jul 2021 15:17:05 +0000   Thu, 22 Jul 2021 12:51:15 +0000   KubeletHasSufficientMemory   kubelet has sufficient memory available
+        DiskPressure     False   Mon, 26 Jul 2021 15:17:05 +0000   Thu, 22 Jul 2021 12:51:15 +0000   KubeletHasNoDiskPressure     kubelet has no disk pressure
+        PIDPressure      False   Mon, 26 Jul 2021 15:17:05 +0000   Thu, 22 Jul 2021 12:51:15 +0000   KubeletHasSufficientPID      kubelet has sufficient PID available
+        Ready            True    Mon, 26 Jul 2021 15:17:05 +0000   Fri, 23 Jul 2021 08:02:59 +0000   KubeletReady                 kubelet is posting ready status
+
+      at Object.<anonymous> (src/services/kubernetesApi/test/checkConditions/checkConditions.test.js:28:13)
+
+
+Test Suites: 1 failed, 5 passed, 6 total
+Tests:       1 failed, 8 passed, 9 total
+Snapshots:   0 total
+Time:        49.027 s
+Ran all test suites.
+
+-------------------------------------------------------
+ 🛑  SMOKE TEST ERROR 👎
+ FORCE BREAK OF THE PIPELINE >>
+
+💨 💨 💨 🔥 💨 💨 💨 🔥 💨 💨 💨 🔥 💨 💨 💨 🔥💨 💨 💨 🔥
+ 🛑  ERROR: Smoke Test
+💨 💨 💨 🔥 💨 💨 💨 🔥 💨 💨 💨 🔥 💨 💨 💨 🔥💨 💨 💨 🔥
+
+-------------------------------------------------------
+
+section_end:1627312691:step_script
+[0Ksection_start:1627312691:cleanup_file_variables
+[0K[0K[36;1mCleaning up file based variables[0;m
+[0;msection_end:1627312692:cleanup_file_variables
+[0K[31;1mERROR: Job failed: exit code 1
+[0;m

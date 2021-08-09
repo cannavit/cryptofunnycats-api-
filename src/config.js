@@ -44,6 +44,9 @@ const config = {
     smokeCollectorNotifyFailsCases:
       process.env.SMOKE_COLLECTOR_NOTIFY_FAILS_CASES_TO || undefined,
     urlBase: "/api/v1",
+    gitlabBearerToken: process.env.GITLAB_BEARER_TOKEN,
+    gitlabCollectLogs: process.env.GITLAB_COLLECT_LOGS || false,
+    gitlabSaveCollectonInDB: process.env.GITLAB_SAVE_COLLECTION_IN_DB || false,
     swaggerOptions: {
       swaggerDefinition: {
         info: {

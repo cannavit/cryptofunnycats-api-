@@ -216,19 +216,6 @@ async function getNumberOfStars(url) {
   });
 }
 
-
-
-
-
-
-// getProjectsUsingFileContent(options, options.token);
-
-//! >>>
-
-//! <<<
-
-
-
 async function runCollectorFilesHub() {
   console.log("🕕 Run Collector of  filesHub");
   let findFiles = true;
@@ -248,5 +235,3 @@ async function runCollectorFilesHub() {
 }
 
 module.exports.runCollectorFilesHub = runCollectorFilesHub;
-
-// runCollectorFilesHub();

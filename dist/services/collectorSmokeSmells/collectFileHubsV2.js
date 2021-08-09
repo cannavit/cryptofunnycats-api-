@@ -752,7 +752,7 @@ function _axiosHackGitHub() {
             _logger["default"].info(" 🟢 🐝 🐝 🐝 Success [GET] axios to: " + url); // response = response.data;
 
 
-            _context8.next = 37;
+            _context8.next = 34;
             break;
 
           case 8:
@@ -777,9 +777,10 @@ function _axiosHackGitHub() {
             _logger["default"].info(" 🕖 Wait 5 seconds");
 
             _context8.next = 20;
-            return sleep(1000);
+            return sleep(5000);
 
           case 20:
+            //! Not change the 5000
             _logger["default"].info(" 🟠 🐝 🐝 🐝 Success [GET] axios to: " + url);
 
             _context8.next = 23;
@@ -792,18 +793,12 @@ function _axiosHackGitHub() {
 
             _logger["default"].info(" 🔓 🔫 Pass GitHub Control 🥳 ");
 
-            _context8.next = 37;
+            _context8.next = 34;
             break;
 
           case 28:
             _context8.prev = 28;
             _context8.t1 = _context8["catch"](10);
-
-            _logger["default"].info(">>>>>-1538259196>>>>>");
-
-            _logger["default"].info(_context8.t1);
-
-            _logger["default"].info("<<<<<<<<<<<<<<<<<<<");
 
             try {
               _logger["default"].info(" 🚨 2) ERROR GITHUB MESSGE: " + _context8.t1.response.data.message);
@@ -815,10 +810,10 @@ function _axiosHackGitHub() {
 
             _logger["default"].info(" 🔑 Breaking GITHUB IP Control");
 
-          case 37:
+          case 34:
             return _context8.abrupt("return", response);
 
-          case 38:
+          case 35:
           case "end":
             return _context8.stop();
         }

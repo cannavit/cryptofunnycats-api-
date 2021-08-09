@@ -471,7 +471,7 @@ async function axiosHackGitHub(url, options) {
       logger.info(" 🔑 Breaking GITHUB IP Control");
       await runTorService("restart");
       logger.info(" 🕖 Wait 5 seconds");
-      await sleep(1000);
+      await sleep(5000); //! Not change the 5000
 
       logger.info(" 🟠 🐝 🐝 🐝 Success [GET] axios to: " + url);
 
@@ -479,9 +479,6 @@ async function axiosHackGitHub(url, options) {
       logger.info(" 🟢 🐝 🐝 🐝 Success [GET] axios to: " + url);
       logger.info(" 🔓 🔫 Pass GitHub Control 🥳 ");
     } catch (error) {
-      logger.info(">>>>>-1538259196>>>>>");
-      logger.info(error);
-      logger.info("<<<<<<<<<<<<<<<<<<<");
       try {
         logger.info(
           " 🚨 2) ERROR GITHUB MESSGE: " + error.response.data.message

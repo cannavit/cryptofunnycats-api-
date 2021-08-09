@@ -1,0 +1,4079 @@
+[0KRunning with gitlab-runner 14.1.0-rc1 (e9489c8a)
+[0;m[0K  on docker-auto-scale z3WU8uu-
+[0;msection_start:1627313014:prepare_executor
+[0K[0K[36;1mPreparing the "docker+machine" executor[0;m
+[0;m[0KUsing Docker executor with image lwolf/kubectl_deployer:latest ...
+[0;m[0KStarting service docker:dind ...
+[0;m[0KPulling docker image docker:dind ...
+[0;m[0KUsing docker image sha256:ca749f2062c41ad54191b9c242dd1b3f6132a11299b251fc2128e37c9800ebba for docker:dind with digest docker@sha256:07263bef8759a4d773431719856c3845b163c07034d200b00cd44b85b5e53d94 ...
+[0;m[0KWaiting for services to be up and running...
+[0;m
+[0;33m*** WARNING:[0;m Service runner-z3wu8uu--project-15112024-concurrent-0-2337f4df744d8c1e-docker-0 probably didn't start properly.
+
+Health check error:
+service "runner-z3wu8uu--project-15112024-concurrent-0-2337f4df744d8c1e-docker-0-wait-for-service" timeout
+
+Health check container logs:
+
+
+Service container logs:
+2021-07-26T15:23:48.715501583Z time="2021-07-26T15:23:48.697056365Z" level=info msg="Starting up"
+2021-07-26T15:23:48.715560541Z time="2021-07-26T15:23:48.700742102Z" level=warning msg="could not change group /var/run/docker.sock to docker: group docker not found"
+2021-07-26T15:23:48.715565650Z time="2021-07-26T15:23:48.700992447Z" level=warning msg="Binding to IP address without --tlsverify is insecure and gives root access on this machine to everyone who has access to your network." host="tcp://0.0.0.0:2375"
+2021-07-26T15:23:48.715570590Z time="2021-07-26T15:23:48.701009429Z" level=warning msg="Binding to an IP address, even on localhost, can also give access to scripts run in a browser. Be safe out there!" host="tcp://0.0.0.0:2375"
+2021-07-26T15:23:49.701387637Z time="2021-07-26T15:23:49.701222772Z" level=warning msg="Binding to an IP address without --tlsverify is deprecated. Startup is intentionally being slowed down to show this message" host="tcp://0.0.0.0:2375"
+2021-07-26T15:23:49.701526971Z time="2021-07-26T15:23:49.701457207Z" level=warning msg="Please consider generating tls certificates with client validation to prevent exposing unauthenticated root access to your network" host="tcp://0.0.0.0:2375"
+2021-07-26T15:23:49.701613535Z time="2021-07-26T15:23:49.701549232Z" level=warning msg="You can override this by explicitly specifying '--tls=false' or '--tlsverify=false'" host="tcp://0.0.0.0:2375"
+2021-07-26T15:23:49.701702101Z time="2021-07-26T15:23:49.701638651Z" level=warning msg="Support for listening on TCP without authentication or explicit intent to run without authentication will be removed in the next release" host="tcp://0.0.0.0:2375"
+2021-07-26T15:24:04.703329119Z time="2021-07-26T15:24:04.703183680Z" level=info msg="libcontainerd: started new containerd process" pid=25
+2021-07-26T15:24:04.703467342Z time="2021-07-26T15:24:04.703414674Z" level=info msg="parsed scheme: \"unix\"" module=grpc
+2021-07-26T15:24:04.703564922Z time="2021-07-26T15:24:04.703492360Z" level=info msg="scheme \"unix\" not registered, fallback to default scheme" module=grpc
+2021-07-26T15:24:04.703655155Z time="2021-07-26T15:24:04.703614986Z" level=info msg="ccResolverWrapper: sending update to cc: {[{unix:///var/run/docker/containerd/containerd.sock  <nil> 0 <nil>}] <nil> <nil>}" module=grpc
+2021-07-26T15:24:04.703727407Z time="2021-07-26T15:24:04.703695227Z" level=info msg="ClientConn switching balancer to \"pick_first\"" module=grpc
+2021-07-26T15:24:04.716208591Z time="2021-07-26T15:24:04.716072815Z" level=info msg="starting containerd" revision=d71fcd7d8303cbf684402823e425e9dd2e99285d version=v1.4.6
+2021-07-26T15:24:04.747828215Z time="2021-07-26T15:24:04.747697974Z" level=info msg="loading plugin \"io.containerd.content.v1.content\"..." type=io.containerd.content.v1
+2021-07-26T15:24:04.748113159Z time="2021-07-26T15:24:04.748050901Z" level=info msg="loading plugin \"io.containerd.snapshotter.v1.aufs\"..." type=io.containerd.snapshotter.v1
+2021-07-26T15:24:04.754563224Z time="2021-07-26T15:24:04.754427995Z" level=info msg="skip loading plugin \"io.containerd.snapshotter.v1.aufs\"..." error="aufs is not supported (modprobe aufs failed: exit status 1 \"ip: can't find device 'aufs'\\nmodprobe: can't change directory to '/lib/modules': No such file or directory\\n\"): skip plugin" type=io.containerd.snapshotter.v1
+2021-07-26T15:24:04.754676434Z time="2021-07-26T15:24:04.754636419Z" level=info msg="loading plugin \"io.containerd.snapshotter.v1.btrfs\"..." type=io.containerd.snapshotter.v1
+2021-07-26T15:24:04.755208652Z time="2021-07-26T15:24:04.755140358Z" level=info msg="skip loading plugin \"io.containerd.snapshotter.v1.btrfs\"..." error="path /var/lib/docker/containerd/daemon/io.containerd.snapshotter.v1.btrfs (ext4) must be a btrfs filesystem to be used with the btrfs snapshotter: skip plugin" type=io.containerd.snapshotter.v1
+2021-07-26T15:24:04.755296199Z time="2021-07-26T15:24:04.755245253Z" level=info msg="loading plugin \"io.containerd.snapshotter.v1.devmapper\"..." type=io.containerd.snapshotter.v1
+2021-07-26T15:24:04.755371604Z time="2021-07-26T15:24:04.755335309Z" level=warning msg="failed to load plugin io.containerd.snapshotter.v1.devmapper" error="devmapper not configured"
+2021-07-26T15:24:04.755441451Z time="2021-07-26T15:24:04.755405055Z" level=info msg="loading plugin \"io.containerd.snapshotter.v1.native\"..." type=io.containerd.snapshotter.v1
+2021-07-26T15:24:04.755623467Z time="2021-07-26T15:24:04.755575443Z" level=info msg="loading plugin \"io.containerd.snapshotter.v1.overlayfs\"..." type=io.containerd.snapshotter.v1
+2021-07-26T15:24:04.755951601Z time="2021-07-26T15:24:04.755875725Z" level=info msg="loading plugin \"io.containerd.snapshotter.v1.zfs\"..." type=io.containerd.snapshotter.v1
+2021-07-26T15:24:04.756245111Z time="2021-07-26T15:24:04.756190799Z" level=info msg="skip loading plugin \"io.containerd.snapshotter.v1.zfs\"..." error="path /var/lib/docker/containerd/daemon/io.containerd.snapshotter.v1.zfs must be a zfs filesystem to be used with the zfs snapshotter: skip plugin" type=io.containerd.snapshotter.v1
+2021-07-26T15:24:04.756308495Z time="2021-07-26T15:24:04.756271370Z" level=info msg="loading plugin \"io.containerd.metadata.v1.bolt\"..." type=io.containerd.metadata.v1
+2021-07-26T15:24:04.756423961Z time="2021-07-26T15:24:04.756382122Z" level=warning msg="could not use snapshotter devmapper in metadata plugin" error="devmapper not configured"
+2021-07-26T15:24:04.756473999Z time="2021-07-26T15:24:04.756446550Z" level=info msg="metadata content store policy set" policy=shared
+2021-07-26T15:24:04.764644382Z time="2021-07-26T15:24:04.764525902Z" level=info msg="loading plugin \"io.containerd.differ.v1.walking\"..." type=io.containerd.differ.v1
+2021-07-26T15:24:04.764773126Z time="2021-07-26T15:24:04.764717913Z" level=info msg="loading plugin \"io.containerd.gc.v1.scheduler\"..." type=io.containerd.gc.v1
+2021-07-26T15:24:04.764894285Z time="2021-07-26T15:24:04.764845575Z" level=info msg="loading plugin \"io.containerd.service.v1.introspection-service\"..." type=io.containerd.service.v1
+2021-07-26T15:24:04.765030296Z time="2021-07-26T15:24:04.764980850Z" level=info msg="loading plugin \"io.containerd.service.v1.containers-service\"..." type=io.containerd.service.v1
+2021-07-26T15:24:04.765282276Z time="2021-07-26T15:24:04.765056189Z" level=info msg="loading plugin \"io.containerd.service.v1.content-service\"..." type=io.containerd.service.v1
+2021-07-26T15:24:04.765390108Z time="2021-07-26T15:24:04.765340526Z" level=info msg="loading plugin \"io.containerd.service.v1.diff-service\"..." type=io.containerd.service.v1
+2021-07-26T15:24:04.765492135Z time="2021-07-26T15:24:04.765430479Z" level=info msg="loading plugin \"io.containerd.service.v1.images-service\"..." type=io.containerd.service.v1
+2021-07-26T15:24:04.765568298Z time="2021-07-26T15:24:04.765516919Z" level=info msg="loading plugin \"io.containerd.service.v1.leases-service\"..." type=io.containerd.service.v1
+2021-07-26T15:24:04.765644725Z time="2021-07-26T15:24:04.765594286Z" level=info msg="loading plugin \"io.containerd.service.v1.namespaces-service\"..." type=io.containerd.service.v1
+2021-07-26T15:24:04.765715591Z time="2021-07-26T15:24:04.765667332Z" level=info msg="loading plugin \"io.containerd.service.v1.snapshots-service\"..." type=io.containerd.service.v1
+2021-07-26T15:24:04.765776425Z time="2021-07-26T15:24:04.765744020Z" level=info msg="loading plugin \"io.containerd.runtime.v1.linux\"..." type=io.containerd.runtime.v1
+2021-07-26T15:24:04.766132771Z time="2021-07-26T15:24:04.766056042Z" level=info msg="loading plugin \"io.containerd.runtime.v2.task\"..." type=io.containerd.runtime.v2
+2021-07-26T15:24:04.766371034Z time="2021-07-26T15:24:04.766313267Z" level=info msg="loading plugin \"io.containerd.monitor.v1.cgroups\"..." type=io.containerd.monitor.v1
+2021-07-26T15:24:04.766859573Z time="2021-07-26T15:24:04.766797117Z" level=info msg="loading plugin \"io.containerd.service.v1.tasks-service\"..." type=io.containerd.service.v1
+2021-07-26T15:24:04.766988548Z time="2021-07-26T15:24:04.766930654Z" level=info msg="loading plugin \"io.containerd.internal.v1.restart\"..." type=io.containerd.internal.v1
+2021-07-26T15:24:04.767148282Z time="2021-07-26T15:24:04.767096229Z" level=info msg="loading plugin \"io.containerd.grpc.v1.containers\"..." type=io.containerd.grpc.v1
+2021-07-26T15:24:04.767228992Z time="2021-07-26T15:24:04.767174506Z" level=info msg="loading plugin \"io.containerd.grpc.v1.content\"..." type=io.containerd.grpc.v1
+2021-07-26T15:24:04.767285595Z time="2021-07-26T15:24:04.767253083Z" level=info msg="loading plugin \"io.containerd.grpc.v1.diff\"..." type=io.containerd.grpc.v1
+2021-07-26T15:24:04.767381309Z time="2021-07-26T15:24:04.767322826Z" level=info msg="loading plugin \"io.containerd.grpc.v1.events\"..." type=io.containerd.grpc.v1
+2021-07-26T15:24:04.767438340Z time="2021-07-26T15:24:04.767405747Z" level=info msg="loading plugin \"io.containerd.grpc.v1.healthcheck\"..." type=io.containerd.grpc.v1
+2021-07-26T15:24:04.767526244Z time="2021-07-26T15:24:04.767474028Z" level=info msg="loading plugin \"io.containerd.grpc.v1.images\"..." type=io.containerd.grpc.v1
+2021-07-26T15:24:04.767602005Z time="2021-07-26T15:24:04.767549038Z" level=info msg="loading plugin \"io.containerd.grpc.v1.leases\"..." type=io.containerd.grpc.v1
+2021-07-26T15:24:04.767673092Z time="2021-07-26T15:24:04.767622901Z" level=info msg="loading plugin \"io.containerd.grpc.v1.namespaces\"..." type=io.containerd.grpc.v1
+2021-07-26T15:24:04.767729345Z time="2021-07-26T15:24:04.767694346Z" level=info msg="loading plugin \"io.containerd.internal.v1.opt\"..." type=io.containerd.internal.v1
+2021-07-26T15:24:04.768133262Z time="2021-07-26T15:24:04.768058967Z" level=info msg="loading plugin \"io.containerd.grpc.v1.snapshots\"..." type=io.containerd.grpc.v1
+2021-07-26T15:24:04.768246988Z time="2021-07-26T15:24:04.768191811Z" level=info msg="loading plugin \"io.containerd.grpc.v1.tasks\"..." type=io.containerd.grpc.v1
+2021-07-26T15:24:04.768327443Z time="2021-07-26T15:24:04.768272876Z" level=info msg="loading plugin \"io.containerd.grpc.v1.version\"..." type=io.containerd.grpc.v1
+2021-07-26T15:24:04.768384652Z time="2021-07-26T15:24:04.768351398Z" level=info msg="loading plugin \"io.containerd.grpc.v1.introspection\"..." type=io.containerd.grpc.v1
+2021-07-26T15:24:04.768751173Z time="2021-07-26T15:24:04.768681994Z" level=info msg=serving... address=/var/run/docker/containerd/containerd-debug.sock
+2021-07-26T15:24:04.768937199Z time="2021-07-26T15:24:04.768867711Z" level=info msg=serving... address=/var/run/docker/containerd/containerd.sock.ttrpc
+2021-07-26T15:24:04.769116960Z time="2021-07-26T15:24:04.769053792Z" level=info msg=serving... address=/var/run/docker/containerd/containerd.sock
+2021-07-26T15:24:04.769200266Z time="2021-07-26T15:24:04.769146083Z" level=info msg="containerd successfully booted in 0.053836s"
+2021-07-26T15:24:04.786781901Z time="2021-07-26T15:24:04.786655778Z" level=info msg="Setting the storage driver from the $DOCKER_DRIVER environment variable (overlay2)"
+2021-07-26T15:24:04.787134570Z time="2021-07-26T15:24:04.787068367Z" level=info msg="parsed scheme: \"unix\"" module=grpc
+2021-07-26T15:24:04.787265484Z time="2021-07-26T15:24:04.787166386Z" level=info msg="scheme \"unix\" not registered, fallback to default scheme" module=grpc
+2021-07-26T15:24:04.787388546Z time="2021-07-26T15:24:04.787304412Z" level=info msg="ccResolverWrapper: sending update to cc: {[{unix:///var/run/docker/containerd/containerd.sock  <nil> 0 <nil>}] <nil> <nil>}" module=grpc
+2021-07-26T15:24:04.787476715Z time="2021-07-26T15:24:04.787432319Z" level=info msg="ClientConn switching balancer to \"pick_first\"" module=grpc
+2021-07-26T15:24:04.788557195Z time="2021-07-26T15:24:04.788468465Z" level=info msg="parsed scheme: \"unix\"" module=grpc
+2021-07-26T15:24:04.788669256Z time="2021-07-26T15:24:04.788613598Z" level=info msg="scheme \"unix\" not registered, fallback to default scheme" module=grpc
+2021-07-26T15:24:04.788753738Z time="2021-07-26T15:24:04.788698163Z" level=info msg="ccResolverWrapper: sending update to cc: {[{unix:///var/run/docker/containerd/containerd.sock  <nil> 0 <nil>}] <nil> <nil>}" module=grpc
+2021-07-26T15:24:04.788809132Z time="2021-07-26T15:24:04.788774469Z" level=info msg="ClientConn switching balancer to \"pick_first\"" module=grpc
+2021-07-26T15:24:04.857209385Z time="2021-07-26T15:24:04.857081247Z" level=info msg="Loading containers: start."
+2021-07-26T15:24:04.867216900Z time="2021-07-26T15:24:04.867071575Z" level=warning msg="Running modprobe bridge br_netfilter failed with message: ip: can't find device 'bridge'\nbridge                167936  1 br_netfilter\nstp                    16384  1 bridge\nllc                    16384  2 bridge,stp\nip: can't find device 'br_netfilter'\nbr_netfilter           24576  0 \nbridge                167936  1 br_netfilter\nmodprobe: can't change directory to '/lib/modules': No such file or directory\n, error: exit status 1"
+2021-07-26T15:24:04.929154137Z time="2021-07-26T15:24:04.929007047Z" level=info msg="Default bridge (docker0) is assigned with an IP address 172.18.0.0/16. Daemon option --bip can be used to set a preferred IP address"
+2021-07-26T15:24:04.975833030Z time="2021-07-26T15:24:04.975662495Z" level=info msg="Loading containers: done."
+2021-07-26T15:24:04.988617095Z time="2021-07-26T15:24:04.988446540Z" level=info msg="Docker daemon" commit=b0f5bc3 graphdriver(s)=overlay2 version=20.10.7
+2021-07-26T15:24:04.988890545Z time="2021-07-26T15:24:04.988819088Z" level=info msg="Daemon has completed initialization"
+2021-07-26T15:24:05.024967176Z time="2021-07-26T15:24:05.024762029Z" level=info msg="API listen on /var/run/docker.sock"
+2021-07-26T15:24:05.030972993Z time="2021-07-26T15:24:05.030785913Z" level=info msg="API listen on [::]:2375"
+
+[0;33m*********[0;m
+
+[0KPulling docker image lwolf/kubectl_deployer:latest ...
+[0;m[0KUsing docker image sha256:a746dcb3cba3ab2112cc165ec9a5c53ead0611b32f01126dc8fd396b40a48a4c for lwolf/kubectl_deployer:latest with digest lwolf/kubectl_deployer@sha256:7fded044185fafff235467bed93267922d663d4d1f5938918eb26177742c3f0c ...
+[0;msection_end:1627313062:prepare_executor
+[0Ksection_start:1627313062:prepare_script
+[0K[0K[36;1mPreparing environment[0;m
+[0;mRunning on runner-z3wu8uu--project-15112024-concurrent-0 via runner-z3wu8uu--srm-1627312913-009c893c...
+section_end:1627313063:prepare_script
+[0Ksection_start:1627313063:get_sources
+[0K[0K[36;1mGetting source from Git repository[0;m
+[0;m[32;1m$ eval "$CI_PRE_CLONE_SCRIPT"[0;m
+[32;1mFetching changes with git depth set to 50...[0;m
+Initialized empty Git repository in /builds/anoki-srl/edutelling-prj/edutelling-api/.git/
+[32;1mCreated fresh repository.[0;m
+[32;1mChecking out fa3cb44c as develop...[0;m
+
+[32;1mSkipping Git submodules setup[0;m
+section_end:1627313065:get_sources
+[0Ksection_start:1627313065:step_script
+[0K[0K[36;1mExecuting "step_script" stage of the job script[0;m
+[0;m[0KUsing docker image sha256:a746dcb3cba3ab2112cc165ec9a5c53ead0611b32f01126dc8fd396b40a48a4c for lwolf/kubectl_deployer:latest with digest lwolf/kubectl_deployer@sha256:7fded044185fafff235467bed93267922d663d4d1f5938918eb26177742c3f0c ...
+[0;m[32;1m$ mkdir -p /etc/deploy[0;m
+[32;1m$ echo $KUBERNETES_TOKEN | base64 -d > $KUBECONFIG[0;m
+[32;1m$ kubectl config use-context $KUBERNETES_CONTEXT[0;m
+Switched to context "tgi-hetzner".
+[32;1m$ kubectl get pods -n $NAMESPACE[0;m
+NAME                                    READY   STATUS    RESTARTS   AGE
+edutelling-api-575748dfd8-ttkmt         1/1     Running   0          8m38s
+edutelling-app-84b7f58b97-gmqw5         1/1     Running   0          4d23h
+edutelling-memcached-74c4dc77cf-x8l4f   1/1     Running   4          154d
+edutelling-orientdb-75c896f9fc-ph4l7    1/1     Running   1          39d
+[32;1m$ sleep 30[0;m
+[32;1m$ echo 'wait 30s for active services'[0;m
+wait 30s for active services
+[32;1m$ kubectl get pods -n $NAMESPACE[0;m
+NAME                                    READY   STATUS    RESTARTS   AGE
+edutelling-api-575748dfd8-ttkmt         1/1     Running   0          9m9s
+edutelling-app-84b7f58b97-gmqw5         1/1     Running   0          4d23h
+edutelling-memcached-74c4dc77cf-x8l4f   1/1     Running   4          154d
+edutelling-orientdb-75c896f9fc-ph4l7    1/1     Running   1          39d
+[32;1m$ kubectl exec -n edutelling-test  $(kubectl get pods -n edutelling-test -o custom-columns=:metadata.name | grep functional-test) -- env HOST_EDUTELLING_API=$BACKEND_TEST yarn clean_backend[0;m
+yarn run v1.22.4
+$ node testBackend.js clean
+
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+
+
+
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+directoryPath :: /usr/src/app/postmanTestsCollections/backend/testsSuites/
+undefined
+{
+  info: {
+    _postman_id: 'c0828379-6fb0-48bf-8aa1-e23922f50ae0',
+    name: '05_test_multiaccount',
+    schema: 'https://schema.getpostman.com/json/collection/v2.1.0/collection.json'
+  },
+  item: [
+    {
+      name: '00_00_login_test',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: '00_01_login_administrator',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: '00_02_get_institution_data',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'config_generalParams',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'initTemplate_01_test_createEntityTypeAccount',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: '01_entityTypeAccountService_getAll',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: '00_06_removeEntity',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: '00_06_removeAccount',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: '00_06_removeInfo',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: '03_32_login',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: '03_32_login',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'goTo_workflowControl',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'controlOfWorkFlowTempalte_2BC',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'initConfig_template_01',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'config_createTutorAccount',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'config_createStudentAccount',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'config_createTeacherAccount',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'config_createAmbassadorAccount',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'stop_template_01',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    { name: 'config', event: [Array], request: [Object], response: [] },
+    {
+      name: 'institution',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'serachOldCompanyIds',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: '00_06_removeEntity',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: '00_06_removeAccount',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: '00_06_removeInfo',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: '03_32_login',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    { name: 'config', event: [Array], request: [Object], response: [] },
+    {
+      name: 'institution',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'searchOldCourseId',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'removeOldCourse',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'searchOldModule',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'removeOldModule',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'searchOldStage',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'removeOldStage',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'initTemplate',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'loginEntityType_template_01',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'login_multi_jwt',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'settings_how_entityType',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'settingsNotifications_howEntityType',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'settingsNotifications_howEntityType',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'goTo_workflowControl',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'entityTypeAccount_init_tempate_02',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'countNotifications',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'goTo_workflowControl',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'entityTypeAccount_tempate_03',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    { name: 'course', event: [Array], request: [Object], response: [] },
+    { name: 'next03', event: [Array], request: [Object], response: [] },
+    {
+      name: 'goTo_workflowControl',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'entityTypeAccount_template04',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    { name: 'course', event: [Array], request: [Object], response: [] },
+    { name: 'next04', event: [Array], request: [Object], response: [] },
+    {
+      name: 'goTo_workflowControl',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'entityTypeAccount_template04module',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    { name: 'next04', event: [Array], request: [Object], response: [] },
+    {
+      name: 'goTo_workflowControl',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'entityTypeAccount_tempate_05',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'countNotifications',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'goTo_workflowControl',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'controlOfWorkFlowTempalte',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'initConfig',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'config_studentWithNotifications_Off',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'config_studentWithNotifications_On',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'config_tutorWithNotifications_Off',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'config_tutorWithNotifications_On',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'config_teacherWithNotifications_Off',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'config_teacherWithNotifications_On',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'config_ambassadorWithNotifications_Off',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'config_ambassadorWithNotifications_On',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'stop_05_createCourseModuleAndStage',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'initTemplate_06',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: '01_entityTypeAccountService_getAll_06',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: '02_reamoveAccount_06',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: '04_login_no2_v3',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: '05_login_switch_how_account',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: '01_entityTypeAccountService_getAll',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: '02_reamoveAccount',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'goTo_workflowControl',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'controlOfWorkFlowTempalte_06',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'initConfig_06',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'config_multiAccount_tutorHowTeacher',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'config_multiAccount_tutorHowAmbassador',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'config_multiAccount_tutorHowStudent',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'config_multiAccount_teacherHowAmbassador',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'config_multiAccount_teacherHowStudent',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'config_multiAccount_teacherHowTutor',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'config_multiAccount_ambassadorHowStudent',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'config_multiAccount_ambassadorHowTeacher',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'config_multiAccount_ambassadorHowTutor',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'config_multiAccount_studentHowAmbassador',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'config_multiAccount_studentHowTutor',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'config_multiAccount_studentHowTeacher',
+      event: [Array],
+      request: [Object],
+      response: []
+    },
+    {
+      name: 'stop_06_createCourseModuleAndStage',
+      event: [Array],
+      request: [Object],
+      response: []
+    }
+  ],
+  protocolProfileBehavior: {}
+}
+----- RUN WITH MODE:  clean
+running a collection...
+newman
+
+05_test_multiaccount
+
+→ 00_00_login_test
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/authentication [200 OK, 726B, 115ms]
+  ✓  [(POST)/api/v1/auth/authentication] 01 LOGIN
+
+→ 00_01_login_administrator
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/authentication [200 OK, 739B, 94ms]
+  ✓  [(POST)/api/v1/auth/authentication] Login Delete (200)
+
+→ 00_02_get_institution_data
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/formazione@edutelling.it/all [200 OK, 481B, 11ms]
+  ✓  [ (GET) /api/v1/accounts/formazione@edutelling.it/all ]  Get administrator 200
+
+→ config_generalParams
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 4ms]
+
+→ initTemplate_01_test_createEntityTypeAccount
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 441ms]
+
+Attempting to set next request to initConfig_template_01
+
+→ initConfig_template_01
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 61ms]
+
+→ config_createTutorAccount
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 4ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte_2BC
+
+→ controlOfWorkFlowTempalte_2BC
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 46ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_createTutorAccount","temp
+  │ lateRun":["01_entityTypeAccountService_getAll","config
+  │ _createStudentAccount"]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', '01_entit
+  │ yTypeAccountService_getAll'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to 01_entityTypeAccountService_getAll
+
+→ 01_entityTypeAccountService_getAll
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/bot_tutor5@tutor.com/all [200 OK, 478B, 18ms]
+
+→ 02_reamoveAccount
+  DELETE https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/remove?dataId={{deleteAccountId}} [200 OK, 379B, 55ms]
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 4ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte_06
+
+→ controlOfWorkFlowTempalte_06
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 7ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ '{"nameOfConfigFile":"config_createTutorAccount","temp
+  │ lateRun":["01_entityTypeAccountService_getAll","config
+  │ _createStudentAccount"],"executed":[false,true]}'
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'config_c
+  │ reateStudentAccount'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to config_createStudentAccount
+
+→ config_createStudentAccount
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 9ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte_2BC
+
+→ controlOfWorkFlowTempalte_2BC
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 8ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_createTutorAccount","temp
+  │ lateRun":["01_entityTypeAccountService_getAll","config
+  │ _createTeacherAccount"]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', '01_entit
+  │ yTypeAccountService_getAll'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to 01_entityTypeAccountService_getAll
+
+→ 01_entityTypeAccountService_getAll
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/student@bot.com/all [200 OK, 475B, 19ms]
+
+→ 02_reamoveAccount
+  DELETE https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/remove?dataId={{deleteAccountId}} [200 OK, 379B, 50ms]
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 8ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte_06
+
+→ controlOfWorkFlowTempalte_06
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 7ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ '{"nameOfConfigFile":"config_createTutorAccount","temp
+  │ lateRun":["01_entityTypeAccountService_getAll","config
+  │ _createTeacherAccount"],"executed":[false,true]}'
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'config_c
+  │ reateTeacherAccount'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to config_createTeacherAccount
+
+→ config_createTeacherAccount
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 12ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte_2BC
+
+→ controlOfWorkFlowTempalte_2BC
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 8ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_createTutorAccount","temp
+  │ lateRun":["01_entityTypeAccountService_getAll","config
+  │ _createAmbassadorAccount"]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', '01_entit
+  │ yTypeAccountService_getAll'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to 01_entityTypeAccountService_getAll
+
+→ 01_entityTypeAccountService_getAll
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/teacher@bot.com/all [200 OK, 475B, 18ms]
+
+→ 02_reamoveAccount
+  DELETE https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/remove?dataId={{deleteAccountId}} [200 OK, 379B, 60ms]
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 7ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte_06
+
+→ controlOfWorkFlowTempalte_06
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 4ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ '{"nameOfConfigFile":"config_createTutorAccount","temp
+  │ lateRun":["01_entityTypeAccountService_getAll","config
+  │ _createAmbassadorAccount"],"executed":[false,true]}'
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'config_c
+  │ reateAmbassadorAccount'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to config_createAmbassadorAccount
+
+→ config_createAmbassadorAccount
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 7ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte_2BC
+
+→ controlOfWorkFlowTempalte_2BC
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 4ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_createTutorAccount","temp
+  │ lateRun":["01_entityTypeAccountService_getAll","stop_t
+  │ emplate_01"]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', '01_entit
+  │ yTypeAccountService_getAll'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to 01_entityTypeAccountService_getAll
+
+→ 01_entityTypeAccountService_getAll
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/ambassador@bot.com/all [200 OK, 481B, 18ms]
+
+→ 02_reamoveAccount
+  DELETE https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/remove?dataId={{deleteAccountId}} [200 OK, 379B, 49ms]
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 9ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte_06
+
+→ controlOfWorkFlowTempalte_06
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 7ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ '{"nameOfConfigFile":"config_createTutorAccount","temp
+  │ lateRun":["01_entityTypeAccountService_getAll","stop_t
+  │ emplate_01"],"executed":[false,true]}'
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'stop_tem
+  │ plate_01'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to stop_template_01
+
+→ stop_template_01
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 48ms]
+
+→ config
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 7ms]
+
+→ institution
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/formazione@edutelling.it/all [200 OK, 481B, 8ms]
+  ✓  [ (GET) /api/v1/accounts/formazione@edutelling.it/all ]  Get administrator 200
+
+→ serachOldCompanyIds
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/company4@bot.it/all [200 OK, 477B, 20ms]
+
+→ 00_06_removeEntity
+  DELETE https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/remove?dataId=14%3A164 [200 OK, 396B, 37ms]
+
+→ 00_06_removeAccount
+  DELETE https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/remove?dataId=12%3A1600 [200 OK, 397B, 35ms]
+
+→ 00_06_removeInfo
+  DELETE https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/remove?dataId=51%3A1048 [200 OK, 397B, 36ms]
+
+→ 03_32_login
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/authentication [404 Not Found, 401B, 31ms]
+  1. [(POST)/api/v1/auth/authentication] Login Delete (200)
+
+→ config
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 8ms]
+
+→ institution
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/formazione@edutelling.it/all [200 OK, 481B, 17ms]
+  ✓  [ (GET) /api/v1/accounts/formazione@edutelling.it/all ]  Get administrator 200
+
+→ searchOldCourseId
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/courses?sort=name&order=asc&page=1&pageSize=20&filter=%7B%22property%22%3A%20%22email%22%2C%22query%22%3A%20%22company5%40bot.com%22%2C%20%22exactMatch%22%3A%20false%7D [200 OK, 1.71KB, 33ms]
+  ┌
+  │ 'DONT EXIST ACCOUNT BOT TEACHER'
+  └
+
+→ removeOldCourse
+  DELETE https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/remove?dataId=15%3A441 [200 OK, 396B, 42ms]
+
+→ searchOldModule
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/modules?sort=name&order=desc&page=1&pageSize=20&filter=%20%7B%22property%22%3A%20%22name%22%2C%22query%22%3A%20%22Introduction%20to Software Testing5%22%2C%20%22exactMatch%22%3A%20false%7D [200 OK, 1.75KB, 38ms]
+
+→ removeOldModule
+  DELETE https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/remove?dataId=16%3A656 [200 OK, 396B, 39ms]
+
+→ searchOldStage
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/stages?sort=type&order=asc&page=1&pageSize=20&filter=%7B%22property%22%3A%20%22description%22%2C%22query%22%3A%20%22Google_practice%22%2C%20%22exactMatch%22%3A%20false%7D [200 OK, 868B, 25ms]
+
+→ removeOldStage
+  DELETE https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/remove?dataId=21%3A139 [200 OK, 396B, 37ms]
+
+→ initTemplate
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 8ms]
+
+Attempting to set next request to initConfig
+
+→ initConfig
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 24ms]
+
+→ config_studentWithNotifications_Off
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 70ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 68ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_studentWithNotifications_
+  │ Off","templateRun":["loginEntityType_template_01","ent
+  │ ityTypeAccount_init_tempate_02","entityTypeAccount_tem
+  │ pate_03","entityTypeAccount_tempate_05","config_studen
+  │ tWithNotifications_On"]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'loginEnt
+  │ ityType_template_01'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to loginEntityType_template_01
+
+→ loginEntityType_template_01
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/authentication [200 OK, 725B, 70ms]
+  ✓  [(POST)/api/v1/auth/authentication] Login Delete (200)
+
+→ login_multi_jwt
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/complete-authentication [404 Not Found, 401B, 17ms]
+  ┌
+  │ 'NEXT'
+  └
+
+→ settings_how_entityType
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/settings/general-options [200 OK, 428B, 10ms]
+  ✓  [(GET) /api/v1/teachers?accountState from company  Login Delete (200)
+  ┌
+  │ 'Response BODY: ', '{"setting":{"accountId":"#12:1278"
+  │ ,"browserLanguage":"it","settingId":"#52:272","info":"
+  │ #51:936"}}'
+  └
+  ✓  Check leguague per default browserLanguage exist 
+
+→ settingsNotifications_howEntityType
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/settings/notifications [200 OK, 1.51KB, 40ms]
+  ┌
+  │ {
+  │   notification: [
+  │     {
+  │       notificationType: 'email',
+  │       notificationsCourse: {
+  │         inscriptionNewCourse: true,
+  │         courseStart: true,
+  │         updatedCourse: true,
+  │         stateCourse: true,
+  │         removingFromCourse: true
+  │       },
+  │       notificationsStage: {
+  │         studentRegistrationInternships: true,
+  │         studentRemovalFromInternship: true,
+  │         internshipRegistration: true,
+  │         stageInizio: true,
+  │         endStage: true,
+  │         removalFromStage: true,
+  │         InternshipContacts: true,
+  │         editStageTab: true
+  │       },
+  │       notificationsModule: {
+  │         associationToModule: true,
+  │         removingFromModule: true,
+  │         mediaUpload: true,
+  │         mediaEvalTeacher: true
+  │       },
+  │       notificationsProfile: { changeStudentStatus: tru
+  │ e }
+  │     },
+  │     {
+  │       notificationType: 'popUp',
+  │       notificationsCourse: {
+  │         inscriptionNewCourse: true,
+  │         courseStart: true,
+  │         updatedCourse: true,
+  │         stateCourse: true,
+  │         removingFromCourse: true
+  │       },
+  │       notificationsStage: {
+  │         studentRegistrationInternships: true,
+  │         studentRemovalFromInternship: true,
+  │         internshipRegistration: true,
+  │         stageInizio: true,
+  │         endStage: true,
+  │         removalFromStage: true,
+  │         InternshipContacts: true,
+  │         editStageTab: true
+  │       },
+  │       notificationsModule: {
+  │         associationToModule: true,
+  │         removingFromModule: true,
+  │         mediaUpload: true,
+  │         mediaEvalTeacher: true
+  │       },
+  │       notificationsProfile: { changeStudentStatus: tru
+  │ e }
+  │     }
+  │   ]
+  │ }
+  └
+  ✓  [(GET) /api/v1/teachers?accountState from company  Login Delete (200)
+
+→ settingsNotifications_howEntityType
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/settings/notifications [200 OK, 1.51KB, 89ms]
+  ✓  [(GET) /api/v1/teachers?accountState from company  Login Delete (200)
+  ┌
+  │ {
+  │   notification: [
+  │     {
+  │       notificationType: 'email',
+  │       notificationsCourse: {
+  │         inscriptionNewCourse: true,
+  │         courseStart: true,
+  │         updatedCourse: true,
+  │         stateCourse: true,
+  │         removingFromCourse: true
+  │       },
+  │       notificationsStage: {
+  │         studentRegistrationInternships: true,
+  │         studentRemovalFromInternship: true,
+  │         internshipRegistration: true,
+  │         stageInizio: true,
+  │         endStage: true,
+  │         removalFromStage: true,
+  │         InternshipContacts: true,
+  │         editStageTab: true
+  │       },
+  │       notificationsModule: {
+  │         associationToModule: true,
+  │         removingFromModule: true,
+  │         mediaUpload: true,
+  │         mediaEvalTeacher: true
+  │       },
+  │       notificationsProfile: { changeStudentStatus: tru
+  │ e }
+  │     },
+  │     {
+  │       notificationType: 'popUp',
+  │       notificationsCourse: {
+  │         inscriptionNewCourse: true,
+  │         courseStart: true,
+  │         updatedCourse: true,
+  │         stateCourse: true,
+  │         removingFromCourse: true
+  │       },
+  │       notificationsStage: {
+  │         studentRegistrationInternships: true,
+  │         studentRemovalFromInternship: true,
+  │         internshipRegistration: true,
+  │         stageInizio: true,
+  │         endStage: true,
+  │         removalFromStage: true,
+  │         InternshipContacts: true,
+  │         editStageTab: true
+  │       },
+  │       notificationsModule: {
+  │         associationToModule: true,
+  │         removingFromModule: true,
+  │         mediaUpload: true,
+  │         mediaEvalTeacher: true
+  │       },
+  │       notificationsProfile: { changeStudentStatus: tru
+  │ e }
+  │     }
+  │   ]
+  │ }
+  └
+  ✓  Your test name
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 8ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 8ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_studentWithNotifications_
+  │ Off","templateRun":["loginEntityType_template_01","ent
+  │ ityTypeAccount_init_tempate_02","entityTypeAccount_tem
+  │ pate_03","entityTypeAccount_tempate_05","config_studen
+  │ tWithNotifications_On"],"executed":[false,true,true,tr
+  │ ue,true]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'entityTy
+  │ peAccount_init_tempate_02'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to entityTypeAccount_init_tempate_02
+
+→ entityTypeAccount_init_tempate_02
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/student@bot.com/all [200 OK, 475B, 9ms]
+
+→ countNotifications
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/notifications/count?entityId=20%3A273&markAsRead=false [200 OK, 341B, 16ms]
+  ┌
+  │ 'checkBeforeOfNotifications: ', true
+  └
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 7ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 6ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_studentWithNotifications_
+  │ Off","templateRun":["loginEntityType_template_01","ent
+  │ ityTypeAccount_init_tempate_02","entityTypeAccount_tem
+  │ pate_03","entityTypeAccount_tempate_05","config_studen
+  │ tWithNotifications_On"],"executed":[false,false,true,t
+  │ rue,true]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'entityTy
+  │ peAccount_tempate_03'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to entityTypeAccount_tempate_03
+
+→ entityTypeAccount_tempate_03
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/student@bot.com/all [200 OK, 475B, 19ms]
+
+→ course
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/courses?order=asc&page=1&pageSize=20&sort=name&filter=%7B%22property%22%3A%20%22name%22%2C%22query%22%3A%20%22Functional%20Test for Edutelling Backend5%22%2C%20%22exactMatch%22%3A%20false%7D [200 OK, 442B, 17ms]
+  ┌
+  │ 'DONT EXIST ACCOUNT BOT TEACHER'
+  └
+
+→ next03
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 6ms]
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 4ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 256ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_studentWithNotifications_
+  │ Off","templateRun":["loginEntityType_template_01","ent
+  │ ityTypeAccount_init_tempate_02","entityTypeAccount_tem
+  │ pate_03","entityTypeAccount_tempate_05","config_studen
+  │ tWithNotifications_On"],"executed":[false,false,false,
+  │ true,true]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'entityTy
+  │ peAccount_tempate_05'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to entityTypeAccount_tempate_05
+
+→ entityTypeAccount_tempate_05
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/student@bot.com/all [200 OK, 475B, 17ms]
+
+→ countNotifications
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/notifications/count?entityId=20%3A273&markAsRead=false [200 OK, 341B, 35ms]
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 7ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 7ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_studentWithNotifications_
+  │ Off","templateRun":["loginEntityType_template_01","ent
+  │ ityTypeAccount_init_tempate_02","entityTypeAccount_tem
+  │ pate_03","entityTypeAccount_tempate_05","config_studen
+  │ tWithNotifications_On"],"executed":[false,false,false,
+  │ false,true]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'config_s
+  │ tudentWithNotifications_On'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to config_studentWithNotifications_On
+
+→ config_studentWithNotifications_On
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 10ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 6ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_studentWithNotifications_
+  │ On","templateRun":["loginEntityType_template_01","enti
+  │ tyTypeAccount_init_tempate_02","entityTypeAccount_temp
+  │ ate_03","entityTypeAccount_tempate_05","config_tutorWi
+  │ thNotifications_Off"]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'loginEnt
+  │ ityType_template_01'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to loginEntityType_template_01
+
+→ loginEntityType_template_01
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/authentication [200 OK, 725B, 94ms]
+  ✓  [(POST)/api/v1/auth/authentication] Login Delete (200)
+
+→ login_multi_jwt
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/complete-authentication [404 Not Found, 401B, 10ms]
+  ┌
+  │ 'NEXT'
+  └
+
+→ settings_how_entityType
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/settings/general-options [200 OK, 428B, 16ms]
+  ✓  [(GET) /api/v1/teachers?accountState from company  Login Delete (200)
+  ┌
+  │ 'Response BODY: ', '{"setting":{"accountId":"#12:1278"
+  │ ,"browserLanguage":"it","settingId":"#52:272","info":"
+  │ #51:936"}}'
+  └
+  ✓  Check leguague per default browserLanguage exist 
+
+→ settingsNotifications_howEntityType
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/settings/notifications [200 OK, 1.51KB, 69ms]
+  ┌
+  │ {
+  │   notification: [
+  │     {
+  │       notificationType: 'email',
+  │       notificationsCourse: {
+  │         inscriptionNewCourse: true,
+  │         courseStart: true,
+  │         updatedCourse: true,
+  │         stateCourse: true,
+  │         removingFromCourse: true
+  │       },
+  │       notificationsStage: {
+  │         studentRegistrationInternships: true,
+  │         studentRemovalFromInternship: true,
+  │         internshipRegistration: true,
+  │         stageInizio: true,
+  │         endStage: true,
+  │         removalFromStage: true,
+  │         InternshipContacts: true,
+  │         editStageTab: true
+  │       },
+  │       notificationsModule: {
+  │         associationToModule: true,
+  │         removingFromModule: true,
+  │         mediaUpload: true,
+  │         mediaEvalTeacher: true
+  │       },
+  │       notificationsProfile: { changeStudentStatus: tru
+  │ e }
+  │     },
+  │     {
+  │       notificationType: 'popUp',
+  │       notificationsCourse: {
+  │         inscriptionNewCourse: true,
+  │         courseStart: true,
+  │         updatedCourse: true,
+  │         stateCourse: true,
+  │         removingFromCourse: true
+  │       },
+  │       notificationsStage: {
+  │         studentRegistrationInternships: true,
+  │         studentRemovalFromInternship: true,
+  │         internshipRegistration: true,
+  │         stageInizio: true,
+  │         endStage: true,
+  │         removalFromStage: true,
+  │         InternshipContacts: true,
+  │         editStageTab: true
+  │       },
+  │       notificationsModule: {
+  │         associationToModule: true,
+  │         removingFromModule: true,
+  │         mediaUpload: true,
+  │         mediaEvalTeacher: true
+  │       },
+  │       notificationsProfile: { changeStudentStatus: tru
+  │ e }
+  │     }
+  │   ]
+  │ }
+  └
+  ✓  [(GET) /api/v1/teachers?accountState from company  Login Delete (200)
+
+→ settingsNotifications_howEntityType
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/settings/notifications [200 OK, 1.51KB, 45ms]
+  ✓  [(GET) /api/v1/teachers?accountState from company  Login Delete (200)
+  ┌
+  │ {
+  │   notification: [
+  │     {
+  │       notificationType: 'email',
+  │       notificationsCourse: {
+  │         inscriptionNewCourse: true,
+  │         courseStart: true,
+  │         updatedCourse: true,
+  │         stateCourse: true,
+  │         removingFromCourse: true
+  │       },
+  │       notificationsStage: {
+  │         studentRegistrationInternships: true,
+  │         studentRemovalFromInternship: true,
+  │         internshipRegistration: true,
+  │         stageInizio: true,
+  │         endStage: true,
+  │         removalFromStage: true,
+  │         InternshipContacts: true,
+  │         editStageTab: true
+  │       },
+  │       notificationsModule: {
+  │         associationToModule: true,
+  │         removingFromModule: true,
+  │         mediaUpload: true,
+  │         mediaEvalTeacher: true
+  │       },
+  │       notificationsProfile: { changeStudentStatus: tru
+  │ e }
+  │     },
+  │     {
+  │       notificationType: 'popUp',
+  │       notificationsCourse: {
+  │         inscriptionNewCourse: true,
+  │         courseStart: true,
+  │         updatedCourse: true,
+  │         stateCourse: true,
+  │         removingFromCourse: true
+  │       },
+  │       notificationsStage: {
+  │         studentRegistrationInternships: true,
+  │         studentRemovalFromInternship: true,
+  │         internshipRegistration: true,
+  │         stageInizio: true,
+  │         endStage: true,
+  │         removalFromStage: true,
+  │         InternshipContacts: true,
+  │         editStageTab: true
+  │       },
+  │       notificationsModule: {
+  │         associationToModule: true,
+  │         removingFromModule: true,
+  │         mediaUpload: true,
+  │         mediaEvalTeacher: true
+  │       },
+  │       notificationsProfile: { changeStudentStatus: tru
+  │ e }
+  │     }
+  │   ]
+  │ }
+  └
+  ✓  Your test name
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 8ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 7ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_studentWithNotifications_
+  │ On","templateRun":["loginEntityType_template_01","enti
+  │ tyTypeAccount_init_tempate_02","entityTypeAccount_temp
+  │ ate_03","entityTypeAccount_tempate_05","config_tutorWi
+  │ thNotifications_Off"],"executed":[false,true,true,true
+  │ ,true]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'entityTy
+  │ peAccount_init_tempate_02'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to entityTypeAccount_init_tempate_02
+
+→ entityTypeAccount_init_tempate_02
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/student@bot.com/all [200 OK, 475B, 11ms]
+
+→ countNotifications
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/notifications/count?entityId=20%3A273&markAsRead=false [200 OK, 341B, 36ms]
+  ┌
+  │ 'checkBeforeOfNotifications: ', true
+  └
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 6ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 30ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_studentWithNotifications_
+  │ On","templateRun":["loginEntityType_template_01","enti
+  │ tyTypeAccount_init_tempate_02","entityTypeAccount_temp
+  │ ate_03","entityTypeAccount_tempate_05","config_tutorWi
+  │ thNotifications_Off"],"executed":[false,false,true,tru
+  │ e,true]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'entityTy
+  │ peAccount_tempate_03'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to entityTypeAccount_tempate_03
+
+→ entityTypeAccount_tempate_03
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/student@bot.com/all [200 OK, 475B, 7ms]
+
+→ course
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/courses?order=asc&page=1&pageSize=20&sort=name&filter=%7B%22property%22%3A%20%22name%22%2C%22query%22%3A%20%22Functional%20Test for Edutelling Backend5%22%2C%20%22exactMatch%22%3A%20false%7D [200 OK, 442B, 26ms]
+  ┌
+  │ 'DONT EXIST ACCOUNT BOT TEACHER'
+  └
+
+→ next03
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 4ms]
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 72ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 7ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_studentWithNotifications_
+  │ On","templateRun":["loginEntityType_template_01","enti
+  │ tyTypeAccount_init_tempate_02","entityTypeAccount_temp
+  │ ate_03","entityTypeAccount_tempate_05","config_tutorWi
+  │ thNotifications_Off"],"executed":[false,false,false,tr
+  │ ue,true]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'entityTy
+  │ peAccount_tempate_05'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to entityTypeAccount_tempate_05
+
+→ entityTypeAccount_tempate_05
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/student@bot.com/all [200 OK, 475B, 18ms]
+
+→ countNotifications
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/notifications/count?entityId=20%3A273&markAsRead=false [200 OK, 341B, 40ms]
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 8ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 9ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_studentWithNotifications_
+  │ On","templateRun":["loginEntityType_template_01","enti
+  │ tyTypeAccount_init_tempate_02","entityTypeAccount_temp
+  │ ate_03","entityTypeAccount_tempate_05","config_tutorWi
+  │ thNotifications_Off"],"executed":[false,false,false,fa
+  │ lse,true]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'config_t
+  │ utorWithNotifications_Off'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to config_tutorWithNotifications_Off
+
+→ config_tutorWithNotifications_Off
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 7ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 34ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_tutorWithNotifications_Of
+  │ f","templateRun":["loginEntityType_template_01","entit
+  │ yTypeAccount_init_tempate_02","entityTypeAccount_templ
+  │ ate04","entityTypeAccount_tempate_05","config_tutorWit
+  │ hNotifications_On"]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'loginEnt
+  │ ityType_template_01'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to loginEntityType_template_01
+
+→ loginEntityType_template_01
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/authentication [200 OK, 726B, 72ms]
+  ✓  [(POST)/api/v1/auth/authentication] Login Delete (200)
+
+→ login_multi_jwt
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/complete-authentication [404 Not Found, 401B, 12ms]
+  ┌
+  │ 'NEXT'
+  └
+
+→ settings_how_entityType
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/settings/general-options [200 OK, 428B, 14ms]
+  ✓  [(GET) /api/v1/teachers?accountState from company  Login Delete (200)
+  ┌
+  │ 'Response BODY: ', '{"setting":{"accountId":"#12:1277"
+  │ ,"browserLanguage":"it","settingId":"#52:271","info":"
+  │ #51:935"}}'
+  └
+  ✓  Check leguague per default browserLanguage exist 
+
+→ settingsNotifications_howEntityType
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/settings/notifications [200 OK, 1.39KB, 64ms]
+  ┌
+  │ {
+  │   notification: [
+  │     {
+  │       notificationType: 'email',
+  │       notificationsCourse: {
+  │         courseStart: true,
+  │         updatedCourse: true,
+  │         stateCourse: true,
+  │         removingFromCourse: true,
+  │         companyAssociatedCourse: true,
+  │         companyRemovalCourse: true,
+  │         newCourseRegistration: true
+  │       },
+  │       notificationsStage: {
+  │         studentRegistrationInternships: true,
+  │         studentRemovalFromInternship: true,
+  │         internshipRegistration: true,
+  │         stageInizio: true,
+  │         endStage: true,
+  │         InternshipContacts: true,
+  │         editStageTab: true
+  │       },
+  │       notificationsModule: {
+  │         associationToModule: true,
+  │         removingFromModule: true
+  │       }
+  │     },
+  │     {
+  │       notificationType: 'popUp',
+  │       notificationsCourse: {
+  │         courseStart: true,
+  │         updatedCourse: true,
+  │         stateCourse: true,
+  │         removingFromCourse: true,
+  │         companyAssociatedCourse: true,
+  │         companyRemovalCourse: true,
+  │         newCourseRegistration: true
+  │       },
+  │       notificationsStage: {
+  │         studentRegistrationInternships: true,
+  │         studentRemovalFromInternship: true,
+  │         internshipRegistration: true,
+  │         stageInizio: true,
+  │         endStage: true,
+  │         InternshipContacts: true,
+  │         editStageTab: true
+  │       },
+  │       notificationsModule: {
+  │         associationToModule: true,
+  │         removingFromModule: true
+  │       }
+  │     }
+  │   ]
+  │ }
+  └
+  ✓  [(GET) /api/v1/teachers?accountState from company  Login Delete (200)
+
+→ settingsNotifications_howEntityType
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/settings/notifications [200 OK, 1.39KB, 73ms]
+  ✓  [(GET) /api/v1/teachers?accountState from company  Login Delete (200)
+  ┌
+  │ {
+  │   notification: [
+  │     {
+  │       notificationType: 'email',
+  │       notificationsCourse: {
+  │         courseStart: true,
+  │         updatedCourse: true,
+  │         stateCourse: true,
+  │         removingFromCourse: true,
+  │         companyAssociatedCourse: true,
+  │         companyRemovalCourse: true,
+  │         newCourseRegistration: true
+  │       },
+  │       notificationsStage: {
+  │         studentRegistrationInternships: true,
+  │         studentRemovalFromInternship: true,
+  │         internshipRegistration: true,
+  │         stageInizio: true,
+  │         endStage: true,
+  │         InternshipContacts: true,
+  │         editStageTab: true
+  │       },
+  │       notificationsModule: {
+  │         associationToModule: true,
+  │         removingFromModule: true
+  │       }
+  │     },
+  │     {
+  │       notificationType: 'popUp',
+  │       notificationsCourse: {
+  │         courseStart: true,
+  │         updatedCourse: true,
+  │         stateCourse: true,
+  │         removingFromCourse: true,
+  │         companyAssociatedCourse: true,
+  │         companyRemovalCourse: true,
+  │         newCourseRegistration: true
+  │       },
+  │       notificationsStage: {
+  │         studentRegistrationInternships: true,
+  │         studentRemovalFromInternship: true,
+  │         internshipRegistration: true,
+  │         stageInizio: true,
+  │         endStage: true,
+  │         InternshipContacts: true,
+  │         editStageTab: true
+  │       },
+  │       notificationsModule: {
+  │         associationToModule: true,
+  │         removingFromModule: true
+  │       }
+  │     }
+  │   ]
+  │ }
+  └
+  ✓  Your test name
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 250B, 11ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 86ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_tutorWithNotifications_Of
+  │ f","templateRun":["loginEntityType_template_01","entit
+  │ yTypeAccount_init_tempate_02","entityTypeAccount_templ
+  │ ate04","entityTypeAccount_tempate_05","config_tutorWit
+  │ hNotifications_On"],"executed":[false,true,true,true,t
+  │ rue]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'entityTy
+  │ peAccount_init_tempate_02'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to entityTypeAccount_init_tempate_02
+
+→ entityTypeAccount_init_tempate_02
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/bot_tutor5@tutor.com/all [200 OK, 478B, 19ms]
+
+→ countNotifications
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/notifications/count?entityId=17%3A384&markAsRead=false [200 OK, 341B, 39ms]
+  ┌
+  │ 'checkBeforeOfNotifications: ', true
+  └
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 8ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 7ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_tutorWithNotifications_Of
+  │ f","templateRun":["loginEntityType_template_01","entit
+  │ yTypeAccount_init_tempate_02","entityTypeAccount_templ
+  │ ate04","entityTypeAccount_tempate_05","config_tutorWit
+  │ hNotifications_On"],"executed":[false,false,true,true,
+  │ true]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'entityTy
+  │ peAccount_template04'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to entityTypeAccount_template04
+
+→ entityTypeAccount_template04
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/bot_tutor5@tutor.com/all [200 OK, 478B, 7ms]
+
+→ course
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/courses?order=asc&page=1&pageSize=20&sort=name&filter=%7B%22property%22%3A%20%22name%22%2C%22query%22%3A%20%22Functional%20Test for Edutelling Backend5%22%2C%20%22exactMatch%22%3A%20false%7D [200 OK, 442B, 24ms]
+  ┌
+  │ 'DONT EXIST ACCOUNT BOT TEACHER'
+  └
+
+→ next04
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 8ms]
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 9ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 3ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_tutorWithNotifications_Of
+  │ f","templateRun":["loginEntityType_template_01","entit
+  │ yTypeAccount_init_tempate_02","entityTypeAccount_templ
+  │ ate04","entityTypeAccount_tempate_05","config_tutorWit
+  │ hNotifications_On"],"executed":[false,false,false,true
+  │ ,true]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'entityTy
+  │ peAccount_tempate_05'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to entityTypeAccount_tempate_05
+
+→ entityTypeAccount_tempate_05
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/bot_tutor5@tutor.com/all [200 OK, 478B, 17ms]
+
+→ countNotifications
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/notifications/count?entityId=17%3A384&markAsRead=false [200 OK, 341B, 38ms]
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 11ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 7ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_tutorWithNotifications_Of
+  │ f","templateRun":["loginEntityType_template_01","entit
+  │ yTypeAccount_init_tempate_02","entityTypeAccount_templ
+  │ ate04","entityTypeAccount_tempate_05","config_tutorWit
+  │ hNotifications_On"],"executed":[false,false,false,fals
+  │ e,true]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'config_t
+  │ utorWithNotifications_On'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to config_tutorWithNotifications_On
+
+→ config_tutorWithNotifications_On
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 69ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 7ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_studentWithNotifications_
+  │ On","templateRun":["loginEntityType_template_01","enti
+  │ tyTypeAccount_init_tempate_02","entityTypeAccount_temp
+  │ late04","entityTypeAccount_tempate_05","config_teacher
+  │ WithNotifications_Off"]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'loginEnt
+  │ ityType_template_01'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to loginEntityType_template_01
+
+→ loginEntityType_template_01
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/authentication [200 OK, 726B, 98ms]
+  ✓  [(POST)/api/v1/auth/authentication] Login Delete (200)
+
+→ login_multi_jwt
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/complete-authentication [404 Not Found, 401B, 15ms]
+  ┌
+  │ 'NEXT'
+  └
+
+→ settings_how_entityType
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/settings/general-options [200 OK, 428B, 22ms]
+  ✓  [(GET) /api/v1/teachers?accountState from company  Login Delete (200)
+  ┌
+  │ 'Response BODY: ', '{"setting":{"accountId":"#12:1277"
+  │ ,"browserLanguage":"it","settingId":"#52:271","info":"
+  │ #51:935"}}'
+  └
+  ✓  Check leguague per default browserLanguage exist 
+
+→ settingsNotifications_howEntityType
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/settings/notifications [200 OK, 1.39KB, 73ms]
+  ┌
+  │ {
+  │   notification: [
+  │     {
+  │       notificationType: 'email',
+  │       notificationsCourse: {
+  │         courseStart: true,
+  │         updatedCourse: true,
+  │         stateCourse: true,
+  │         removingFromCourse: true,
+  │         companyAssociatedCourse: true,
+  │         companyRemovalCourse: true,
+  │         newCourseRegistration: true
+  │       },
+  │       notificationsStage: {
+  │         studentRegistrationInternships: true,
+  │         studentRemovalFromInternship: true,
+  │         internshipRegistration: true,
+  │         stageInizio: true,
+  │         endStage: true,
+  │         InternshipContacts: true,
+  │         editStageTab: true
+  │       },
+  │       notificationsModule: {
+  │         associationToModule: true,
+  │         removingFromModule: true
+  │       }
+  │     },
+  │     {
+  │       notificationType: 'popUp',
+  │       notificationsCourse: {
+  │         courseStart: true,
+  │         updatedCourse: true,
+  │         stateCourse: true,
+  │         removingFromCourse: true,
+  │         companyAssociatedCourse: true,
+  │         companyRemovalCourse: true,
+  │         newCourseRegistration: true
+  │       },
+  │       notificationsStage: {
+  │         studentRegistrationInternships: true,
+  │         studentRemovalFromInternship: true,
+  │         internshipRegistration: true,
+  │         stageInizio: true,
+  │         endStage: true,
+  │         InternshipContacts: true,
+  │         editStageTab: true
+  │       },
+  │       notificationsModule: {
+  │         associationToModule: true,
+  │         removingFromModule: true
+  │       }
+  │     }
+  │   ]
+  │ }
+  └
+  ✓  [(GET) /api/v1/teachers?accountState from company  Login Delete (200)
+
+→ settingsNotifications_howEntityType
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/settings/notifications [200 OK, 1.39KB, 31ms]
+  ✓  [(GET) /api/v1/teachers?accountState from company  Login Delete (200)
+  ┌
+  │ {
+  │   notification: [
+  │     {
+  │       notificationType: 'email',
+  │       notificationsCourse: {
+  │         courseStart: true,
+  │         updatedCourse: true,
+  │         stateCourse: true,
+  │         removingFromCourse: true,
+  │         companyAssociatedCourse: true,
+  │         companyRemovalCourse: true,
+  │         newCourseRegistration: true
+  │       },
+  │       notificationsStage: {
+  │         studentRegistrationInternships: true,
+  │         studentRemovalFromInternship: true,
+  │         internshipRegistration: true,
+  │         stageInizio: true,
+  │         endStage: true,
+  │         InternshipContacts: true,
+  │         editStageTab: true
+  │       },
+  │       notificationsModule: {
+  │         associationToModule: true,
+  │         removingFromModule: true
+  │       }
+  │     },
+  │     {
+  │       notificationType: 'popUp',
+  │       notificationsCourse: {
+  │         courseStart: true,
+  │         updatedCourse: true,
+  │         stateCourse: true,
+  │         removingFromCourse: true,
+  │         companyAssociatedCourse: true,
+  │         companyRemovalCourse: true,
+  │         newCourseRegistration: true
+  │       },
+  │       notificationsStage: {
+  │         studentRegistrationInternships: true,
+  │         studentRemovalFromInternship: true,
+  │         internshipRegistration: true,
+  │         stageInizio: true,
+  │         endStage: true,
+  │         InternshipContacts: true,
+  │         editStageTab: true
+  │       },
+  │       notificationsModule: {
+  │         associationToModule: true,
+  │         removingFromModule: true
+  │       }
+  │     }
+  │   ]
+  │ }
+  └
+  ✓  Your test name
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 6ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 5ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_studentWithNotifications_
+  │ On","templateRun":["loginEntityType_template_01","enti
+  │ tyTypeAccount_init_tempate_02","entityTypeAccount_temp
+  │ late04","entityTypeAccount_tempate_05","config_teacher
+  │ WithNotifications_Off"],"executed":[false,true,true,tr
+  │ ue,true]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'entityTy
+  │ peAccount_init_tempate_02'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to entityTypeAccount_init_tempate_02
+
+→ entityTypeAccount_init_tempate_02
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/bot_tutor5@tutor.com/all [200 OK, 478B, 21ms]
+
+→ countNotifications
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/notifications/count?entityId=17%3A384&markAsRead=false [200 OK, 341B, 30ms]
+  ┌
+  │ 'checkBeforeOfNotifications: ', true
+  └
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 7ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 6ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_studentWithNotifications_
+  │ On","templateRun":["loginEntityType_template_01","enti
+  │ tyTypeAccount_init_tempate_02","entityTypeAccount_temp
+  │ late04","entityTypeAccount_tempate_05","config_teacher
+  │ WithNotifications_Off"],"executed":[false,false,true,t
+  │ rue,true]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'entityTy
+  │ peAccount_template04'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to entityTypeAccount_template04
+
+→ entityTypeAccount_template04
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/bot_tutor5@tutor.com/all [200 OK, 478B, 7ms]
+
+→ course
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/courses?order=asc&page=1&pageSize=20&sort=name&filter=%7B%22property%22%3A%20%22name%22%2C%22query%22%3A%20%22Functional%20Test for Edutelling Backend5%22%2C%20%22exactMatch%22%3A%20false%7D [200 OK, 442B, 9ms]
+  ┌
+  │ 'DONT EXIST ACCOUNT BOT TEACHER'
+  └
+
+→ next04
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 10ms]
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 7ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 4ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_studentWithNotifications_
+  │ On","templateRun":["loginEntityType_template_01","enti
+  │ tyTypeAccount_init_tempate_02","entityTypeAccount_temp
+  │ late04","entityTypeAccount_tempate_05","config_teacher
+  │ WithNotifications_Off"],"executed":[false,false,false,
+  │ true,true]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'entityTy
+  │ peAccount_tempate_05'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to entityTypeAccount_tempate_05
+
+→ entityTypeAccount_tempate_05
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/bot_tutor5@tutor.com/all [200 OK, 478B, 7ms]
+
+→ countNotifications
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/notifications/count?entityId=17%3A384&markAsRead=false [200 OK, 341B, 33ms]
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 9ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 141ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_studentWithNotifications_
+  │ On","templateRun":["loginEntityType_template_01","enti
+  │ tyTypeAccount_init_tempate_02","entityTypeAccount_temp
+  │ late04","entityTypeAccount_tempate_05","config_teacher
+  │ WithNotifications_Off"],"executed":[false,false,false,
+  │ false,true]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'config_t
+  │ eacherWithNotifications_Off'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to config_teacherWithNotifications_Off
+
+→ config_teacherWithNotifications_Off
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 8ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 7ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_teacherWithNotifications_
+  │ Off","templateRun":["loginEntityType_template_01","ent
+  │ ityTypeAccount_init_tempate_02","entityTypeAccount_tem
+  │ plate04module","entityTypeAccount_tempate_05","config_
+  │ teacherWithNotifications_On"]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'loginEnt
+  │ ityType_template_01'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to loginEntityType_template_01
+
+→ loginEntityType_template_01
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/authentication [200 OK, 725B, 71ms]
+  ✓  [(POST)/api/v1/auth/authentication] Login Delete (200)
+
+→ login_multi_jwt
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/complete-authentication [404 Not Found, 401B, 21ms]
+  ┌
+  │ 'NEXT'
+  └
+
+→ settings_how_entityType
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/settings/general-options [200 OK, 428B, 20ms]
+  ✓  [(GET) /api/v1/teachers?accountState from company  Login Delete (200)
+  ┌
+  │ 'Response BODY: ', '{"setting":{"accountId":"#12:1279"
+  │ ,"browserLanguage":"it","settingId":"#52:273","info":"
+  │ #51:937"}}'
+  └
+  ✓  Check leguague per default browserLanguage exist 
+
+→ settingsNotifications_howEntityType
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/settings/notifications [200 OK, 573B, 63ms]
+  ┌
+  │ {
+  │   notification: [
+  │     {
+  │       notificationType: 'email',
+  │       notificationsCourse: {
+  │         courseStart: true,
+  │         updatedCourse: true,
+  │         stateCourse: true
+  │       }
+  │     },
+  │     {
+  │       notificationType: 'popUp',
+  │       notificationsCourse: {
+  │         courseStart: true,
+  │         updatedCourse: true,
+  │         stateCourse: true
+  │       }
+  │     }
+  │   ]
+  │ }
+  └
+  ✓  [(GET) /api/v1/teachers?accountState from company  Login Delete (200)
+
+→ settingsNotifications_howEntityType
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/settings/notifications [200 OK, 573B, 71ms]
+  ✓  [(GET) /api/v1/teachers?accountState from company  Login Delete (200)
+  ┌
+  │ {
+  │   notification: [
+  │     {
+  │       notificationType: 'email',
+  │       notificationsCourse: {
+  │         courseStart: true,
+  │         updatedCourse: true,
+  │         stateCourse: true
+  │       }
+  │     },
+  │     {
+  │       notificationType: 'popUp',
+  │       notificationsCourse: {
+  │         courseStart: true,
+  │         updatedCourse: true,
+  │         stateCourse: true
+  │       }
+  │     }
+  │   ]
+  │ }
+  └
+  ✓  Your test name
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 7ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 6ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_teacherWithNotifications_
+  │ Off","templateRun":["loginEntityType_template_01","ent
+  │ ityTypeAccount_init_tempate_02","entityTypeAccount_tem
+  │ plate04module","entityTypeAccount_tempate_05","config_
+  │ teacherWithNotifications_On"],"executed":[false,true,t
+  │ rue,true,true]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'entityTy
+  │ peAccount_init_tempate_02'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to entityTypeAccount_init_tempate_02
+
+→ entityTypeAccount_init_tempate_02
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/teacher@bot.com/all [200 OK, 475B, 17ms]
+
+→ countNotifications
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/notifications/count?entityId=18%3A249&markAsRead=false [200 OK, 341B, 19ms]
+  ┌
+  │ 'checkBeforeOfNotifications: ', true
+  └
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 11ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 6ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_teacherWithNotifications_
+  │ Off","templateRun":["loginEntityType_template_01","ent
+  │ ityTypeAccount_init_tempate_02","entityTypeAccount_tem
+  │ plate04module","entityTypeAccount_tempate_05","config_
+  │ teacherWithNotifications_On"],"executed":[false,false,
+  │ true,true,true]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'entityTy
+  │ peAccount_template04module'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to entityTypeAccount_template04module
+
+→ entityTypeAccount_template04module
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/teacher@bot.com/all [200 OK, 475B, 22ms]
+
+→ next04
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 7ms]
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 7ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 36ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_teacherWithNotifications_
+  │ Off","templateRun":["loginEntityType_template_01","ent
+  │ ityTypeAccount_init_tempate_02","entityTypeAccount_tem
+  │ plate04module","entityTypeAccount_tempate_05","config_
+  │ teacherWithNotifications_On"],"executed":[false,false,
+  │ false,true,true]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'entityTy
+  │ peAccount_tempate_05'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to entityTypeAccount_tempate_05
+
+→ entityTypeAccount_tempate_05
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/teacher@bot.com/all [200 OK, 475B, 12ms]
+
+→ countNotifications
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/notifications/count?entityId=18%3A249&markAsRead=false [200 OK, 341B, 21ms]
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 8ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 64ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_teacherWithNotifications_
+  │ Off","templateRun":["loginEntityType_template_01","ent
+  │ ityTypeAccount_init_tempate_02","entityTypeAccount_tem
+  │ plate04module","entityTypeAccount_tempate_05","config_
+  │ teacherWithNotifications_On"],"executed":[false,false,
+  │ false,false,true]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'config_t
+  │ eacherWithNotifications_On'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to config_teacherWithNotifications_On
+
+→ config_teacherWithNotifications_On
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 71ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 80ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_teacherWithNotifications_
+  │ On","templateRun":["loginEntityType_template_01","enti
+  │ tyTypeAccount_init_tempate_02","entityTypeAccount_temp
+  │ late04module","entityTypeAccount_tempate_05","config_a
+  │ mbassadorWithNotifications_Off"]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'loginEnt
+  │ ityType_template_01'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to loginEntityType_template_01
+
+→ loginEntityType_template_01
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/authentication [200 OK, 725B, 94ms]
+  ✓  [(POST)/api/v1/auth/authentication] Login Delete (200)
+
+→ login_multi_jwt
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/complete-authentication [404 Not Found, 401B, 17ms]
+  ┌
+  │ 'NEXT'
+  └
+
+→ settings_how_entityType
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/settings/general-options [200 OK, 428B, 11ms]
+  ✓  [(GET) /api/v1/teachers?accountState from company  Login Delete (200)
+  ┌
+  │ 'Response BODY: ', '{"setting":{"accountId":"#12:1279"
+  │ ,"browserLanguage":"it","settingId":"#52:273","info":"
+  │ #51:937"}}'
+  └
+  ✓  Check leguague per default browserLanguage exist 
+
+→ settingsNotifications_howEntityType
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/settings/notifications [200 OK, 573B, 74ms]
+  ┌
+  │ {
+  │   notification: [
+  │     {
+  │       notificationType: 'email',
+  │       notificationsCourse: {
+  │         courseStart: true,
+  │         updatedCourse: true,
+  │         stateCourse: true
+  │       }
+  │     },
+  │     {
+  │       notificationType: 'popUp',
+  │       notificationsCourse: {
+  │         courseStart: true,
+  │         updatedCourse: true,
+  │         stateCourse: true
+  │       }
+  │     }
+  │   ]
+  │ }
+  └
+  ✓  [(GET) /api/v1/teachers?accountState from company  Login Delete (200)
+
+→ settingsNotifications_howEntityType
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/settings/notifications [200 OK, 573B, 44ms]
+  ✓  [(GET) /api/v1/teachers?accountState from company  Login Delete (200)
+  ┌
+  │ {
+  │   notification: [
+  │     {
+  │       notificationType: 'email',
+  │       notificationsCourse: {
+  │         courseStart: true,
+  │         updatedCourse: true,
+  │         stateCourse: true
+  │       }
+  │     },
+  │     {
+  │       notificationType: 'popUp',
+  │       notificationsCourse: {
+  │         courseStart: true,
+  │         updatedCourse: true,
+  │         stateCourse: true
+  │       }
+  │     }
+  │   ]
+  │ }
+  └
+  ✓  Your test name
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 5ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 10ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_teacherWithNotifications_
+  │ On","templateRun":["loginEntityType_template_01","enti
+  │ tyTypeAccount_init_tempate_02","entityTypeAccount_temp
+  │ late04module","entityTypeAccount_tempate_05","config_a
+  │ mbassadorWithNotifications_Off"],"executed":[false,tru
+  │ e,true,true,true]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'entityTy
+  │ peAccount_init_tempate_02'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to entityTypeAccount_init_tempate_02
+
+→ entityTypeAccount_init_tempate_02
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/teacher@bot.com/all [200 OK, 475B, 15ms]
+
+→ countNotifications
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/notifications/count?entityId=18%3A249&markAsRead=false [200 OK, 341B, 14ms]
+  ┌
+  │ 'checkBeforeOfNotifications: ', true
+  └
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 4ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 178ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_teacherWithNotifications_
+  │ On","templateRun":["loginEntityType_template_01","enti
+  │ tyTypeAccount_init_tempate_02","entityTypeAccount_temp
+  │ late04module","entityTypeAccount_tempate_05","config_a
+  │ mbassadorWithNotifications_Off"],"executed":[false,fal
+  │ se,true,true,true]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'entityTy
+  │ peAccount_template04module'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to entityTypeAccount_template04module
+
+→ entityTypeAccount_template04module
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/teacher@bot.com/all [200 OK, 475B, 8ms]
+
+→ next04
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 8ms]
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 23ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 71ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_teacherWithNotifications_
+  │ On","templateRun":["loginEntityType_template_01","enti
+  │ tyTypeAccount_init_tempate_02","entityTypeAccount_temp
+  │ late04module","entityTypeAccount_tempate_05","config_a
+  │ mbassadorWithNotifications_Off"],"executed":[false,fal
+  │ se,false,true,true]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'entityTy
+  │ peAccount_tempate_05'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to entityTypeAccount_tempate_05
+
+→ entityTypeAccount_tempate_05
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/teacher@bot.com/all [200 OK, 475B, 16ms]
+
+→ countNotifications
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/notifications/count?entityId=18%3A249&markAsRead=false [200 OK, 341B, 37ms]
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 7ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 3ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_teacherWithNotifications_
+  │ On","templateRun":["loginEntityType_template_01","enti
+  │ tyTypeAccount_init_tempate_02","entityTypeAccount_temp
+  │ late04module","entityTypeAccount_tempate_05","config_a
+  │ mbassadorWithNotifications_Off"],"executed":[false,fal
+  │ se,false,false,true]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'config_a
+  │ mbassadorWithNotifications_Off'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to config_ambassadorWithNotifications_Off
+
+→ config_ambassadorWithNotifications_Off
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 25ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 82ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_ambassadorWithNotificatio
+  │ ns_Off","templateRun":["loginEntityType_template_01","
+  │ entityTypeAccount_init_tempate_02","entityTypeAccount_
+  │ template04module","entityTypeAccount_tempate_05","conf
+  │ ig_ambassadorWithNotifications_On"]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'loginEnt
+  │ ityType_template_01'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to loginEntityType_template_01
+
+→ loginEntityType_template_01
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/authentication [200 OK, 737B, 94ms]
+  ✓  [(POST)/api/v1/auth/authentication] Login Delete (200)
+
+→ login_multi_jwt
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/complete-authentication [404 Not Found, 401B, 16ms]
+  ┌
+  │ 'NEXT'
+  └
+
+→ settings_how_entityType
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/settings/general-options [200 OK, 428B, 19ms]
+  ✓  [(GET) /api/v1/teachers?accountState from company  Login Delete (200)
+  ┌
+  │ 'Response BODY: ', '{"setting":{"accountId":"#12:1280"
+  │ ,"browserLanguage":"it","settingId":"#52:274","info":"
+  │ #51:938"}}'
+  └
+  ✓  Check leguague per default browserLanguage exist 
+
+→ settingsNotifications_howEntityType
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/settings/notifications [200 OK, 573B, 64ms]
+  ┌
+  │ {
+  │   notification: [
+  │     {
+  │       notificationType: 'email',
+  │       notificationsCourse: {
+  │         courseStart: true,
+  │         updatedCourse: true,
+  │         stateCourse: true
+  │       }
+  │     },
+  │     {
+  │       notificationType: 'popUp',
+  │       notificationsCourse: {
+  │         courseStart: true,
+  │         updatedCourse: true,
+  │         stateCourse: true
+  │       }
+  │     }
+  │   ]
+  │ }
+  └
+  ✓  [(GET) /api/v1/teachers?accountState from company  Login Delete (200)
+
+→ settingsNotifications_howEntityType
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/settings/notifications [200 OK, 573B, 60ms]
+  ✓  [(GET) /api/v1/teachers?accountState from company  Login Delete (200)
+  ┌
+  │ {
+  │   notification: [
+  │     {
+  │       notificationType: 'email',
+  │       notificationsCourse: {
+  │         courseStart: true,
+  │         updatedCourse: true,
+  │         stateCourse: true
+  │       }
+  │     },
+  │     {
+  │       notificationType: 'popUp',
+  │       notificationsCourse: {
+  │         courseStart: true,
+  │         updatedCourse: true,
+  │         stateCourse: true
+  │       }
+  │     }
+  │   ]
+  │ }
+  └
+  ✓  Your test name
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 6ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 7ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_ambassadorWithNotificatio
+  │ ns_Off","templateRun":["loginEntityType_template_01","
+  │ entityTypeAccount_init_tempate_02","entityTypeAccount_
+  │ template04module","entityTypeAccount_tempate_05","conf
+  │ ig_ambassadorWithNotifications_On"],"executed":[false,
+  │ true,true,true,true]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'entityTy
+  │ peAccount_init_tempate_02'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to entityTypeAccount_init_tempate_02
+
+→ entityTypeAccount_init_tempate_02
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/ambassador@bot.com/all [200 OK, 481B, 18ms]
+
+→ countNotifications
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/notifications/count?entityId=19%3A232&markAsRead=false [200 OK, 341B, 29ms]
+  ┌
+  │ 'checkBeforeOfNotifications: ', true
+  └
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 6ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 44ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_ambassadorWithNotificatio
+  │ ns_Off","templateRun":["loginEntityType_template_01","
+  │ entityTypeAccount_init_tempate_02","entityTypeAccount_
+  │ template04module","entityTypeAccount_tempate_05","conf
+  │ ig_ambassadorWithNotifications_On"],"executed":[false,
+  │ false,true,true,true]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'entityTy
+  │ peAccount_template04module'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to entityTypeAccount_template04module
+
+→ entityTypeAccount_template04module
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/ambassador@bot.com/all [200 OK, 481B, 9ms]
+
+→ next04
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 6ms]
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 20ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 78ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_ambassadorWithNotificatio
+  │ ns_Off","templateRun":["loginEntityType_template_01","
+  │ entityTypeAccount_init_tempate_02","entityTypeAccount_
+  │ template04module","entityTypeAccount_tempate_05","conf
+  │ ig_ambassadorWithNotifications_On"],"executed":[false,
+  │ false,false,true,true]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'entityTy
+  │ peAccount_tempate_05'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to entityTypeAccount_tempate_05
+
+→ entityTypeAccount_tempate_05
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/ambassador@bot.com/all [200 OK, 481B, 18ms]
+
+→ countNotifications
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/notifications/count?entityId=19%3A232&markAsRead=false [200 OK, 341B, 19ms]
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 3ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 68ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_ambassadorWithNotificatio
+  │ ns_Off","templateRun":["loginEntityType_template_01","
+  │ entityTypeAccount_init_tempate_02","entityTypeAccount_
+  │ template04module","entityTypeAccount_tempate_05","conf
+  │ ig_ambassadorWithNotifications_On"],"executed":[false,
+  │ false,false,false,true]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'config_a
+  │ mbassadorWithNotifications_On'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to config_ambassadorWithNotifications_On
+
+→ config_ambassadorWithNotifications_On
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 250B, 75ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 10ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_ambassadorWithNotificatio
+  │ ns_On","templateRun":["loginEntityType_template_01","e
+  │ ntityTypeAccount_init_tempate_02","entityTypeAccount_t
+  │ emplate04module","entityTypeAccount_tempate_05","stop_
+  │ 05_createCourseModuleAndStage"]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'loginEnt
+  │ ityType_template_01'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to loginEntityType_template_01
+
+→ loginEntityType_template_01
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/authentication [200 OK, 737B, 94ms]
+  ✓  [(POST)/api/v1/auth/authentication] Login Delete (200)
+
+→ login_multi_jwt
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/complete-authentication [404 Not Found, 401B, 17ms]
+  ┌
+  │ 'NEXT'
+  └
+
+→ settings_how_entityType
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/settings/general-options [200 OK, 428B, 19ms]
+  ✓  [(GET) /api/v1/teachers?accountState from company  Login Delete (200)
+  ┌
+  │ 'Response BODY: ', '{"setting":{"accountId":"#12:1280"
+  │ ,"browserLanguage":"it","settingId":"#52:274","info":"
+  │ #51:938"}}'
+  └
+  ✓  Check leguague per default browserLanguage exist 
+
+→ settingsNotifications_howEntityType
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/settings/notifications [200 OK, 573B, 70ms]
+  ┌
+  │ {
+  │   notification: [
+  │     {
+  │       notificationType: 'email',
+  │       notificationsCourse: {
+  │         courseStart: true,
+  │         updatedCourse: true,
+  │         stateCourse: true
+  │       }
+  │     },
+  │     {
+  │       notificationType: 'popUp',
+  │       notificationsCourse: {
+  │         courseStart: true,
+  │         updatedCourse: true,
+  │         stateCourse: true
+  │       }
+  │     }
+  │   ]
+  │ }
+  └
+  ✓  [(GET) /api/v1/teachers?accountState from company  Login Delete (200)
+
+→ settingsNotifications_howEntityType
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/settings/notifications [200 OK, 573B, 72ms]
+  ✓  [(GET) /api/v1/teachers?accountState from company  Login Delete (200)
+  ┌
+  │ {
+  │   notification: [
+  │     {
+  │       notificationType: 'email',
+  │       notificationsCourse: {
+  │         courseStart: true,
+  │         updatedCourse: true,
+  │         stateCourse: true
+  │       }
+  │     },
+  │     {
+  │       notificationType: 'popUp',
+  │       notificationsCourse: {
+  │         courseStart: true,
+  │         updatedCourse: true,
+  │         stateCourse: true
+  │       }
+  │     }
+  │   ]
+  │ }
+  └
+  ✓  Your test name
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 48ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 3ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_ambassadorWithNotificatio
+  │ ns_On","templateRun":["loginEntityType_template_01","e
+  │ ntityTypeAccount_init_tempate_02","entityTypeAccount_t
+  │ emplate04module","entityTypeAccount_tempate_05","stop_
+  │ 05_createCourseModuleAndStage"],"executed":[false,true
+  │ ,true,true,true]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'entityTy
+  │ peAccount_init_tempate_02'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to entityTypeAccount_init_tempate_02
+
+→ entityTypeAccount_init_tempate_02
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/ambassador@bot.com/all [200 OK, 481B, 7ms]
+
+→ countNotifications
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/notifications/count?entityId=19%3A232&markAsRead=false [200 OK, 341B, 15ms]
+  ┌
+  │ 'checkBeforeOfNotifications: ', true
+  └
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 12ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 168ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_ambassadorWithNotificatio
+  │ ns_On","templateRun":["loginEntityType_template_01","e
+  │ ntityTypeAccount_init_tempate_02","entityTypeAccount_t
+  │ emplate04module","entityTypeAccount_tempate_05","stop_
+  │ 05_createCourseModuleAndStage"],"executed":[false,fals
+  │ e,true,true,true]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'entityTy
+  │ peAccount_template04module'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to entityTypeAccount_template04module
+
+→ entityTypeAccount_template04module
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/ambassador@bot.com/all [200 OK, 481B, 7ms]
+
+→ next04
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 8ms]
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 21ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 7ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_ambassadorWithNotificatio
+  │ ns_On","templateRun":["loginEntityType_template_01","e
+  │ ntityTypeAccount_init_tempate_02","entityTypeAccount_t
+  │ emplate04module","entityTypeAccount_tempate_05","stop_
+  │ 05_createCourseModuleAndStage"],"executed":[false,fals
+  │ e,false,true,true]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'entityTy
+  │ peAccount_tempate_05'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to entityTypeAccount_tempate_05
+
+→ entityTypeAccount_tempate_05
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/ambassador@bot.com/all [200 OK, 481B, 7ms]
+
+→ countNotifications
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/notifications/count?entityId=19%3A232&markAsRead=false [200 OK, 341B, 37ms]
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 3ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte
+
+→ controlOfWorkFlowTempalte
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 41ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ 
+  │ '{"nameOfConfigFile":"config_ambassadorWithNotificatio
+  │ ns_On","templateRun":["loginEntityType_template_01","e
+  │ ntityTypeAccount_init_tempate_02","entityTypeAccount_t
+  │ emplate04module","entityTypeAccount_tempate_05","stop_
+  │ 05_createCourseModuleAndStage"],"executed":[false,fals
+  │ e,false,false,true]}'
+  │ 
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'stop_05_
+  │ createCourseModuleAndStage'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to stop_05_createCourseModuleAndStage
+
+→ stop_05_createCourseModuleAndStage
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 69ms]
+
+→ initTemplate_06
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 4ms]
+
+Attempting to set next request to initConfig_06
+
+→ initConfig_06
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 7ms]
+
+→ config_multiAccount_tutorHowTeacher
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 6ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte_06
+
+→ controlOfWorkFlowTempalte_06
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 3ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ '{"nameOfConfigFile":"config_multiAccount_tutorHowTeac
+  │ her","templateRun":["01_entityTypeAccountService_getAl
+  │ l_06","config_multiAccount_tutorHowAmbassador"]}'
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', '01_entit
+  │ yTypeAccountService_getAll_06'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to 01_entityTypeAccountService_getAll_06
+
+→ 01_entityTypeAccountService_getAll_06
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/bot_tutor5@tutor.com/all [200 OK, 478B, 14ms]
+  ┌
+  │ 'entityTypeUppperCase: ', 'Tutor'
+  │ '17%3A384'
+  └
+
+→ 02_reamoveAccount_06
+  DELETE https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/remove?dataId={{deleteAccountId}} [200 OK, 379B, 57ms]
+
+→ 04_login_no2_v3
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/authentication [200 OK, 726B, 94ms]
+  ✓  [(POST)/api/v1/auth/authentication] Login Delete (200)
+
+→ 05_login_switch_how_account
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/complete-authentication [404 Not Found, 401B, 8ms]
+  2. [(POST)/api/v1/auth/authentication] Login Delete (200)
+
+→ 01_entityTypeAccountService_getAll
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/bot_tutor5@tutor.com/all [200 OK, 478B, 16ms]
+
+→ 02_reamoveAccount
+  DELETE https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/remove?dataId={{deleteAccountId}} [200 OK, 379B, 27ms]
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 7ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte_06
+
+→ controlOfWorkFlowTempalte_06
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 7ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ '{"nameOfConfigFile":"config_multiAccount_tutorHowTeac
+  │ her","templateRun":["01_entityTypeAccountService_getAl
+  │ l_06","config_multiAccount_tutorHowAmbassador"],"execu
+  │ ted":[false,true]}'
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'config_m
+  │ ultiAccount_tutorHowAmbassador'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to config_multiAccount_tutorHowAmbassador
+
+→ config_multiAccount_tutorHowAmbassador
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 6ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte_06
+
+→ controlOfWorkFlowTempalte_06
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 50ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ '{"nameOfConfigFile":"config_multiAccount_tutorHowAmba
+  │ ssador","templateRun":["01_entityTypeAccountService_ge
+  │ tAll_06","config_multiAccount_tutorHowStudent"]}'
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', '01_entit
+  │ yTypeAccountService_getAll_06'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to 01_entityTypeAccountService_getAll_06
+
+→ 01_entityTypeAccountService_getAll_06
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/bot_tutor5@tutor.com/all [200 OK, 478B, 16ms]
+  ┌
+  │ 'entityTypeUppperCase: ', 'Tutor'
+  │ '17%3A384'
+  └
+
+→ 02_reamoveAccount_06
+  DELETE https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/remove?dataId={{deleteAccountId}} [200 OK, 379B, 31ms]
+
+→ 04_login_no2_v3
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/authentication [200 OK, 726B, 98ms]
+  ✓  [(POST)/api/v1/auth/authentication] Login Delete (200)
+
+→ 05_login_switch_how_account
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/complete-authentication [404 Not Found, 401B, 15ms]
+  3. [(POST)/api/v1/auth/authentication] Login Delete (200)
+
+→ 01_entityTypeAccountService_getAll
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/bot_tutor5@tutor.com/all [200 OK, 478B, 12ms]
+
+→ 02_reamoveAccount
+  DELETE https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/remove?dataId={{deleteAccountId}} [200 OK, 379B, 53ms]
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 6ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte_06
+
+→ controlOfWorkFlowTempalte_06
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 13ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ '{"nameOfConfigFile":"config_multiAccount_tutorHowAmba
+  │ ssador","templateRun":["01_entityTypeAccountService_ge
+  │ tAll_06","config_multiAccount_tutorHowStudent"],"execu
+  │ ted":[false,true]}'
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'config_m
+  │ ultiAccount_tutorHowStudent'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to config_multiAccount_tutorHowStudent
+
+→ config_multiAccount_tutorHowStudent
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 50ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte_06
+
+→ controlOfWorkFlowTempalte_06
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 8ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ '{"nameOfConfigFile":"config_multiAccount_tutorHowAmba
+  │ ssador","templateRun":["01_entityTypeAccountService_ge
+  │ tAll_06","config_multiAccount_teacherHowAmbassador"]}'
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', '01_entit
+  │ yTypeAccountService_getAll_06'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to 01_entityTypeAccountService_getAll_06
+
+→ 01_entityTypeAccountService_getAll_06
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/bot_tutor5@tutor.com/all [200 OK, 478B, 15ms]
+  ┌
+  │ 'entityTypeUppperCase: ', 'Tutor'
+  │ '17%3A384'
+  └
+
+→ 02_reamoveAccount_06
+  DELETE https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/remove?dataId={{deleteAccountId}} [200 OK, 379B, 52ms]
+
+→ 04_login_no2_v3
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/authentication [200 OK, 726B, 92ms]
+  ✓  [(POST)/api/v1/auth/authentication] Login Delete (200)
+
+→ 05_login_switch_how_account
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/complete-authentication [404 Not Found, 401B, 8ms]
+  4. [(POST)/api/v1/auth/authentication] Login Delete (200)
+
+→ 01_entityTypeAccountService_getAll
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/bot_tutor5@tutor.com/all [200 OK, 478B, 16ms]
+
+→ 02_reamoveAccount
+  DELETE https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/remove?dataId={{deleteAccountId}} [200 OK, 379B, 53ms]
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 4ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte_06
+
+→ controlOfWorkFlowTempalte_06
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 59ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ '{"nameOfConfigFile":"config_multiAccount_tutorHowAmba
+  │ ssador","templateRun":["01_entityTypeAccountService_ge
+  │ tAll_06","config_multiAccount_teacherHowAmbassador"],"
+  │ executed":[false,true]}'
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'config_m
+  │ ultiAccount_teacherHowAmbassador'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to config_multiAccount_teacherHowAmbassador
+
+→ config_multiAccount_teacherHowAmbassador
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 72ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte_06
+
+→ controlOfWorkFlowTempalte_06
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 74ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ '{"nameOfConfigFile":"config_multiAccount_tutorHowAmba
+  │ ssador","templateRun":["01_entityTypeAccountService_ge
+  │ tAll_06","config_multiAccount_teacherHowStudent"]}'
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', '01_entit
+  │ yTypeAccountService_getAll_06'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to 01_entityTypeAccountService_getAll_06
+
+→ 01_entityTypeAccountService_getAll_06
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/teacher@bot.com/all [200 OK, 475B, 30ms]
+  ┌
+  │ 'entityTypeUppperCase: ', 'Teacher'
+  │ '18%3A249'
+  └
+
+→ 02_reamoveAccount_06
+  DELETE https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/remove?dataId={{deleteAccountId}} [200 OK, 379B, 56ms]
+
+→ 04_login_no2_v3
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/authentication [200 OK, 725B, 96ms]
+  ✓  [(POST)/api/v1/auth/authentication] Login Delete (200)
+
+→ 05_login_switch_how_account
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/complete-authentication [404 Not Found, 401B, 15ms]
+  5. [(POST)/api/v1/auth/authentication] Login Delete (200)
+
+→ 01_entityTypeAccountService_getAll
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/teacher@bot.com/all [200 OK, 475B, 16ms]
+
+→ 02_reamoveAccount
+  DELETE https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/remove?dataId={{deleteAccountId}} [200 OK, 379B, 52ms]
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 4ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte_06
+
+→ controlOfWorkFlowTempalte_06
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 58ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ '{"nameOfConfigFile":"config_multiAccount_tutorHowAmba
+  │ ssador","templateRun":["01_entityTypeAccountService_ge
+  │ tAll_06","config_multiAccount_teacherHowStudent"],"exe
+  │ cuted":[false,true]}'
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'config_m
+  │ ultiAccount_teacherHowStudent'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to config_multiAccount_teacherHowStudent
+
+→ config_multiAccount_teacherHowStudent
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 3ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte_06
+
+→ controlOfWorkFlowTempalte_06
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 56ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ '{"nameOfConfigFile":"config_multiAccount_tutorHowAmba
+  │ ssador","templateRun":["01_entityTypeAccountService_ge
+  │ tAll_06","config_multiAccount_teacherHowTutor"]}'
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', '01_entit
+  │ yTypeAccountService_getAll_06'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to 01_entityTypeAccountService_getAll_06
+
+→ 01_entityTypeAccountService_getAll_06
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/teacher@bot.com/all [200 OK, 475B, 8ms]
+  ┌
+  │ 'entityTypeUppperCase: ', 'Teacher'
+  │ '18%3A249'
+  └
+
+→ 02_reamoveAccount_06
+  DELETE https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/remove?dataId={{deleteAccountId}} [200 OK, 379B, 52ms]
+
+→ 04_login_no2_v3
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/authentication [200 OK, 725B, 94ms]
+  ✓  [(POST)/api/v1/auth/authentication] Login Delete (200)
+
+→ 05_login_switch_how_account
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/complete-authentication [404 Not Found, 401B, 15ms]
+  6. [(POST)/api/v1/auth/authentication] Login Delete (200)
+
+→ 01_entityTypeAccountService_getAll
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/teacher@bot.com/all [200 OK, 475B, 8ms]
+
+→ 02_reamoveAccount
+  DELETE https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/remove?dataId={{deleteAccountId}} [200 OK, 379B, 27ms]
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 4ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte_06
+
+→ controlOfWorkFlowTempalte_06
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 7ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ '{"nameOfConfigFile":"config_multiAccount_tutorHowAmba
+  │ ssador","templateRun":["01_entityTypeAccountService_ge
+  │ tAll_06","config_multiAccount_teacherHowTutor"],"execu
+  │ ted":[false,true]}'
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'config_m
+  │ ultiAccount_teacherHowTutor'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to config_multiAccount_teacherHowTutor
+
+→ config_multiAccount_teacherHowTutor
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 103ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte_06
+
+→ controlOfWorkFlowTempalte_06
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 2ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ '{"nameOfConfigFile":"config_multiAccount_tutorHowAmba
+  │ ssador","templateRun":["01_entityTypeAccountService_ge
+  │ tAll_06","config_multiAccount_ambassadorHowStudent"]}'
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', '01_entit
+  │ yTypeAccountService_getAll_06'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to 01_entityTypeAccountService_getAll_06
+
+→ 01_entityTypeAccountService_getAll_06
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/teacher@bot.com/all [200 OK, 475B, 7ms]
+  ┌
+  │ 'entityTypeUppperCase: ', 'Teacher'
+  │ '18%3A249'
+  └
+
+→ 02_reamoveAccount_06
+  DELETE https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/remove?dataId={{deleteAccountId}} [200 OK, 379B, 53ms]
+
+→ 04_login_no2_v3
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/authentication [200 OK, 725B, 72ms]
+  ✓  [(POST)/api/v1/auth/authentication] Login Delete (200)
+
+→ 05_login_switch_how_account
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/complete-authentication [404 Not Found, 401B, 18ms]
+  7. [(POST)/api/v1/auth/authentication] Login Delete (200)
+
+→ 01_entityTypeAccountService_getAll
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/teacher@bot.com/all [200 OK, 475B, 14ms]
+
+→ 02_reamoveAccount
+  DELETE https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/remove?dataId={{deleteAccountId}} [200 OK, 379B, 52ms]
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 7ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte_06
+
+→ controlOfWorkFlowTempalte_06
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 9ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ '{"nameOfConfigFile":"config_multiAccount_tutorHowAmba
+  │ ssador","templateRun":["01_entityTypeAccountService_ge
+  │ tAll_06","config_multiAccount_ambassadorHowStudent"],"
+  │ executed":[false,true]}'
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'config_m
+  │ ultiAccount_ambassadorHowStudent'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to config_multiAccount_ambassadorHowStudent
+
+→ config_multiAccount_ambassadorHowStudent
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 7ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte_06
+
+→ controlOfWorkFlowTempalte_06
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 6ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ '{"nameOfConfigFile":"config_multiAccount_tutorHowAmba
+  │ ssador","templateRun":["01_entityTypeAccountService_ge
+  │ tAll_06","config_multiAccount_ambassadorHowTeacher"]}'
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', '01_entit
+  │ yTypeAccountService_getAll_06'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to 01_entityTypeAccountService_getAll_06
+
+→ 01_entityTypeAccountService_getAll_06
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/ambassador@bot.com/all [200 OK, 481B, 17ms]
+  ┌
+  │ 'entityTypeUppperCase: ', 'Ambassador'
+  │ '19%3A232'
+  └
+
+→ 02_reamoveAccount_06
+  DELETE https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/remove?dataId={{deleteAccountId}} [200 OK, 379B, 38ms]
+
+→ 04_login_no2_v3
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/authentication [200 OK, 737B, 71ms]
+  ✓  [(POST)/api/v1/auth/authentication] Login Delete (200)
+
+→ 05_login_switch_how_account
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/complete-authentication [404 Not Found, 401B, 7ms]
+  8. [(POST)/api/v1/auth/authentication] Login Delete (200)
+
+→ 01_entityTypeAccountService_getAll
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/ambassador@bot.com/all [200 OK, 481B, 19ms]
+
+→ 02_reamoveAccount
+  DELETE https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/remove?dataId={{deleteAccountId}} [200 OK, 379B, 50ms]
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 3ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte_06
+
+→ controlOfWorkFlowTempalte_06
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 64ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ '{"nameOfConfigFile":"config_multiAccount_tutorHowAmba
+  │ ssador","templateRun":["01_entityTypeAccountService_ge
+  │ tAll_06","config_multiAccount_ambassadorHowTeacher"],"
+  │ executed":[false,true]}'
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'config_m
+  │ ultiAccount_ambassadorHowTeacher'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to config_multiAccount_ambassadorHowTeacher
+
+→ config_multiAccount_ambassadorHowTeacher
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 71ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte_06
+
+→ controlOfWorkFlowTempalte_06
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 8ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ '{"nameOfConfigFile":"config_multiAccount_tutorHowAmba
+  │ ssador","templateRun":["01_entityTypeAccountService_ge
+  │ tAll_06","config_multiAccount_ambassadorHowTutor"]}'
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', '01_entit
+  │ yTypeAccountService_getAll_06'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to 01_entityTypeAccountService_getAll_06
+
+→ 01_entityTypeAccountService_getAll_06
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/ambassador@bot.com/all [200 OK, 481B, 15ms]
+  ┌
+  │ 'entityTypeUppperCase: ', 'Ambassador'
+  │ '19%3A232'
+  └
+
+→ 02_reamoveAccount_06
+  DELETE https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/remove?dataId={{deleteAccountId}} [200 OK, 379B, 66ms]
+
+→ 04_login_no2_v3
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/authentication [200 OK, 737B, 96ms]
+  ✓  [(POST)/api/v1/auth/authentication] Login Delete (200)
+
+→ 05_login_switch_how_account
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/complete-authentication [404 Not Found, 401B, 12ms]
+  9. [(POST)/api/v1/auth/authentication] Login Delete (200)
+
+→ 01_entityTypeAccountService_getAll
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/ambassador@bot.com/all [200 OK, 476B, 8ms]
+
+→ 02_reamoveAccount
+  DELETE https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/remove?dataId={{deleteAccountId}} [200 OK, 379B, 48ms]
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 3ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte_06
+
+→ controlOfWorkFlowTempalte_06
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 6ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ '{"nameOfConfigFile":"config_multiAccount_tutorHowAmba
+  │ ssador","templateRun":["01_entityTypeAccountService_ge
+  │ tAll_06","config_multiAccount_ambassadorHowTutor"],"ex
+  │ ecuted":[false,true]}'
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'config_m
+  │ ultiAccount_ambassadorHowTutor'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to config_multiAccount_ambassadorHowTutor
+
+→ config_multiAccount_ambassadorHowTutor
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 31ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte_06
+
+→ controlOfWorkFlowTempalte_06
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 6ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ '{"nameOfConfigFile":"config_multiAccount_tutorHowAmba
+  │ ssador","templateRun":["01_entityTypeAccountService_ge
+  │ tAll_06","config_multiAccount_studentHowAmbassador"]}'
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', '01_entit
+  │ yTypeAccountService_getAll_06'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to 01_entityTypeAccountService_getAll_06
+
+→ 01_entityTypeAccountService_getAll_06
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/ambassador@bot.com/all [200 OK, 481B, 8ms]
+  ┌
+  │ 'entityTypeUppperCase: ', 'Ambassador'
+  │ '19%3A232'
+  └
+
+→ 02_reamoveAccount_06
+  DELETE https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/remove?dataId={{deleteAccountId}} [200 OK, 379B, 30ms]
+
+→ 04_login_no2_v3
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/authentication [200 OK, 737B, 111ms]
+  ✓  [(POST)/api/v1/auth/authentication] Login Delete (200)
+
+→ 05_login_switch_how_account
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/complete-authentication [404 Not Found, 401B, 24ms]
+ 10. [(POST)/api/v1/auth/authentication] Login Delete (200)
+
+→ 01_entityTypeAccountService_getAll
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/ambassador@bot.com/all [200 OK, 481B, 8ms]
+
+→ 02_reamoveAccount
+  DELETE https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/remove?dataId={{deleteAccountId}} [200 OK, 379B, 53ms]
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 7ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte_06
+
+→ controlOfWorkFlowTempalte_06
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 8ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ '{"nameOfConfigFile":"config_multiAccount_tutorHowAmba
+  │ ssador","templateRun":["01_entityTypeAccountService_ge
+  │ tAll_06","config_multiAccount_studentHowAmbassador"],"
+  │ executed":[false,true]}'
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'config_m
+  │ ultiAccount_studentHowAmbassador'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to config_multiAccount_studentHowAmbassador
+
+→ config_multiAccount_studentHowAmbassador
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 25ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte_06
+
+→ controlOfWorkFlowTempalte_06
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 5ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ '{"nameOfConfigFile":"config_multiAccount_tutorHowAmba
+  │ ssador","templateRun":["01_entityTypeAccountService_ge
+  │ tAll_06","stop_06_createCourseModuleAndStage"]}'
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', '01_entit
+  │ yTypeAccountService_getAll_06'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to 01_entityTypeAccountService_getAll_06
+
+→ 01_entityTypeAccountService_getAll_06
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/student@bot.com/all [200 OK, 475B, 7ms]
+  ┌
+  │ 'entityTypeUppperCase: ', 'Student'
+  │ '20%3A273'
+  └
+
+→ 02_reamoveAccount_06
+  DELETE https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/remove?dataId={{deleteAccountId}} [200 OK, 379B, 52ms]
+
+→ 04_login_no2_v3
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/authentication [200 OK, 725B, 97ms]
+  ✓  [(POST)/api/v1/auth/authentication] Login Delete (200)
+
+→ 05_login_switch_how_account
+  POST https://edutelling-api-develop.openshift.techgap.it/api/v1/auth/complete-authentication [404 Not Found, 401B, 19ms]
+ 11. [(POST)/api/v1/auth/authentication] Login Delete (200)
+
+→ 01_entityTypeAccountService_getAll
+  GET https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/student@bot.com/all [200 OK, 475B, 19ms]
+
+→ 02_reamoveAccount
+  DELETE https://edutelling-api-develop.openshift.techgap.it/api/v1/accounts/remove?dataId={{deleteAccountId}} [200 OK, 379B, 54ms]
+
+→ goTo_workflowControl
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 6ms]
+
+Attempting to set next request to controlOfWorkFlowTempalte_06
+
+→ controlOfWorkFlowTempalte_06
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 45ms]
+  ┌
+  │ ' ------ ------ ---------- ---------'
+  │ 
+  │ '{"nameOfConfigFile":"config_multiAccount_tutorHowAmba
+  │ ssador","templateRun":["01_entityTypeAccountService_ge
+  │ tAll_06","stop_06_createCourseModuleAndStage"],"execut
+  │ ed":[false,true]}'
+  │ 
+  │ 'WORKFLOW GO TO: ------------------------'
+  │ 
+  │ 'WORKFLOW CONTROL REDIRECTING TEMPATE TO: ', 'stop_06_
+  │ createCourseModuleAndStage'
+  │ 
+  │ 
+  └
+
+Attempting to set next request to stop_06_createCourseModuleAndStage
+
+→ stop_06_createCourseModuleAndStage
+  OPTIONS https://edutelling-api-develop.openshift.techgap.it [404 Not Found, 255B, 7ms]
+
+┌─────────────────────────┬───────────────────┬──────────────────┐
+│                         │          executed │           failed │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│              iterations │                 1 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│                requests │               324 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│            test-scripts │               324 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│      prerequest-scripts │                 3 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│              assertions │                74 │               11 │
+├─────────────────────────┴───────────────────┴──────────────────┤
+│ total run duration: 1m 32.5s                                   │
+├────────────────────────────────────────────────────────────────┤
+│ total data received: 35.11KB (approx)                          │
+├────────────────────────────────────────────────────────────────┤
+│ average response time: 31ms [min: 2ms, max: 441ms, s.d.: 39ms] │
+└────────────────────────────────────────────────────────────────┘
+
+   #  failure         detail                                                 
+                                                                             
+ 01.  AssertionError  [(POST)/api/v1/auth/authentication] Login Delete (200) 
+                      expected response to have status code 200 but got 404  
+                      at assertion:0 in test-script                          
+                      inside "03_32_login"                                   
+                                                                             
+ 02.  AssertionError  [(POST)/api/v1/auth/authentication] Login Delete (200) 
+                      expected response to have status code 200 but got 404  
+                      at assertion:0 in test-script                          
+                      inside "05_login_switch_how_account"                   
+                                                                             
+ 03.  AssertionError  [(POST)/api/v1/auth/authentication] Login Delete (200) 
+                      expected response to have status code 200 but got 404  
+                      at assertion:0 in test-script                          
+                      inside "05_login_switch_how_account"                   
+                                                                             
+ 04.  AssertionError  [(POST)/api/v1/auth/authentication] Login Delete (200) 
+                      expected response to have status code 200 but got 404  
+                      at assertion:0 in test-script                          
+                      inside "05_login_switch_how_account"                   
+                                                                             
+ 05.  AssertionError  [(POST)/api/v1/auth/authentication] Login Delete (200) 
+                      expected response to have status code 200 but got 404  
+                      at assertion:0 in test-script                          
+                      inside "05_login_switch_how_account"                   
+                                                                             
+ 06.  AssertionError  [(POST)/api/v1/auth/authentication] Login Delete (200) 
+                      expected response to have status code 200 but got 404  
+                      at assertion:0 in test-script                          
+                      inside "05_login_switch_how_account"                   
+                                                                             
+ 07.  AssertionError  [(POST)/api/v1/auth/authentication] Login Delete (200) 
+                      expected response to have status code 200 but got 404  
+                      at assertion:0 in test-script                          
+                      inside "05_login_switch_how_account"                   
+                                                                             
+ 08.  AssertionError  [(POST)/api/v1/auth/authentication] Login Delete (200) 
+                      expected response to have status code 200 but got 404  
+                      at assertion:0 in test-script                          
+                      inside "05_login_switch_how_account"                   
+                                                                             
+ 09.  AssertionError  [(POST)/api/v1/auth/authentication] Login Delete (200) 
+                      expected response to have status code 200 but got 404  
+                      at assertion:0 in test-script                          
+                      inside "05_login_switch_how_account"                   
+                                                                             
+ 10.  AssertionError  [(POST)/api/v1/auth/authentication] Login Delete (200) 
+                      expected response to have status code 200 but got 404  
+                      at assertion:0 in test-script                          
+                      inside "05_login_switch_how_account"                   
+                                                                             
+ 11.  AssertionError  [(POST)/api/v1/auth/authentication] Login Delete (200) 
+                      expected response to have status code 200 but got 404  
+                      at assertion:0 in test-script                          
+                      inside "05_login_switch_how_account"                   
+Done in 93.71s.
+section_end:1627313194:step_script
+[0Ksection_start:1627313194:cleanup_file_variables
+[0K[0K[36;1mCleaning up file based variables[0;m
+[0;msection_end:1627313195:cleanup_file_variables
+[0K[32;1mJob succeeded
+[0;m

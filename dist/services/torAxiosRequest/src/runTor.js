@@ -40,14 +40,17 @@ function _runTorService() {
             });
 
           case 3:
-            if (_config.operativeSystem === "linux/ubuntu") {
-              systemctl[status]("service-name").then(function (output) {
-                return console.log;
-              });
-            } // console.log(` 🧅 Tor Run: brew services ${status} tor`);
+            if (!(_config.operativeSystem === "linux/ubuntu")) {
+              _context.next = 6;
+              break;
+            }
 
+            _context.next = 6;
+            return shell.exec("systemctl ".concat(status, " tor"), {
+              silent: false
+            });
 
-          case 4:
+          case 6:
           case "end":
             return _context.stop();
         }

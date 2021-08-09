@@ -1,0 +1,176 @@
+[0KRunning with gitlab-runner 14.1.0-rc1 (e9489c8a)
+    [0;m[0K  on docker-auto-scale z3WU8uu-
+    [0;msection_start:1627312221:prepare_executor
+    [0K[0K[36;1mPreparing the "docker+machine" executor[0;m
+    [0;m[0KUsing Docker executor with image gcr.io/kaniko-project/executor:debug ...
+    [0;m[0KStarting service docker:dind ...
+    [0;m[0KPulling docker image docker:dind ...
+    [0;m[0KUsing docker image sha256:ca749f2062c41ad54191b9c242dd1b3f6132a11299b251fc2128e37c9800ebba for docker:dind with digest docker@sha256:07263bef8759a4d773431719856c3845b163c07034d200b00cd44b85b5e53d94 ...
+    [0;m[0KWaiting for services to be up and running...
+    [0;m
+    [0;33m*** WARNING:[0;m Service runner-z3wu8uu--project-15112024-concurrent-0-3767f627e49a517b-docker-0 probably didn't start properly.
+    
+    Health check error:
+    service "runner-z3wu8uu--project-15112024-concurrent-0-3767f627e49a517b-docker-0-wait-for-service" timeout
+    
+    Health check container logs:
+    
+    
+    Service container logs:
+    2021-07-26T15:10:43.868565356Z time="2021-07-26T15:10:43.843097787Z" level=info msg="Starting up"
+    2021-07-26T15:10:43.868631578Z time="2021-07-26T15:10:43.845091651Z" level=warning msg="could not change group /var/run/docker.sock to docker: group docker not found"
+    2021-07-26T15:10:43.868636799Z time="2021-07-26T15:10:43.845360437Z" level=warning msg="Binding to IP address without --tlsverify is insecure and gives root access on this machine to everyone who has access to your network." host="tcp://0.0.0.0:2375"
+    2021-07-26T15:10:43.868647265Z time="2021-07-26T15:10:43.845377948Z" level=warning msg="Binding to an IP address, even on localhost, can also give access to scripts run in a browser. Be safe out there!" host="tcp://0.0.0.0:2375"
+    2021-07-26T15:10:44.849224419Z time="2021-07-26T15:10:44.849080698Z" level=warning msg="Binding to an IP address without --tlsverify is deprecated. Startup is intentionally being slowed down to show this message" host="tcp://0.0.0.0:2375"
+    2021-07-26T15:10:44.849344793Z time="2021-07-26T15:10:44.849299620Z" level=warning msg="Please consider generating tls certificates with client validation to prevent exposing unauthenticated root access to your network" host="tcp://0.0.0.0:2375"
+    2021-07-26T15:10:44.849432352Z time="2021-07-26T15:10:44.849390388Z" level=warning msg="You can override this by explicitly specifying '--tls=false' or '--tlsverify=false'" host="tcp://0.0.0.0:2375"
+    2021-07-26T15:10:44.849507464Z time="2021-07-26T15:10:44.849470889Z" level=warning msg="Support for listening on TCP without authentication or explicit intent to run without authentication will be removed in the next release" host="tcp://0.0.0.0:2375"
+    2021-07-26T15:10:59.851477982Z time="2021-07-26T15:10:59.851347302Z" level=info msg="libcontainerd: started new containerd process" pid=25
+    2021-07-26T15:10:59.851614508Z time="2021-07-26T15:10:59.851563413Z" level=info msg="parsed scheme: \"unix\"" module=grpc
+    2021-07-26T15:10:59.851682468Z time="2021-07-26T15:10:59.851641683Z" level=info msg="scheme \"unix\" not registered, fallback to default scheme" module=grpc
+    2021-07-26T15:10:59.851762372Z time="2021-07-26T15:10:59.851727560Z" level=info msg="ccResolverWrapper: sending update to cc: {[{unix:///var/run/docker/containerd/containerd.sock  <nil> 0 <nil>}] <nil> <nil>}" module=grpc
+    2021-07-26T15:10:59.851840074Z time="2021-07-26T15:10:59.851804004Z" level=info msg="ClientConn switching balancer to \"pick_first\"" module=grpc
+    2021-07-26T15:10:59.863580756Z time="2021-07-26T15:10:59.863450613Z" level=info msg="starting containerd" revision=d71fcd7d8303cbf684402823e425e9dd2e99285d version=v1.4.6
+    2021-07-26T15:10:59.893495979Z time="2021-07-26T15:10:59.893361261Z" level=info msg="loading plugin \"io.containerd.content.v1.content\"..." type=io.containerd.content.v1
+    2021-07-26T15:10:59.893770924Z time="2021-07-26T15:10:59.893705674Z" level=info msg="loading plugin \"io.containerd.snapshotter.v1.aufs\"..." type=io.containerd.snapshotter.v1
+    2021-07-26T15:10:59.900625398Z time="2021-07-26T15:10:59.900484087Z" level=info msg="skip loading plugin \"io.containerd.snapshotter.v1.aufs\"..." error="aufs is not supported (modprobe aufs failed: exit status 1 \"ip: can't find device 'aufs'\\nmodprobe: can't change directory to '/lib/modules': No such file or directory\\n\"): skip plugin" type=io.containerd.snapshotter.v1
+    2021-07-26T15:10:59.900767975Z time="2021-07-26T15:10:59.900702897Z" level=info msg="loading plugin \"io.containerd.snapshotter.v1.btrfs\"..." type=io.containerd.snapshotter.v1
+    2021-07-26T15:10:59.901196271Z time="2021-07-26T15:10:59.901116561Z" level=info msg="skip loading plugin \"io.containerd.snapshotter.v1.btrfs\"..." error="path /var/lib/docker/containerd/daemon/io.containerd.snapshotter.v1.btrfs (ext4) must be a btrfs filesystem to be used with the btrfs snapshotter: skip plugin" type=io.containerd.snapshotter.v1
+    2021-07-26T15:10:59.901288252Z time="2021-07-26T15:10:59.901222390Z" level=info msg="loading plugin \"io.containerd.snapshotter.v1.devmapper\"..." type=io.containerd.snapshotter.v1
+    2021-07-26T15:10:59.901373931Z time="2021-07-26T15:10:59.901318559Z" level=warning msg="failed to load plugin io.containerd.snapshotter.v1.devmapper" error="devmapper not configured"
+    2021-07-26T15:10:59.901450247Z time="2021-07-26T15:10:59.901393553Z" level=info msg="loading plugin \"io.containerd.snapshotter.v1.native\"..." type=io.containerd.snapshotter.v1
+    2021-07-26T15:10:59.901625484Z time="2021-07-26T15:10:59.901571969Z" level=info msg="loading plugin \"io.containerd.snapshotter.v1.overlayfs\"..." type=io.containerd.snapshotter.v1
+    2021-07-26T15:10:59.901960464Z time="2021-07-26T15:10:59.901870232Z" level=info msg="loading plugin \"io.containerd.snapshotter.v1.zfs\"..." type=io.containerd.snapshotter.v1
+    2021-07-26T15:10:59.902255094Z time="2021-07-26T15:10:59.902191055Z" level=info msg="skip loading plugin \"io.containerd.snapshotter.v1.zfs\"..." error="path /var/lib/docker/containerd/daemon/io.containerd.snapshotter.v1.zfs must be a zfs filesystem to be used with the zfs snapshotter: skip plugin" type=io.containerd.snapshotter.v1
+    2021-07-26T15:10:59.902332394Z time="2021-07-26T15:10:59.902276975Z" level=info msg="loading plugin \"io.containerd.metadata.v1.bolt\"..." type=io.containerd.metadata.v1
+    2021-07-26T15:10:59.902477117Z time="2021-07-26T15:10:59.902423149Z" level=warning msg="could not use snapshotter devmapper in metadata plugin" error="devmapper not configured"
+    2021-07-26T15:10:59.902545230Z time="2021-07-26T15:10:59.902495668Z" level=info msg="metadata content store policy set" policy=shared
+    2021-07-26T15:10:59.910751659Z time="2021-07-26T15:10:59.910640975Z" level=info msg="loading plugin \"io.containerd.differ.v1.walking\"..." type=io.containerd.differ.v1
+    2021-07-26T15:10:59.910868065Z time="2021-07-26T15:10:59.910810711Z" level=info msg="loading plugin \"io.containerd.gc.v1.scheduler\"..." type=io.containerd.gc.v1
+    2021-07-26T15:10:59.911004188Z time="2021-07-26T15:10:59.910944137Z" level=info msg="loading plugin \"io.containerd.service.v1.introspection-service\"..." type=io.containerd.service.v1
+    2021-07-26T15:10:59.911128227Z time="2021-07-26T15:10:59.911074043Z" level=info msg="loading plugin \"io.containerd.service.v1.containers-service\"..." type=io.containerd.service.v1
+    2021-07-26T15:10:59.911211011Z time="2021-07-26T15:10:59.911149832Z" level=info msg="loading plugin \"io.containerd.service.v1.content-service\"..." type=io.containerd.service.v1
+    2021-07-26T15:10:59.911284125Z time="2021-07-26T15:10:59.911232838Z" level=info msg="loading plugin \"io.containerd.service.v1.diff-service\"..." type=io.containerd.service.v1
+    2021-07-26T15:10:59.911390668Z time="2021-07-26T15:10:59.911321429Z" level=info msg="loading plugin \"io.containerd.service.v1.images-service\"..." type=io.containerd.service.v1
+    2021-07-26T15:10:59.911481368Z time="2021-07-26T15:10:59.911421101Z" level=info msg="loading plugin \"io.containerd.service.v1.leases-service\"..." type=io.containerd.service.v1
+    2021-07-26T15:10:59.911554881Z time="2021-07-26T15:10:59.911503291Z" level=info msg="loading plugin \"io.containerd.service.v1.namespaces-service\"..." type=io.containerd.service.v1
+    2021-07-26T15:10:59.911637243Z time="2021-07-26T15:10:59.911578098Z" level=info msg="loading plugin \"io.containerd.service.v1.snapshots-service\"..." type=io.containerd.service.v1
+    2021-07-26T15:10:59.911710043Z time="2021-07-26T15:10:59.911661674Z" level=info msg="loading plugin \"io.containerd.runtime.v1.linux\"..." type=io.containerd.runtime.v1
+    2021-07-26T15:10:59.912023785Z time="2021-07-26T15:10:59.911955146Z" level=info msg="loading plugin \"io.containerd.runtime.v2.task\"..." type=io.containerd.runtime.v2
+    2021-07-26T15:10:59.912251232Z time="2021-07-26T15:10:59.912191187Z" level=info msg="loading plugin \"io.containerd.monitor.v1.cgroups\"..." type=io.containerd.monitor.v1
+    2021-07-26T15:10:59.912740277Z time="2021-07-26T15:10:59.912666358Z" level=info msg="loading plugin \"io.containerd.service.v1.tasks-service\"..." type=io.containerd.service.v1
+    2021-07-26T15:10:59.912859641Z time="2021-07-26T15:10:59.912797052Z" level=info msg="loading plugin \"io.containerd.internal.v1.restart\"..." type=io.containerd.internal.v1
+    2021-07-26T15:10:59.913118510Z time="2021-07-26T15:10:59.913058472Z" level=info msg="loading plugin \"io.containerd.grpc.v1.containers\"..." type=io.containerd.grpc.v1
+    2021-07-26T15:10:59.913205974Z time="2021-07-26T15:10:59.913142467Z" level=info msg="loading plugin \"io.containerd.grpc.v1.content\"..." type=io.containerd.grpc.v1
+    2021-07-26T15:10:59.913277790Z time="2021-07-26T15:10:59.913228983Z" level=info msg="loading plugin \"io.containerd.grpc.v1.diff\"..." type=io.containerd.grpc.v1
+    2021-07-26T15:10:59.913347060Z time="2021-07-26T15:10:59.913297626Z" level=info msg="loading plugin \"io.containerd.grpc.v1.events\"..." type=io.containerd.grpc.v1
+    2021-07-26T15:10:59.913432646Z time="2021-07-26T15:10:59.913367781Z" level=info msg="loading plugin \"io.containerd.grpc.v1.healthcheck\"..." type=io.containerd.grpc.v1
+    2021-07-26T15:10:59.913505041Z time="2021-07-26T15:10:59.913455800Z" level=info msg="loading plugin \"io.containerd.grpc.v1.images\"..." type=io.containerd.grpc.v1
+    2021-07-26T15:10:59.913574934Z time="2021-07-26T15:10:59.913526217Z" level=info msg="loading plugin \"io.containerd.grpc.v1.leases\"..." type=io.containerd.grpc.v1
+    2021-07-26T15:10:59.913633728Z time="2021-07-26T15:10:59.913595311Z" level=info msg="loading plugin \"io.containerd.grpc.v1.namespaces\"..." type=io.containerd.grpc.v1
+    2021-07-26T15:10:59.913713918Z time="2021-07-26T15:10:59.913674298Z" level=info msg="loading plugin \"io.containerd.internal.v1.opt\"..." type=io.containerd.internal.v1
+    2021-07-26T15:10:59.914085605Z time="2021-07-26T15:10:59.914020486Z" level=info msg="loading plugin \"io.containerd.grpc.v1.snapshots\"..." type=io.containerd.grpc.v1
+    2021-07-26T15:10:59.914195260Z time="2021-07-26T15:10:59.914121222Z" level=info msg="loading plugin \"io.containerd.grpc.v1.tasks\"..." type=io.containerd.grpc.v1
+    2021-07-26T15:10:59.914279007Z time="2021-07-26T15:10:59.914216751Z" level=info msg="loading plugin \"io.containerd.grpc.v1.version\"..." type=io.containerd.grpc.v1
+    2021-07-26T15:10:59.914350070Z time="2021-07-26T15:10:59.914300296Z" level=info msg="loading plugin \"io.containerd.grpc.v1.introspection\"..." type=io.containerd.grpc.v1
+    2021-07-26T15:10:59.914698801Z time="2021-07-26T15:10:59.914627928Z" level=info msg=serving... address=/var/run/docker/containerd/containerd-debug.sock
+    2021-07-26T15:10:59.914880514Z time="2021-07-26T15:10:59.914823330Z" level=info msg=serving... address=/var/run/docker/containerd/containerd.sock.ttrpc
+    2021-07-26T15:10:59.915490066Z time="2021-07-26T15:10:59.914992120Z" level=info msg=serving... address=/var/run/docker/containerd/containerd.sock
+    2021-07-26T15:10:59.915977738Z time="2021-07-26T15:10:59.915882238Z" level=info msg="containerd successfully booted in 0.053157s"
+    2021-07-26T15:10:59.925367177Z time="2021-07-26T15:10:59.925239910Z" level=info msg="Setting the storage driver from the $DOCKER_DRIVER environment variable (overlay2)"
+    2021-07-26T15:10:59.925648223Z time="2021-07-26T15:10:59.925572472Z" level=info msg="parsed scheme: \"unix\"" module=grpc
+    2021-07-26T15:10:59.925730355Z time="2021-07-26T15:10:59.925689163Z" level=info msg="scheme \"unix\" not registered, fallback to default scheme" module=grpc
+    2021-07-26T15:10:59.925832562Z time="2021-07-26T15:10:59.925780603Z" level=info msg="ccResolverWrapper: sending update to cc: {[{unix:///var/run/docker/containerd/containerd.sock  <nil> 0 <nil>}] <nil> <nil>}" module=grpc
+    2021-07-26T15:10:59.925949192Z time="2021-07-26T15:10:59.925864724Z" level=info msg="ClientConn switching balancer to \"pick_first\"" module=grpc
+    2021-07-26T15:10:59.926915991Z time="2021-07-26T15:10:59.926830735Z" level=info msg="parsed scheme: \"unix\"" module=grpc
+    2021-07-26T15:10:59.927036082Z time="2021-07-26T15:10:59.926977473Z" level=info msg="scheme \"unix\" not registered, fallback to default scheme" module=grpc
+    2021-07-26T15:10:59.927128694Z time="2021-07-26T15:10:59.927064331Z" level=info msg="ccResolverWrapper: sending update to cc: {[{unix:///var/run/docker/containerd/containerd.sock  <nil> 0 <nil>}] <nil> <nil>}" module=grpc
+    2021-07-26T15:10:59.927197258Z time="2021-07-26T15:10:59.927148071Z" level=info msg="ClientConn switching balancer to \"pick_first\"" module=grpc
+    2021-07-26T15:10:59.987125510Z time="2021-07-26T15:10:59.986986157Z" level=info msg="Loading containers: start."
+    2021-07-26T15:10:59.997061430Z time="2021-07-26T15:10:59.996878085Z" level=warning msg="Running modprobe bridge br_netfilter failed with message: ip: can't find device 'bridge'\nbridge                167936  1 br_netfilter\nstp                    16384  1 bridge\nllc                    16384  2 bridge,stp\nip: can't find device 'br_netfilter'\nbr_netfilter           24576  0 \nbridge                167936  1 br_netfilter\nmodprobe: can't change directory to '/lib/modules': No such file or directory\n, error: exit status 1"
+    2021-07-26T15:11:00.058010450Z time="2021-07-26T15:11:00.057844683Z" level=info msg="Default bridge (docker0) is assigned with an IP address 172.18.0.0/16. Daemon option --bip can be used to set a preferred IP address"
+    2021-07-26T15:11:00.095053260Z time="2021-07-26T15:11:00.094878635Z" level=info msg="Loading containers: done."
+    2021-07-26T15:11:00.117411434Z time="2021-07-26T15:11:00.117246533Z" level=info msg="Docker daemon" commit=b0f5bc3 graphdriver(s)=overlay2 version=20.10.7
+    2021-07-26T15:11:00.117695887Z time="2021-07-26T15:11:00.117619008Z" level=info msg="Daemon has completed initialization"
+    2021-07-26T15:11:00.150894845Z time="2021-07-26T15:11:00.150699249Z" level=info msg="API listen on /var/run/docker.sock"
+    2021-07-26T15:11:00.156008298Z time="2021-07-26T15:11:00.155858273Z" level=info msg="API listen on [::]:2375"
+    
+    [0;33m*********[0;m
+    
+    [0KPulling docker image gcr.io/kaniko-project/executor:debug ...
+    [0;m[0KUsing docker image sha256:7053f62a27a84985c6ac886fcb5f9fa74090edb46536486f69364e3360f7c9ad for gcr.io/kaniko-project/executor:debug with digest gcr.io/kaniko-project/executor@sha256:fcccd2ab9f3892e33fc7f2e950c8e4fc665e7a4c66f6a9d70b300d7a2103592f ...
+    [0;msection_end:1627312278:prepare_executor
+    [0Ksection_start:1627312278:prepare_script
+    [0K[0K[36;1mPreparing environment[0;m
+    [0;mRunning on runner-z3wu8uu--project-15112024-concurrent-0 via runner-z3wu8uu--srm-1627312176-a0a2a7ee...
+    section_end:1627312280:prepare_script
+    [0Ksection_start:1627312280:get_sources
+    [0K[0K[36;1mGetting source from Git repository[0;m
+    [0;m[32;1m$ eval "$CI_PRE_CLONE_SCRIPT"[0;m
+    [32;1mFetching changes with git depth set to 50...[0;m
+    Initialized empty Git repository in /builds/anoki-srl/edutelling-prj/edutelling-api/.git/
+    [32;1mCreated fresh repository.[0;m
+    [32;1mChecking out fa3cb44c as develop...[0;m
+    
+    [32;1mSkipping Git submodules setup[0;m
+    section_end:1627312281:get_sources
+    [0Ksection_start:1627312281:step_script
+    [0K[0K[36;1mExecuting "step_script" stage of the job script[0;m
+    [0;m[0KUsing docker image sha256:7053f62a27a84985c6ac886fcb5f9fa74090edb46536486f69364e3360f7c9ad for gcr.io/kaniko-project/executor:debug with digest gcr.io/kaniko-project/executor@sha256:fcccd2ab9f3892e33fc7f2e950c8e4fc665e7a4c66f6a9d70b300d7a2103592f ...
+    [0;m[32;1m$ if [ "$CI_COMMIT_TAG" == "" ]; then VERSION_PROJECT=$CI_PIPELINE_ID; else VERSION_PROJECT=$CI_COMMIT_TAG; fi[0;m
+    [32;1m$ echo 'VERSION_PROJECT :' $VERSION_PROJECT[0;m
+    VERSION_PROJECT : 343031627
+    [32;1m$ export VERSION_PROJECT=$VERSION_PROJECT[0;m
+    [32;1m$ echo 'CI_COMMIT_TAG :' $CI_COMMIT_TAG[0;m
+    CI_COMMIT_TAG :
+    [32;1m$ echo 'CI_PIPELINE_IID :' $CI_PIPELINE_IID[0;m
+    CI_PIPELINE_IID : 877
+    [32;1m$ echo 'CI_PIPELINE_ID  :' $CI_PIPELINE_ID[0;m
+    CI_PIPELINE_ID  : 343031627
+    [32;1m$ echo 'CI_JOB_ID:' $CI_JOB_ID[0;m
+    CI_JOB_ID: 1452810379
+    [32;1m$ mkdir -p /kaniko/.docker[0;m
+    [32;1m$ echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json[0;m
+    [32;1m$ /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG  --build-arg VERSION_PROJECT=$VERSION_PROJECT[0;m
+    [36mINFO[0m[0000] Using dockerignore file: /builds/anoki-srl/edutelling-prj/edutelling-api/.dockerignore 
+    [36mINFO[0m[0000] Retrieving image manifest anokiit/edubase:node14.4.0-stretch 
+    [36mINFO[0m[0000] Retrieving image anokiit/edubase:node14.4.0-stretch from registry index.docker.io 
+    [36mINFO[0m[0001] Built cross stage deps: map[]                
+    [36mINFO[0m[0001] Retrieving image manifest anokiit/edubase:node14.4.0-stretch 
+    [36mINFO[0m[0001] Returning cached image manifest              
+    [36mINFO[0m[0001] Executing 0 build triggers                   
+    [36mINFO[0m[0001] Unpacking rootfs as cmd COPY package.json yarn.lock /usr/src/app/ requires it. 
+    [36mINFO[0m[0038] WORKDIR /usr/src/app                         
+    [36mINFO[0m[0038] cmd: workdir                                 
+    [36mINFO[0m[0038] Changed working directory to /usr/src/app    
+    [36mINFO[0m[0038] No files changed in this command, skipping snapshotting. 
+    [36mINFO[0m[0038] COPY package.json yarn.lock /usr/src/app/    
+    [36mINFO[0m[0038] Taking snapshot of files...                  
+    [36mINFO[0m[0038] RUN yarn install                             
+    [36mINFO[0m[0038] Taking snapshot of full filesystem...        
+    [36mINFO[0m[0065] cmd: /bin/sh                                 
+    [36mINFO[0m[0065] args: [-c yarn install]                      
+    [36mINFO[0m[0065] Running: [/bin/sh -c yarn install]           
+    yarn install v1.22.4
+    [1/4] Resolving packages...
+    [2/4] Fetching packages...
+    info fsevents@2.1.3: The platform "linux" is incompatible with this module.
+    info "fsevents@2.1.3" is an optional dependency and failed compatibility check. Excluding it from installation.
+    [3/4] Linking dependencies...
+    [4/4] Building fresh packages...
+    Done in 29.87s.
+    [36mINFO[0m[0095] Taking snapshot of full filesystem...        
+    [36mINFO[0m[0182] COPY . /usr/src/app/                         
+    [36mINFO[0m[0183] Taking snapshot of files...                  
+    [36mINFO[0m[0183] EXPOSE 3000                                  
+    [36mINFO[0m[0183] cmd: EXPOSE                                  
+    [36mINFO[0m[0183] Adding exposed port: 3000/tcp                
+    [36mINFO[0m[0183] CMD yarn start                               
+    [36mINFO[0m[0183] Pushing image to registry.gitlab.com/anoki-srl/edutelling-prj/edutelling-api:develop 
+    [36mINFO[0m[0191] Pushed image to 1 destinations               
+    section_end:1627312474:step_script
+    [0Ksection_start:1627312474:cleanup_file_variables
+    [0K[0K[36;1mCleaning up file based variables[0;m
+    [0;msection_end:1627312475:cleanup_file_variables
+    [0K[32;1mJob succeeded
+    [0;m

@@ -15,21 +15,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 var _require = require("../../apis/filesHub/model"),
     filesHub = _require.filesHub;
 
-var axios = require("axios"); // Know if String have key words, of one of the list
-
-
-function haveWoldOfBug(str) {
-  // List of key words related to bug, fix, error, failure
-  var list = ["bug", "fix", "error", "failure", "fail", "fixup"];
-
-  for (var i = 0; i < list.length; i++) {
-    if (str.includes(list[i])) {
-      return true;
-    }
-  }
-
-  return false;
-} // Know if a text mentions good or bad feelings
+var axios = require("axios"); // Know if a text mentions good or bad feelings
 // Use web service
 // import the library sentiment
 
