@@ -52,34 +52,59 @@ async function collectPipelines(options) {
   let response = options.projects;
   let schemagitlabLogs = options.schemagitlabLogs;
 
-  var config = {
-    method: "get",
-    url: `https://gitlab.com/api/v4/projects/${options.projectId}/pipelines`,
-    headers: {
-      Authorization: `Bearer ${options.bearerToken}`,
-    },
-  };
+  let findData = true;
+  let count = 0;
+  while (findData) {
+    count = count + 1;
 
-  response = await axios(config);
+    var config = {
+      method: "get",
+      url: `https://gitlab.com/api/v4/projects/${options.projectId}/pipelines?page=${count}&per_page=1000`,
+      headers: {
+        Authorization: `Bearer ${options.bearerToken}`,
+      },
+    };
 
-  for (const data of response.data) {
-    // pipelineId: Number,
-    schemagitlabLogs.pipelineId = data.id;
-    // pipelineRef: String,
-    schemagitlabLogs.pipelineRef = data.ref;
-    // pipelineStatus: String
-    schemagitlabLogs.pipelineStatus = data.status;
-    // pipelineWebUrl: String,
-    schemagitlabLogs.pipelineWebUrl = data.web_url;
-    // sha: String,
-    schemagitlabLogs.sha = data.sha;
-    // pipelineUrl: String,
-    schemagitlabLogs.pipelineUrl = data.web_url;
+    response = await axios(config);
 
-    options.schemagitlabLogs = schemagitlabLogs;
+    if (response.data.length === 0) {
+      logger.info(
+        `🖐 Search one new package Count: ${count} and length: ${response.data.length}`
+      );
+      findData = false;
+      break;
+    }
 
-    options = await collectJobs(options);
-    // break;
+    logger.info(
+      `🟢 Search one new package Count: ${count} and length: ${response.data.length}`
+    );
+    console.log();
+    console.log();
+    console.log();
+    console.log();
+    console.log();
+    console.log();
+    console.log();
+
+    for (const data of response.data) {
+      // pipelineId: Number,
+      schemagitlabLogs.pipelineId = data.id;
+      // pipelineRef: String,
+      schemagitlabLogs.pipelineRef = data.ref;
+      // pipelineStatus: String
+      schemagitlabLogs.pipelineStatus = data.status;
+      // pipelineWebUrl: String,
+      schemagitlabLogs.pipelineWebUrl = data.web_url;
+      // sha: String,
+      schemagitlabLogs.sha = data.sha;
+      // pipelineUrl: String,
+      schemagitlabLogs.pipelineUrl = data.web_url;
+
+      options.schemagitlabLogs = schemagitlabLogs;
+
+      options = await collectJobs(options);
+      // break;
+    }
   }
 
   return options;

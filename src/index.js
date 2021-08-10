@@ -57,9 +57,22 @@ mongoose
 
 // Collect logs for gitlab.cl
 if (gitlabCollectLogs) {
-  collectProjectInfo({
-    projectId: "15112024",
-  });
+  let importProjectsList = [
+    // "15112024", // edutelling-api
+    "15794568", // edutelling-app
+    "13390016", // ckp-api
+    "13177865", // TRusT-FE
+    "23449559", // app-prenotazioni-api
+    "11018055", // POT-api
+    "26278209", // pax-Italia-pot-cicd
+    "13680394", // trust-mail-sender
+    "27569851", // smoke-collector
+  ];
+  for (const projectId of importProjectsList) {
+    collectProjectInfo({
+      projectId: projectId,
+    });
+  }
 }
 
 export default app;
