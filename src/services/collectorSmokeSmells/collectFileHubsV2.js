@@ -133,7 +133,6 @@ async function getProjectsUsingFileContent2() {
     myPastDate = myPastDate.setDate(myPastDate.getDate() - 3700); //1230
     logger.info(myPastDate);
     let dateFind = dateFormat(myPastDate, "yyyy-mm-dd");
-
     lastPagesReference.dateFind = dateFind;
   }
 

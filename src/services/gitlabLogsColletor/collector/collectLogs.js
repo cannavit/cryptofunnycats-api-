@@ -3,8 +3,11 @@ const {
   gitlabBearerToken,
   gitlabSaveCollectonInDB,
 } = require("../../../config");
+
 const { gitlabLogs } = require("../../../apis/gitlabLogs/model");
+const { pagesRead } = require("../../../apis/pagesRead/model");
 const { default: logger } = require("../../logger");
+var dateFormat = require("dateformat");
 
 // Collect information of gitlab pipelines.
 
@@ -15,6 +18,7 @@ async function collectProjectInfo(options) {
   options.saveInDB = gitlabSaveCollectonInDB;
 
   let bearerToken = options.bearerToken;
+  options.bearerToken = bearerToken;
 
   var config = {
     method: "get",
@@ -25,7 +29,13 @@ async function collectProjectInfo(options) {
   };
 
   //! Get project information
-  let response = await axios(config);
+  let response;
+
+  try {
+    response = await axios(config);
+  } catch (error) {
+    logger.error(error.message);
+  }
 
   let schemagitlabLogs = {
     projectName: response.data.name,
@@ -44,6 +54,95 @@ async function collectProjectInfo(options) {
 }
 
 module.exports.collectProjectInfo = collectProjectInfo;
+
+async function collectAllProject(options) {
+  // Read page.
+  let pages = await pagesRead.findOne({ reference: "importGitLabPublics" });
+
+  // Default value
+  let incrementDateInDays = 30;
+
+  if (!pages) {
+    pages = {
+      pages: 0,
+      per_page: 100,
+      reference: "importGitLabPublics",
+      finishIt: false,
+      dateFind: "2013-10-26T15:41:19.479Z",
+      total_count: 0,
+    };
+  }
+
+  let search = true;
+
+  let dateFind = dateFormat(pages.dateFind, "yyyy-mm-dd");
+  dateFind = new Date(dateFind);
+
+  if (pages.finishIt) {
+    dateFind = new Date(
+      dateFind.getTime() + incrementDateInDays * 1000 * 60 * 60 * 24
+    );
+  }
+
+  logger.info("Search gitlab project created in: " + dateFind);
+
+  while (search) {
+    console.log(pages);
+    pages.pages = pages.pages + 1;
+
+    let url = `https://gitlab.com/api/v4/projects?page=${pages.pages}&per_page=${pages.per_page}&order_by=created_at&sort=asc&last_activity_before=${pages.dateFind}&limit=${pages.per_page}`;
+
+    var config = {
+      method: "get",
+      url: url,
+      headers: {},
+    };
+
+    logger.info(" 📦 Search gitlab project page: " + pages.pages);
+
+    let response = await axios(config);
+
+    if (response.data.length === 0) {
+      search = false;
+      logger.info(" Finish search cicle");
+      break;
+    }
+
+    for (const data of response.data) {
+      logger.info(" 📄 Import project " + data.id);
+      await collectProjectInfo({
+        projectId: data.id,
+        bearerToken: gitlabBearerToken,
+      });
+    }
+
+    logger.info(" 📦 Data package length: " + response.data.length);
+    logger.info(
+      " 📦 Data package date: " + response.data[pages.pages].created_at
+    );
+
+    pages.dateFind = response.data[pages.pages].created_at;
+  }
+
+  pages.finishIt = true;
+  pages.dateFind = dateFind;
+  pages.pages = 0;
+  //Update control
+  logger.info("");
+  await pagesRead.findOneAndUpdate(
+    {
+      reference: "importGitLabPublics",
+    },
+    pages,
+    {
+      upsert: true,
+    }
+  );
+
+  console.log(dateFind);
+}
+
+module.exports.collectAllProject = collectAllProject;
 
 // Collect all pipeliens.
 async function collectPipelines(options) {
@@ -65,7 +164,17 @@ async function collectPipelines(options) {
       },
     };
 
-    response = await axios(config);
+    try {
+      response = await axios(config);
+    } catch (error) {
+      logger.error(error.message);
+    }
+
+    if (!response.data) {
+      logger.info(" Not exist pipelines in the project: " + options.projectId);
+      findData = false;
+      break;
+    }
 
     if (response.data.length === 0) {
       logger.info(
@@ -78,10 +187,7 @@ async function collectPipelines(options) {
     logger.info(
       `🟢 Search one new package Count: ${count} and length: ${response.data.length}`
     );
-    console.log();
-    console.log();
-    console.log();
-    console.log();
+
     console.log();
     console.log();
     console.log();
@@ -99,9 +205,7 @@ async function collectPipelines(options) {
       schemagitlabLogs.sha = data.sha;
       // pipelineUrl: String,
       schemagitlabLogs.pipelineUrl = data.web_url;
-
       options.schemagitlabLogs = schemagitlabLogs;
-
       options = await collectJobs(options);
       // break;
     }

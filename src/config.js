@@ -46,6 +46,7 @@ const config = {
     urlBase: "/api/v1",
     gitlabBearerToken: process.env.GITLAB_BEARER_TOKEN,
     gitlabCollectLogs: process.env.GITLAB_COLLECT_LOGS || false,
+    gitlabCollectLogsPublics: process.env.GITLAB_COLLECT_LOGS_PUBLICS || false,
     gitlabSaveCollectonInDB: process.env.GITLAB_SAVE_COLLECTION_IN_DB || false,
     swaggerOptions: {
       swaggerDefinition: {
