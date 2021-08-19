@@ -22,11 +22,15 @@ export const start = function () {
 
   let options = {
     bearerToken: gitlabBearerToken,
+    topic: "docker",
   };
 
-  if (gitlabCollectLogsPublics) {
-    schedule.scheduleJob("*/1 * * * *", collectAllProject(options));
-  }
+  // if (gitlabCollectLogsPublics) {
+  //   schedule.scheduleJob("*/1 * * * *", collectAllProject(options));
+  // }
 
   log.info(" ⏰ ✅ Starting...", "DONE");
 };
+
+// 2013-10-26 00:00:00.000Z
+// 2013-11-25 00:00:00.000Z

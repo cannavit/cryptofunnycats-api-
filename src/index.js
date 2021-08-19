@@ -64,10 +64,12 @@ let options = {
   bearerToken: bearerToken,
 };
 //! Collect logs for gitlab.cl private projects
-if (gitlabCollectLogs == true) {
+if (gitlabCollectLogs) {
+  console.log("@1Marker-No:_-2107073053");
+  //! Anoki
   let importProjectsList = [
     // "15112024", // edutelling-api
-    "15794568", // edutelling-app
+    // "15794568", // edutelling-app
     // "13390016", // ckp-api
     // "13177865", // TRusT-FE
     // "23449559", // app-prenotazioni-api
@@ -76,13 +78,54 @@ if (gitlabCollectLogs == true) {
     // "13680394", // trust-mail-sender
     // "27569851", // smoke-collector
   ];
-
+  //! Publics
+  //? https://gitlab.com/explore?sort=stars_desc&visibility_level=20
+  console.log("@1Marker-No:_1822266173");
+  importProjectsList = [
+    // "278964",  // GitLab 3006
+    // "3472737", // inkscape 2237
+    // "250833",  // gitlab-runner 1856
+    // "6853087", // HomelabOS 941
+    // "6922885", // AuroraStore 922
+    // "3199253", // quart 848
+    // "3601513", // webapp 812
+    // "7603319", // Meltano 520
+    // "2977308", // GitFox 441
+    // "6814019", // manyverse
+    // "6821549", // ClearURLs
+    // "2712276", // Dropzone
+    // "4180516", // Antora
+    // "6412021", // hypercorn
+    // "7301016", // pmbootstrap
+    // "3682068", // babel-preset-php
+    "10582521", // OpenRGB
+    "473568", // LabCoat
+    "10382875", // Dotfiles
+    "10858056", // Baserow
+    "36528", // Data
+    "6094330", // Commento
+    "4815250", // mutt
+    "5261717", // gitlab-vscode-extension
+    "3828396", //GitLab Chart
+    "2009901", // gitaly
+    "8320003", // news_flash_gtk
+    "4469613", // sequoia
+    "5664378", // ffsend
+    "GnuTLS", // GnuTLS
+    "6977506", // prismo
+    "24091344", // Jam
+    "8229519", // AutowareAuto
+  ];
   for (const projectId of importProjectsList) {
     collectProjectInfo({
       projectId: projectId,
     });
   }
 }
+
+// if (gitlabCollectLogsPublics) {
+//   collectAllProject(options);
+// }
 
 export default app;
 

@@ -7,6 +7,10 @@ name = "pypi"
 ipykernel = "*"
 nbconvert = "*"
 toolz = "*"
+wordninja = "*"
+compound-word-splitter = "*"
+mlmorph = "*"
+pyspark = "*"
 
 [dev-packages]
 ipykernel = "*"

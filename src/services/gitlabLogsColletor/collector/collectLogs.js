@@ -95,12 +95,18 @@ async function collectAllProject(options) {
     var config = {
       method: "get",
       url: url,
-      headers: {},
+      headers: {
+        Authorization: `Bearer ${options.bearerToken}`,
+      },
     };
 
     logger.info(" 📦 Search gitlab project page: " + pages.pages);
 
     let response = await axios(config);
+
+    console.log(">>>>>-1030026329>>>>>");
+    console.log(response);
+    console.log("<<<<<<<<<<<<<<<<<<<");
 
     if (response.data.length === 0) {
       search = false;
@@ -110,10 +116,35 @@ async function collectAllProject(options) {
 
     for (const data of response.data) {
       logger.info(" 📄 Import project " + data.id);
-      await collectProjectInfo({
-        projectId: data.id,
-        bearerToken: gitlabBearerToken,
-      });
+
+      // =================================
+      // Check if exist pipeline
+
+      let config2 = {
+        method: "get",
+        url: `https://gitlab.com/api/v4/projects/${data.id}/pipelines`,
+        headers: {
+          Authorization: `Bearer ${options.bearerToken}`,
+        },
+      };
+
+      let response_tem;
+      try {
+        console.log("@1Marker-No:_-849424757");
+        response_tem = await axios(config2);
+      } catch (error) {
+        console.log("@1Marker-No:_1279350725");
+        logger.error(error.message);
+      }
+      // =================================
+
+      if (response_tem.data.length !== 0) {
+        logger.warn("Not exist pipeline inside of the project");
+        await collectProjectInfo({
+          projectId: data.id,
+          bearerToken: gitlabBearerToken,
+        });
+      }
     }
 
     logger.info(" 📦 Data package length: " + response.data.length);
